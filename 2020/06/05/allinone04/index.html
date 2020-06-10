@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="php,python,C#,aes,sha256,MD5,encrypt,Bcrypt,w3HexSchool," />
+  <meta name="keywords" content="encrypt,Bcrypt,w3HexSchool,PBKDF2," />
 
 
 
@@ -79,28 +79,21 @@
 
 
 
-<meta name="description" content="主題:雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt  前言:本篇開始將連續幾篇講述基礎的加密與資訊安全，並針對PHP、Python、C#來進行實作  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: php,encrypt,Bcrypt,AES本篇重點: 簡介常見的加密手法 自身的實作經驗   常見的hash 1.MD52.Sha系列3.Ha">
+<meta name="description" content="主題:雜亂大全04-資安與加密的那些事(2):PBKDF2、Scrypt、Bcrypt(補充)  前言:接續前篇講述基礎的加密與資訊安全，並針對PHP、Python、C#來進行實作  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: php,encrypt,Bcrypt,PBKDF2本篇重點: 簡介常見的加密手法(Bcrypt、PBKDF2、Scrypt) 自身的實">
 <meta property="og:type" content="article">
-<meta property="og:title" content="雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt">
-<meta property="og:url" content="http://yoursite.com/2020/05/25/allinone03/index.html">
+<meta property="og:title" content="雜亂大全04-資安與加密的那些事(2):PBKDF2、Scrypt、Bcrypt(補充)">
+<meta property="og:url" content="http://yoursite.com/2020/06/05/allinone04/index.html">
 <meta property="og:site_name" content="Lzz Blog">
-<meta property="og:description" content="主題:雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt  前言:本篇開始將連續幾篇講述基礎的加密與資訊安全，並針對PHP、Python、C#來進行實作  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: php,encrypt,Bcrypt,AES本篇重點: 簡介常見的加密手法 自身的實作經驗   常見的hash 1.MD52.Sha系列3.Ha">
+<meta property="og:description" content="主題:雜亂大全04-資安與加密的那些事(2):PBKDF2、Scrypt、Bcrypt(補充)  前言:接續前篇講述基礎的加密與資訊安全，並針對PHP、Python、C#來進行實作  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: php,encrypt,Bcrypt,PBKDF2本篇重點: 簡介常見的加密手法(Bcrypt、PBKDF2、Scrypt) 自身的實">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://pmk9zq.dm.files.1drv.com/y4mbJ-fNdbSLvFvHdTguAd3x6MiPINUBtaFqOB7fe0IHYrMIm96dIo7SLcxS4DrPhr-2sFJYv6vDcymvGm51lXixsL2_WMtj2eEWoba5K-ZF8-7yJ1xD_A9mqYB8rHIWPnItF26ZMEmq3fDsOAZA45QPYKY2K-fhZhCyUV_m6cZx2frlSVtzz77OdeQ9wQWdBhKrpfh96j1ZzkwbPaEbvWNZw?width=1691&height=662&cropmode=none">
-<meta property="article:published_time" content="2020-05-25T08:57:06.000Z">
-<meta property="article:modified_time" content="2020-05-27T09:37:11.424Z">
+<meta property="article:published_time" content="2020-06-05T08:57:06.000Z">
+<meta property="article:modified_time" content="2020-06-07T04:01:18.267Z">
 <meta property="article:author" content="Zih Zrong">
-<meta property="article:tag" content="php">
-<meta property="article:tag" content="python">
-<meta property="article:tag" content="C#">
-<meta property="article:tag" content="aes">
-<meta property="article:tag" content="sha256">
-<meta property="article:tag" content="MD5">
 <meta property="article:tag" content="encrypt">
 <meta property="article:tag" content="Bcrypt">
 <meta property="article:tag" content="w3HexSchool">
+<meta property="article:tag" content="PBKDF2">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pmk9zq.dm.files.1drv.com/y4mbJ-fNdbSLvFvHdTguAd3x6MiPINUBtaFqOB7fe0IHYrMIm96dIo7SLcxS4DrPhr-2sFJYv6vDcymvGm51lXixsL2_WMtj2eEWoba5K-ZF8-7yJ1xD_A9mqYB8rHIWPnItF26ZMEmq3fDsOAZA45QPYKY2K-fhZhCyUV_m6cZx2frlSVtzz77OdeQ9wQWdBhKrpfh96j1ZzkwbPaEbvWNZw?width=1691&height=662&cropmode=none">
 
 
 
@@ -130,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/05/25/allinone03/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/06/05/allinone04/"/>
 
 
 
 
 
-  <title>雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt | Lzz Blog</title>
+  <title>雜亂大全04-資安與加密的那些事(2):PBKDF2、Scrypt、Bcrypt(補充) | Lzz Blog</title>
   
 
 
@@ -273,7 +266,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/allinone03/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/05/allinone04/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zih Zrong">
@@ -290,7 +283,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt</h1>
+          <h1 class="post-title" itemprop="name headline">雜亂大全04-資安與加密的那些事(2):PBKDF2、Scrypt、Bcrypt(補充)</h1>
         
 
         <div class="post-meta">
@@ -302,8 +295,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-05-25T16:57:06+08:00">
-                2020-05-25
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-05T16:57:06+08:00">
+                2020-06-05
               </time>
             
 
@@ -369,68 +362,73 @@
       
         <blockquote>
 <ul>
-<li><p>主題:雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt</p>
+<li><p>主題:雜亂大全04-資安與加密的那些事(2):PBKDF2、Scrypt、Bcrypt(補充)</p>
 </li>
-<li><p>前言:本篇開始將連續幾篇講述基礎的加密與資訊安全，並針對PHP、Python、C#來進行實作</p>
+<li><p>前言:接續前篇講述基礎的加密與資訊安全，並針對PHP、Python、C#來進行實作</p>
 </li>
 <li><p>叮嚀: <code>$</code> 代表對CMD或terminal(終端機)下指令</p>
 </li>
 </ul>
 </blockquote>
-<h6 id="tags-php-encrypt-Bcrypt-AES"><a href="#tags-php-encrypt-Bcrypt-AES" class="headerlink" title="tags: php,encrypt,Bcrypt,AES"></a>tags: <code>php</code>,<code>encrypt</code>,<code>Bcrypt</code>,<code>AES</code></h6><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ol>
-<li>簡介常見的加密手法</li>
+<h6 id="tags-php-encrypt-Bcrypt-PBKDF2"><a href="#tags-php-encrypt-Bcrypt-PBKDF2" class="headerlink" title="tags: php,encrypt,Bcrypt,PBKDF2"></a>tags: <code>php</code>,<code>encrypt</code>,<code>Bcrypt</code>,<code>PBKDF2</code></h6><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ol>
+<li>簡介常見的加密手法(Bcrypt、PBKDF2、Scrypt)</li>
 <li>自身的實作經驗</li>
 </ol>
 <hr>
-<h1 id="常見的hash"><a href="#常見的hash" class="headerlink" title="常見的hash"></a>常見的hash</h1><blockquote>
-<p>1.MD5<br>2.Sha系列<br>3.Haval系列<br>4.Bcrypt<br>5.PBKDF2<br>6.Scrypt<br>當然還有很多，但是主要以最常使用的為主<br>在某些領域中，會將hash和加密分開討論<br>(本篇只先介紹MD5、SHA、Bcrypt)</p>
+<h1 id="接續前篇簡介常見的hash"><a href="#接續前篇簡介常見的hash" class="headerlink" title="接續前篇簡介常見的hash"></a>接續前篇簡介常見的hash</h1><p>當然還有很多，但是主要以最常使用的為主</p>
+<blockquote>
+<ul>
+<li>在某些領域中，會將hash和加密分開討論</li>
+<li>本篇接續前篇介紹Bcrypt、PBKDF2、Scrypt</li>
+</ul>
 </blockquote>
-<p>在PHP中可使用hash_algos()來查看hash演算法</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">print_r(hash_algos());</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-
-<p>Array<br>(<br>    [0] =&gt; md2<br>    [1] =&gt; md4<br>    [2] =&gt; md5<br>    [3] =&gt; sha1<br>    [4] =&gt; sha224<br>    [5] =&gt; sha256<br>    [6] =&gt; sha384<br>    [7] =&gt; sha512<br>    [8] =&gt; ripemd128<br>    [9] =&gt; ripemd160<br>    [10] =&gt; ripemd256<br>    [11] =&gt; ripemd320<br>    [12] =&gt; whirlpool<br>    [13] =&gt; tiger128,3<br>    [14] =&gt; tiger160,3<br>    [15] =&gt; tiger192,3<br>    [16] =&gt; tiger128,4<br>    [17] =&gt; tiger160,4<br>    [18] =&gt; tiger192,4<br>    [19] =&gt; snefru<br>    [20] =&gt; snefru256<br>    [21] =&gt; gost<br>    [22] =&gt; gost-crypto<br>    [23] =&gt; adler32<br>    [24] =&gt; crc32<br>    [25] =&gt; crc32b<br>    [26] =&gt; fnv132<br>    [27] =&gt; fnv1a32<br>    [28] =&gt; fnv164<br>    [29] =&gt; fnv1a64<br>    [30] =&gt; joaat<br>    [31] =&gt; haval128,3<br>    [32] =&gt; haval160,3<br>    [33] =&gt; haval192,3<br>    [34] =&gt; haval224,3<br>    [35] =&gt; haval256,3<br>    [36] =&gt; haval128,4<br>    [37] =&gt; haval160,4<br>    [38] =&gt; haval192,4<br>    [39] =&gt; haval224,4<br>    [40] =&gt; haval256,4<br>    [41] =&gt; haval128,5<br>    [42] =&gt; haval160,5<br>    [43] =&gt; haval192,5<br>    [44] =&gt; haval224,5<br>    [45] =&gt; haval256,5<br>)</p>
-<hr>
-</br>
-
-<h1 id="最不能使用的-MD5"><a href="#最不能使用的-MD5" class="headerlink" title="最不能使用的-MD5"></a>最不能使用的-MD5</h1><p>MD5屬於早期相當常使用的hash方式<br>用來成為文本摘要判斷文本是否被竄改<br>也用於hash密碼的方法，來儲存或是傳送資料</p>
-<p>那為何不能再使用呢?<br>因為可以暴力破解出答案</p>
-<p>1996年發現MD5存在弱點<br>且隨著硬體的進步很快能破解出MD5<br>故最好別再使用</p>
-<ul>
-<li>MD5簡介：<br><a href="https://zh.wikipedia.org/wiki/MD5" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/MD5</a></li>
-</ul>
-<p>在PHP中相當簡單使用，直接呼叫即可<br><code>md5 ( string $str [, bool $raw_output = FALSE ] ) : string</code></p>
-<hr>
-</br>
-
-<h1 id="最常用的SHA系列"><a href="#最常用的SHA系列" class="headerlink" title="最常用的SHA系列"></a>最常用的SHA系列</h1><p>SHA-0：1993年發布<br>SHA-1：1995年發布<br>SHA-2：2001年發布，<br>包括SHA-224、256、384、512、512/224、512/256。</p>
-<p>SHA-3：2015年正式發布<br>SHA-3目前並未大規模取代SHA-2<br>因為SHA-2目前沒有出現明顯的弱點。</p>
-<ul>
-<li>SHA簡介：<br><a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Secure_Hash_Algorithms</a></li>
-</ul>
-<p><font color=red >重要:最好使用SHA-256以上<br>目前建議使用SHA-2中的256、384、512</font></p>
-<p>使用上也相當的簡單，直接代入即可:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo hash(<span class="string">'sha256'</span>, <span class="string">'abc'</span>);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
-<p>以下為SHA與MD5之比對表:<br><img src="https://pmk9zq.dm.files.1drv.com/y4mbJ-fNdbSLvFvHdTguAd3x6MiPINUBtaFqOB7fe0IHYrMIm96dIo7SLcxS4DrPhr-2sFJYv6vDcymvGm51lXixsL2_WMtj2eEWoba5K-ZF8-7yJ1xD_A9mqYB8rHIWPnItF26ZMEmq3fDsOAZA45QPYKY2K-fhZhCyUV_m6cZx2frlSVtzz77OdeQ9wQWdBhKrpfh96j1ZzkwbPaEbvWNZw?width=1691&height=662&cropmode=none" alt="image"></p>
-<hr>
-</br>
-
-<h1 id="非常推薦的hash-Bcrypt"><a href="#非常推薦的hash-Bcrypt" class="headerlink" title="非常推薦的hash-Bcrypt"></a>非常推薦的hash-Bcrypt</h1><p>目前PHP7以上都使用此方法來進行hash密碼<br>使用方法也極為簡單<br>但是效果卻特別的好</p>
-<p>Bcrypt 是根據Blowfish加密演算法所設計<br>對文本進行加鹽加密<br>並且能夠防禦暴力破解與彩虹表攻擊</p>
-<ul>
+<h1 id="非常推薦的hash-Bcrypt-補充"><a href="#非常推薦的hash-Bcrypt-補充" class="headerlink" title="非常推薦的hash-Bcrypt (補充)"></a>非常推薦的hash-Bcrypt (補充)</h1><ul>
 <li>Bcrypt簡介：<br><a href="https://zh.wikipedia.org/wiki/Bcrypt" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Bcrypt</a></li>
+<li>PHP使用Bcrypt簡介:<br><a href="https://www.php.net/manual/en/function.password-hash.php" target="_blank" rel="noopener">https://www.php.net/manual/en/function.password-hash.php</a></li>
 </ul>
-<p>使用上也相當的簡單，直接呼叫即可:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$password = <span class="string">'123456'</span>;</span><br><span class="line">var_dump(password_hash($password, PASSWORD_DEFAULT));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>補充上次所講，使用Bcrypt為PHP的首選<br>另外，上次未提到的sult函數更改<br>原因是因為希望大家使用預設即可<br><code>PASSWORD_DEFAULT</code></p>
+<blockquote>
+<p>PHP文件有特別寫到:<br>The salt option has been deprecated as of PHP 7.0.0. It is now preferred to simply use the salt that is generated by default.</p>
+</blockquote>
+<p>範例:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * This is presently BCRYPT, and will produce a 60 character result.</span></span><br><span class="line"><span class="comment"> * Beware that DEFAULT may change over time, so you would want to prepare</span></span><br><span class="line"><span class="comment"> * By allowing your storage to expand past 60 characters (255 would be good)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">echo password_hash(<span class="string">"rasmuslerdorf"</span>, PASSWORD_DEFAULT);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
 
-<p>特別的是<br>每一次hash執行結果都不一樣<br>因此需要使用 password_verify 函式進行驗證</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(password_verify($password, $hash));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>執行結果:<br><code>$2y$10$.vGA1O9wmRjrwAVXD98HNOgsNpDczlqm3Jq7KnEd1rVAGv3Fykk1a</code></p>
+<p>另外也可以調整他的cost<br>一般建議使用預設<code>10</code></p>
 <hr>
 <br>
 
-<h1 id="小結語"><a href="#小結語" class="headerlink" title="小結語:"></a>小結語:</h1><p>使用hash的話，會比較推薦Bcrypt以及下篇要介紹的PBKDF2</p>
+<h1 id="非常推薦的加密函式-PBKDF2"><a href="#非常推薦的加密函式-PBKDF2" class="headerlink" title="非常推薦的加密函式-PBKDF2"></a>非常推薦的加密函式-PBKDF2</h1><p>屬於比較好的加密方式之一<br>PBKDF2將偽隨機函數（HMAC）與鹽值一起應用於密碼，並重複多次此過程以生成派生密鑰，然後可以將該密鑰用作後續操作中。增加的計算工作使密碼破解變得更加困難，這被稱為密鑰擴展。</p>
+<p>(美國國家標準技術研究院建議鹽長度為128位)</p>
+<p><code>實際的函式過程本篇不贅述，可以參考以下</code></p>
+<ul>
+<li>PBKDF2簡介：<br><a href="https://en.wikipedia.org/wiki/PBKDF2" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/PBKDF2</a></li>
+</ul>
+<p>PHP使用的方式，帶入各項參數即可使用<br>範例:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$password = <span class="string">"password"</span>;</span><br><span class="line">$iterations = <span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Generate a random IV using openssl_random_pseudo_bytes()</span></span><br><span class="line"><span class="comment">// random_bytes() or another suitable source of randomness</span></span><br><span class="line">$salt = openssl_random_pseudo_bytes(<span class="number">16</span>);</span><br><span class="line"></span><br><span class="line">$hash = hash_pbkdf2(<span class="string">"sha256"</span>, $password, $salt, $iterations, <span class="number">20</span>);</span><br><span class="line">echo $hash;</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>執行結果:<br><code>120fb6cffcf8b32c43e7</code></p>
+<blockquote>
+<ul>
+<li>第一個參數使用hash演算法(推薦:sha256以上)</li>
+<li>第二參數為密碼文本</li>
+<li>第三參數是你的salt(建議長度128)</li>
+<li>第四參數是疊代的次數(1000次以上)</li>
+<li>第五參數是輸出的字串長度</li>
+</ul>
+</blockquote>
+<hr>
+<br>
+
+<h1 id="非常新的金鑰衍生函式-Scrypt"><a href="#非常新的金鑰衍生函式-Scrypt" class="headerlink" title="非常新的金鑰衍生函式-Scrypt"></a>非常新的金鑰衍生函式-Scrypt</h1><p>於2009年所發明的金鑰衍生函式，設計時考慮到大規模的客製硬體攻擊而刻意設計需要大量記憶體運算。<br>2016年，scrypt演算法發布在RFC 7914。<br>scrypt的簡化版被用在密碼貨幣的工作量證明（Proof-of-Work）上。</p>
+<ul>
+<li>scrypt簡介：<br><a href="https://zh.wikipedia.org/wiki/Scrypt" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Scrypt</a></li>
+</ul>
+<hr>
+<h1 id="小結語"><a href="#小結語" class="headerlink" title="小結語:"></a>小結語:</h1><p>在儲存密碼上<br>首選Bcrypt或PBKDF2而不是前篇所提SHA256<br>其原因之一是此類的加密方式<br>因為有疊代(防暴力法破解)、有salt(防彩虹表)<br>因此很難在GPU加速運算中有效實現破譯</p>
 <hr>
 <h3 id="後續"><a href="#後續" class="headerlink" title="後續:"></a>後續:</h3><blockquote>
-<p>在下一篇會以Python、PHP、C#實作AES</p>
+<p>本篇開始介紹基礎的hash以及後來延伸的加密函式(金鑰衍生函式)，後續也將介紹金鑰使用與加密協定的溝通，下篇會介紹AES的實作</p>
 </blockquote>
 <hr>
 <h3 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h3><ul>
@@ -474,23 +472,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/php/" rel="tag"># php</a>
-          
-            <a href="/tags/python/" rel="tag"># python</a>
-          
-            <a href="/tags/C/" rel="tag"># C#</a>
-          
-            <a href="/tags/aes/" rel="tag"># aes</a>
-          
-            <a href="/tags/sha256/" rel="tag"># sha256</a>
-          
-            <a href="/tags/MD5/" rel="tag"># MD5</a>
-          
             <a href="/tags/encrypt/" rel="tag"># encrypt</a>
           
             <a href="/tags/Bcrypt/" rel="tag"># Bcrypt</a>
           
             <a href="/tags/w3HexSchool/" rel="tag"># w3HexSchool</a>
+          
+            <a href="/tags/PBKDF2/" rel="tag"># PBKDF2</a>
           
         </div>
       
@@ -503,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/05/15/allinone02/" rel="next" title="雜亂大全02-Linux架設網站(以wordpress、Laravel為例)">
-                <i class="fa fa-chevron-left"></i> 雜亂大全02-Linux架設網站(以wordpress、Laravel為例)
+              <a href="/2020/05/25/allinone03/" rel="next" title="雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt">
+                <i class="fa fa-chevron-left"></i> 雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt
               </a>
             
           </div>
@@ -512,10 +500,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/06/05/allinone04/" rel="prev" title="雜亂大全04-資安與加密的那些事(2):PBKDF2、Scrypt、Bcrypt(補充)">
-                雜亂大全04-資安與加密的那些事(2):PBKDF2、Scrypt、Bcrypt(補充) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -667,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-php-encrypt-Bcrypt-AES"><span class="nav-number">1.</span> <span class="nav-text">tags: php,encrypt,Bcrypt,AES</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常見的hash"><span class="nav-number"></span> <span class="nav-text">常見的hash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最不能使用的-MD5"><span class="nav-number"></span> <span class="nav-text">最不能使用的-MD5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最常用的SHA系列"><span class="nav-number"></span> <span class="nav-text">最常用的SHA系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非常推薦的hash-Bcrypt"><span class="nav-number"></span> <span class="nav-text">非常推薦的hash-Bcrypt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小結語"><span class="nav-number"></span> <span class="nav-text">小結語:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#後續"><span class="nav-number"></span> <span class="nav-text">後續:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考連結"><span class="nav-number"></span> <span class="nav-text">參考連結</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-php-encrypt-Bcrypt-PBKDF2"><span class="nav-number">1.</span> <span class="nav-text">tags: php,encrypt,Bcrypt,PBKDF2</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#接續前篇簡介常見的hash"><span class="nav-number"></span> <span class="nav-text">接續前篇簡介常見的hash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非常推薦的hash-Bcrypt-補充"><span class="nav-number"></span> <span class="nav-text">非常推薦的hash-Bcrypt (補充)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非常推薦的加密函式-PBKDF2"><span class="nav-number"></span> <span class="nav-text">非常推薦的加密函式-PBKDF2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非常新的金鑰衍生函式-Scrypt"><span class="nav-number"></span> <span class="nav-text">非常新的金鑰衍生函式-Scrypt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小結語"><span class="nav-number"></span> <span class="nav-text">小結語:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#後續"><span class="nav-number"></span> <span class="nav-text">後續:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考連結"><span class="nav-number"></span> <span class="nav-text">參考連結</span></a></div>
             
 
           </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="encrypt,w3HexSchool,AES," />
 
 
 
@@ -79,17 +79,23 @@
 
 
 
-<meta name="description" content="記錄學習狀態">
+<meta name="description" content="主題:雜亂大全05-資安與加密的那些事(3):AES實作與應用  前言:接續前幾篇，本篇簡介對稱金鑰加密後將講解AES實際應用情形  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: php,encrypt,AES本篇重點: 簡介對稱金鑰加密、AES 實作經驗   對稱金鑰加密 對稱金鑰加密簡介：https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Symme">
 <meta property="og:type" content="article">
-<meta property="og:title" content="allinone05.">
+<meta property="og:title" content="雜亂大全05-資安與加密的那些事(3):AES實作與應用(對稱密鑰加密)">
 <meta property="og:url" content="http://yoursite.com/2020/06/10/allinone05/index.html">
 <meta property="og:site_name" content="Lzz Blog">
-<meta property="og:description" content="記錄學習狀態">
+<meta property="og:description" content="主題:雜亂大全05-資安與加密的那些事(3):AES實作與應用  前言:接續前幾篇，本篇簡介對稱金鑰加密後將講解AES實際應用情形  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: php,encrypt,AES本篇重點: 簡介對稱金鑰加密、AES 實作經驗   對稱金鑰加密 對稱金鑰加密簡介：https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Symme">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-06-10T14:11:35.000Z">
-<meta property="article:modified_time" content="2020-06-10T14:11:35.876Z">
+<meta property="og:image" content="https://ock9zq.dm.files.1drv.com/y4mL3INjYkTIMehTaHIOcUmXwyHmGevSbFDfSX8_E3oD__HZVQGfeOUylbf0Fvam0trKpLbkCBZWd1IfcUTlV1ndX48IA5g94tZmx_blT5fa4d_MXahU0EifxOPb9OjW-vYZWgDrJKhR1c7sJIjVTVoXMcOOBlQRY_C8vwZ44dT-m6-wV0eSxJLs02SuN1YLQC4e1Y4Nm2SHWkdRlIEBkXPTA?width=1051&height=1558&cropmode=none">
+<meta property="og:image" content="https://osk9zq.dm.files.1drv.com/y4mE2zPrEm13-1vkx1LRTM2BuvQ8cTBFQXv7y96Njedmb1Y_O7hfdjOSI5DGNvt64a63DHBqIiAmsPZobxikunQSmhA_uXz42_anaPwVSr9sPs4uFJWVbaLYCSe0mCh6bEUhuh2De0aki5x4bdid4gfMBCbae7-E9iKPQXioMqS-ECOHvhYd2XinVcNCgb1hmh-YL0KB16f8dX7E8B5qIDh-g?width=1033&height=647&cropmode=none">
+<meta property="article:published_time" content="2020-06-10T08:57:06.000Z">
+<meta property="article:modified_time" content="2020-06-10T14:12:22.954Z">
 <meta property="article:author" content="Zih Zrong">
+<meta property="article:tag" content="encrypt">
+<meta property="article:tag" content="w3HexSchool">
+<meta property="article:tag" content="AES">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ock9zq.dm.files.1drv.com/y4mL3INjYkTIMehTaHIOcUmXwyHmGevSbFDfSX8_E3oD__HZVQGfeOUylbf0Fvam0trKpLbkCBZWd1IfcUTlV1ndX48IA5g94tZmx_blT5fa4d_MXahU0EifxOPb9OjW-vYZWgDrJKhR1c7sJIjVTVoXMcOOBlQRY_C8vwZ44dT-m6-wV0eSxJLs02SuN1YLQC4e1Y4Nm2SHWkdRlIEBkXPTA?width=1051&height=1558&cropmode=none">
 
 
 
@@ -125,7 +131,7 @@
 
 
 
-  <title>allinone05. | Lzz Blog</title>
+  <title>雜亂大全05-資安與加密的那些事(3):AES實作與應用(對稱密鑰加密) | Lzz Blog</title>
   
 
 
@@ -279,7 +285,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">allinone05.</h1>
+          <h1 class="post-title" itemprop="name headline">雜亂大全05-資安與加密的那些事(3):AES實作與應用(對稱密鑰加密)</h1>
         
 
         <div class="post-meta">
@@ -291,7 +297,7 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-10T22:11:35+08:00">
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-10T16:57:06+08:00">
                 2020-06-10
               </time>
             
@@ -301,6 +307,28 @@
             
           </span>
 
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/AES/" itemprop="url" rel="index">
+                    <span itemprop="name">AES</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -334,7 +362,49 @@
       
 
       
-        
+        <blockquote>
+<ul>
+<li><p>主題:雜亂大全05-資安與加密的那些事(3):AES實作與應用</p>
+</li>
+<li><p>前言:接續前幾篇，本篇簡介對稱金鑰加密後將講解AES實際應用情形</p>
+</li>
+<li><p>叮嚀: <code>$</code> 代表對CMD或terminal(終端機)下指令</p>
+</li>
+</ul>
+</blockquote>
+<h6 id="tags-php-encrypt-AES"><a href="#tags-php-encrypt-AES" class="headerlink" title="tags: php,encrypt,AES"></a>tags: <code>php</code>,<code>encrypt</code>,<code>AES</code></h6><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ol>
+<li>簡介對稱金鑰加密、AES</li>
+<li>實作經驗</li>
+</ol>
+<hr>
+<h1 id="對稱金鑰加密"><a href="#對稱金鑰加密" class="headerlink" title="對稱金鑰加密"></a>對稱金鑰加密</h1><ul>
+<li>對稱金鑰加密簡介：<br><a href="https://en.wikipedia.org/wiki/Symmetric-key_algorithm" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Symmetric-key_algorithm</a></li>
+</ul>
+<p>白話來說:就是使用同一把鑰匙進行加密與解密，因此會有如何傳遞金鑰的問題</p>
+<p>圖解(引用書本:演算法圖鑑):<br><img src="https://ock9zq.dm.files.1drv.com/y4mL3INjYkTIMehTaHIOcUmXwyHmGevSbFDfSX8_E3oD__HZVQGfeOUylbf0Fvam0trKpLbkCBZWd1IfcUTlV1ndX48IA5g94tZmx_blT5fa4d_MXahU0EifxOPb9OjW-vYZWgDrJKhR1c7sJIjVTVoXMcOOBlQRY_C8vwZ44dT-m6-wV0eSxJLs02SuN1YLQC4e1Y4Nm2SHWkdRlIEBkXPTA?width=1051&height=1558&cropmode=none" alt="image"></p>
+<hr>
+<h1 id="AES簡介"><a href="#AES簡介" class="headerlink" title="AES簡介"></a>AES簡介</h1><p>進階加密標準（英語：Advanced Encryption Standard，縮寫：AES），在密碼學中又稱Rijndael加密法，是美國聯邦政府採用的一種區塊加密標準。這個標準用來替代原先的DES，已經被多方分析且廣為全世界所使用。(節錄)</p>
+<ul>
+<li><p>AES簡介：<br><a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Advanced_Encryption_Standard</a></p>
+</li>
+<li><p>目前被推薦的長度至少256位元</p>
+</li>
+<li><p>AES的參數(預設是Rijndael)</p>
+</li>
+</ul>
+<ol>
+<li>key length（密鑰位數）</li>
+<li>key （密鑰）</li>
+<li>IV （向量）</li>
+<li>mode （加密模式）</li>
+<li>padding （填充方式）</li>
+</ol>
+<hr>
+<h1 id="實際應用於WebSocket溝通"><a href="#實際應用於WebSocket溝通" class="headerlink" title="實際應用於WebSocket溝通"></a>實際應用於WebSocket溝通</h1><p>本次參考與國家地震中心雙方交談時使用的AES加密方式<br>(均可從網站找到溝通方式)<br><img src="https://osk9zq.dm.files.1drv.com/y4mE2zPrEm13-1vkx1LRTM2BuvQ8cTBFQXv7y96Njedmb1Y_O7hfdjOSI5DGNvt64a63DHBqIiAmsPZobxikunQSmhA_uXz42_anaPwVSr9sPs4uFJWVbaLYCSe0mCh6bEUhuh2De0aki5x4bdid4gfMBCbae7-E9iKPQXioMqS-ECOHvhYd2XinVcNCgb1hmh-YL0KB16f8dX7E8B5qIDh-g?width=1033&height=647&cropmode=none" alt="image"></p>
+<blockquote>
+<p>以下提供官方範例文件(使用C#):</p>
+</blockquote>
+
       
     </div>
     
@@ -348,6 +418,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/encrypt/" rel="tag"># encrypt</a>
+          
+            <a href="/tags/w3HexSchool/" rel="tag"># w3HexSchool</a>
+          
+            <a href="/tags/AES/" rel="tag"># AES</a>
+          
+        </div>
       
 
       
@@ -418,8 +498,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -443,7 +532,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">分類</span>
                 </a>
               </div>
@@ -454,7 +543,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">標籤</span>
                 </a>
               </div>
@@ -499,6 +588,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-php-encrypt-AES"><span class="nav-number">1.</span> <span class="nav-text">tags: php,encrypt,AES</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#對稱金鑰加密"><span class="nav-number"></span> <span class="nav-text">對稱金鑰加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AES簡介"><span class="nav-number"></span> <span class="nav-text">AES簡介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#實際應用於WebSocket溝通"><span class="nav-number"></span> <span class="nav-text">實際應用於WebSocket溝通</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

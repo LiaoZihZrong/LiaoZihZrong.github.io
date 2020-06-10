@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://ock9zq.dm.files.1drv.com/y4mL3INjYkTIMehTaHIOcUmXwyHmGevSbFDfSX8_E3oD__HZVQGfeOUylbf0Fvam0trKpLbkCBZWd1IfcUTlV1ndX48IA5g94tZmx_blT5fa4d_MXahU0EifxOPb9OjW-vYZWgDrJKhR1c7sJIjVTVoXMcOOBlQRY_C8vwZ44dT-m6-wV0eSxJLs02SuN1YLQC4e1Y4Nm2SHWkdRlIEBkXPTA?width=1051&height=1558&cropmode=none">
 <meta property="og:image" content="https://osk9zq.dm.files.1drv.com/y4mE2zPrEm13-1vkx1LRTM2BuvQ8cTBFQXv7y96Njedmb1Y_O7hfdjOSI5DGNvt64a63DHBqIiAmsPZobxikunQSmhA_uXz42_anaPwVSr9sPs4uFJWVbaLYCSe0mCh6bEUhuh2De0aki5x4bdid4gfMBCbae7-E9iKPQXioMqS-ECOHvhYd2XinVcNCgb1hmh-YL0KB16f8dX7E8B5qIDh-g?width=1033&height=647&cropmode=none">
 <meta property="article:published_time" content="2020-06-10T08:57:06.000Z">
-<meta property="article:modified_time" content="2020-06-10T14:14:13.890Z">
+<meta property="article:modified_time" content="2020-06-10T14:14:32.627Z">
 <meta property="article:author" content="Zih Zrong">
 <meta property="article:tag" content="encrypt">
 <meta property="article:tag" content="w3HexSchool">
@@ -422,6 +422,47 @@
 </ol>
 </blockquote>
 <hr>
+<p>範例:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> websocket <span class="keyword">import</span> create_connection</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> simplejson <span class="keyword">as</span> sjson</span><br><span class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> pkcs7 <span class="keyword">import</span> PKCS7Encoder</span><br><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">def AES_encode( key, ID, PW):</span><br><span class="line">    Pad_ID = PKCS7Encoder().encode(ID)</span><br><span class="line">    Byte_ID = bytes(Pad_ID, <span class="string">'utf-8'</span>)</span><br><span class="line">    Pad_PW = PKCS7Encoder().encode(PW)</span><br><span class="line">    Byte_PW = bytes(Pad_PW, <span class="string">'utf-8'</span>)</span><br><span class="line">    Byte_key = bytes(key, <span class="string">"utf-8"</span>)</span><br><span class="line">    MD5key = hashlib.md5(Byte_key).digest()</span><br><span class="line">    SHAkey = hashlib.sha256(Byte_key).digest()</span><br><span class="line"></span><br><span class="line">    Encode1 = AES.new(SHAkey, AES.MODE_CBC, MD5key)</span><br><span class="line">    Encode2 = AES.new(SHAkey, AES.MODE_CBC, MD5key)</span><br><span class="line">    AES_ID = Encode1.encrypt(Byte_ID)</span><br><span class="line">    Key_ID = base64.b64encode(AES_ID)</span><br><span class="line">    AES_PW = Encode2.encrypt(Byte_PW)</span><br><span class="line">    Key_PW = base64.b64encode(AES_PW)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Key_ID, Key_PW</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> _name__==<span class="string">'__main_'</span>:</span><br><span class="line">    <span class="keyword">while</span> True:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            KeyRequest = &#123;<span class="string">"CMD"</span>: <span class="string">"KeyRequest"</span>&#125;</span><br><span class="line">            ws =create_connection(<span class="string">"#溝通的URL"</span>)</span><br><span class="line">            ws.send(json.dumps(KeyRequest))</span><br><span class="line">            result = ws.recv()</span><br><span class="line">            result=json.loads(result)</span><br><span class="line">            ID = <span class="string">'#帳號'</span></span><br><span class="line">            PW = <span class="string">'#密碼'</span></span><br><span class="line">            Key = result[<span class="string">'Key'</span>]</span><br><span class="line">            Key_result = AES_encode( Key, ID, PW )</span><br><span class="line">            login = &#123;<span class="string">"CMD"</span>: <span class="string">"LoginRequest"</span>,</span><br><span class="line">                     <span class="string">"ID"</span>: Key_result[<span class="number">0</span>],</span><br><span class="line">                     <span class="string">"PW"</span>: Key_result[<span class="number">1</span>]</span><br><span class="line">                 &#125;</span><br><span class="line">            ws.send(sjson.dumps(login))</span><br><span class="line">            result = ws.recv()</span><br><span class="line">            #解析回收的資料</span><br><span class="line">            #以下是溝通內容，可以省略</span><br><span class="line">            result = json.loads(result)</span><br><span class="line">            <span class="keyword">if</span> ( result[<span class="string">'MSG'</span>] == <span class="string">"OK"</span>):</span><br><span class="line">                <span class="keyword">while</span> True:</span><br><span class="line">                    result = ws.recv()</span><br><span class="line">                    #result = json.loads(result)</span><br><span class="line">                    print(ws.recv())</span><br><span class="line">                    time.sleep(<span class="number">1</span>)</span><br><span class="line">        except Exception <span class="keyword">as</span> e:</span><br><span class="line">            print (e)</span><br><span class="line">            ws.close()</span><br><span class="line">            time.sleep(<span class="number">5</span>)</span><br><span class="line">            print (<span class="string">"Disconnect"</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="補充"><a href="#補充" class="headerlink" title="補充:"></a>補充:</h1><p>因為各個語言C#、PHP、Python<br>在AES參數寫法上有一些不同，所以文件要寫好<br>確定好在各參數上都能一致<br>上述寫法是應雙方文件都使用此類參數</p>
+<hr>
+<h1 id="小結語"><a href="#小結語" class="headerlink" title="小結語:"></a>小結語:</h1><p>AES的使用相較簡單且安全，可以選擇來使用</p>
+<hr>
+<h3 id="後續"><a href="#後續" class="headerlink" title="後續:"></a>後續:</h3><p>下篇將介紹對稱金鑰加密，簡介使用RSA建立加密</p>
+<hr>
+<h3 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h3><ul>
+<li><p>AES參數使用<br><a href="https://www.itmangoto.cn/2018/06/30/aes-key-mode-iv-padding/" target="_blank" rel="noopener">https://www.itmangoto.cn/2018/06/30/aes-key-mode-iv-padding/</a></p>
+</li>
+<li><p>對稱加密vs非對稱加密<br><a href="https://academy.binance.com/zt/security/symmetric-vs-asymmetric-encryption" target="_blank" rel="noopener">https://academy.binance.com/zt/security/symmetric-vs-asymmetric-encryption</a></p>
+</li>
+</ul>
+<ul>
+<li><p>基礎密碼學(對稱式與非對稱式加密技術)<br><a href="https://medium.com/@RiverChan/%E5%9F%BA%E7%A4%8E%E5%AF%86%E7%A2%BC%E5%AD%B8-%E5%B0%8D%E7%A8%B1%E5%BC%8F%E8%88%87%E9%9D%9E%E5%B0%8D%E7%A8%B1%E5%BC%8F%E5%8A%A0%E5%AF%86%E6%8A%80%E8%A1%93-de25fd5fa537" target="_blank" rel="noopener">https://medium.com/@RiverChan/%E5%9F%BA%E7%A4%8E%E5%AF%86%E7%A2%BC%E5%AD%B8-%E5%B0%8D%E7%A8%B1%E5%BC%8F%E8%88%87%E9%9D%9E%E5%B0%8D%E7%A8%B1%E5%BC%8F%E5%8A%A0%E5%AF%86%E6%8A%80%E8%A1%93-de25fd5fa537</a></p>
+</li>
+<li><p>Blowfish-bcrypt–SSH<br><a href="https://zh.wikipedia.org/wiki/Blowfish" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Blowfish</a></p>
+</li>
+<li><p>SSL/TLS的二三事:<br><a href="https://reurl.cc/MvWAKK" target="_blank" rel="noopener">https://reurl.cc/MvWAKK</a></p>
+</li>
+<li><p>SSL、TLS:<br><a href="https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https" target="_blank" rel="noopener">https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https</a></p>
+</li>
+<li><p>對稱密鑰加密—AES<br><a href="https://reurl.cc/0okjAA" target="_blank" rel="noopener">https://reurl.cc/0okjAA</a></p>
+</li>
+<li><p>公開金鑰加密(非對稱式密碼學)–RSA<br><a href="https://reurl.cc/9E0reO" target="_blank" rel="noopener">https://reurl.cc/9E0reO</a></p>
+</li>
+<li><p>SSL證書(https)中的非對稱加密與對稱加密<br><a href="https://kknews.cc/zh-tw/code/gzbkyg8.html" target="_blank" rel="noopener">https://kknews.cc/zh-tw/code/gzbkyg8.html</a></p>
+</li>
+</ul>
+<ul>
+<li>Does BCrypt uses AES 448bit encryption?<br><a href="https://stackoverflow.com/questions/30028499/does-bcrypt-uses-aes-448bit-encryption" target="_blank" rel="noopener">https://stackoverflow.com/questions/30028499/does-bcrypt-uses-aes-448bit-encryption</a></li>
+</ul>
+<hr>
+<p><code>&lt;追隨前輩們的腳步，不停往前。&gt;</code></p>
+<blockquote>
+<ul>
+<li>任何問題，請聯繫我:<code>liao86221@gmail.com</code></li>
+</ul>
+</blockquote>
 
       
     </div>
@@ -616,7 +657,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-php-encrypt-AES"><span class="nav-number">1.</span> <span class="nav-text">tags: php,encrypt,AES</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#對稱金鑰加密"><span class="nav-number"></span> <span class="nav-text">對稱金鑰加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AES簡介"><span class="nav-number"></span> <span class="nav-text">AES簡介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#實際應用於WebSocket溝通"><span class="nav-number"></span> <span class="nav-text">實際應用於WebSocket溝通</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-php-encrypt-AES"><span class="nav-number">1.</span> <span class="nav-text">tags: php,encrypt,AES</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#對稱金鑰加密"><span class="nav-number"></span> <span class="nav-text">對稱金鑰加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AES簡介"><span class="nav-number"></span> <span class="nav-text">AES簡介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#實際應用於WebSocket溝通"><span class="nav-number"></span> <span class="nav-text">實際應用於WebSocket溝通</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#補充"><span class="nav-number"></span> <span class="nav-text">補充:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小結語"><span class="nav-number"></span> <span class="nav-text">小結語:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#後續"><span class="nav-number"></span> <span class="nav-text">後續:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考連結"><span class="nav-number"></span> <span class="nav-text">參考連結</span></a></div>
             
 
           </div>

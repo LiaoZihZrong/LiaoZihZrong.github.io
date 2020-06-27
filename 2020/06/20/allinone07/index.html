@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="RSA,SSH," />
+  <meta name="keywords" content="encrypt,w3HexSchool,RSA," />
 
 
 
@@ -79,19 +79,22 @@
 
 
 
-<meta name="description" content="主題:生成SSH金鑰 (Github) 前言:接續前幾篇，本篇簡介對稱金鑰加密後將講解AES實際應用情形 叮嚀: $ 代表對CMD或terminal(終端機)下指令   tags: RSA,SSH生成SSH金鑰 (應用於Github)(step by step) Step1 先安裝git 網址 https:&#x2F;&#x2F;git-scm.com&#x2F;  – Step2 綁定Github12$ git conf">
+<meta name="description" content="主題:雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL&#x2F;TLS)  前言:接續前幾篇，本篇簡介SSL的特性  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: encrypt,RSA本篇重點: 簡介SSL&#x2F;TLS 實作經驗   SSL&#x2F;TLS SSL&#x2F;TLS簡介：https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Transport_">
 <meta property="og:type" content="article">
-<meta property="og:title" content="生成SSH金鑰 (Github)">
-<meta property="og:url" content="http://yoursite.com/2020/06/18/some01/index.html">
+<meta property="og:title" content="雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL&#x2F;TLS)">
+<meta property="og:url" content="http://yoursite.com/2020/06/20/allinone07/index.html">
 <meta property="og:site_name" content="Lzz Blog">
-<meta property="og:description" content="主題:生成SSH金鑰 (Github) 前言:接續前幾篇，本篇簡介對稱金鑰加密後將講解AES實際應用情形 叮嚀: $ 代表對CMD或terminal(終端機)下指令   tags: RSA,SSH生成SSH金鑰 (應用於Github)(step by step) Step1 先安裝git 網址 https:&#x2F;&#x2F;git-scm.com&#x2F;  – Step2 綁定Github12$ git conf">
+<meta property="og:description" content="主題:雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL&#x2F;TLS)  前言:接續前幾篇，本篇簡介SSL的特性  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: encrypt,RSA本篇重點: 簡介SSL&#x2F;TLS 實作經驗   SSL&#x2F;TLS SSL&#x2F;TLS簡介：https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Transport_">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-06-18T08:57:06.000Z">
-<meta property="article:modified_time" content="2020-06-18T13:45:49.116Z">
+<meta property="og:image" content="https://bk7g2q.dm.files.1drv.com/y4mCNmn-vKNeYctvD_wx8NGxWwBGVE0cGeWQvYYAm5-Chabq1kqhUKlGfLG1orueQVZ3ZW1xEVgdSC7KtJp2_INhgm8jLH87leE_-fEIsQPpb7sQdfaVWN5hi8gbrQXEkL5jHBlskbjEkcA8yr5bbAdE2MxKpbx4aXYiqwRy5rcpS8pfu67tb-Ycxy89-s05xcnWuf67S4lWXCuc1nsoNWNpQ?width=868&height=566&cropmode=none">
+<meta property="article:published_time" content="2020-06-20T08:57:06.000Z">
+<meta property="article:modified_time" content="2020-06-27T12:02:36.843Z">
 <meta property="article:author" content="Zih Zrong">
+<meta property="article:tag" content="encrypt">
+<meta property="article:tag" content="w3HexSchool">
 <meta property="article:tag" content="RSA">
-<meta property="article:tag" content="SSH">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bk7g2q.dm.files.1drv.com/y4mCNmn-vKNeYctvD_wx8NGxWwBGVE0cGeWQvYYAm5-Chabq1kqhUKlGfLG1orueQVZ3ZW1xEVgdSC7KtJp2_INhgm8jLH87leE_-fEIsQPpb7sQdfaVWN5hi8gbrQXEkL5jHBlskbjEkcA8yr5bbAdE2MxKpbx4aXYiqwRy5rcpS8pfu67tb-Ycxy89-s05xcnWuf67S4lWXCuc1nsoNWNpQ?width=868&height=566&cropmode=none">
 
 
 
@@ -121,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/06/18/some01/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/06/20/allinone07/"/>
 
 
 
 
 
-  <title>生成SSH金鑰 (Github) | Lzz Blog</title>
+  <title>雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS) | Lzz Blog</title>
   
 
 
@@ -273,7 +276,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/18/some01/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/20/allinone07/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zih Zrong">
@@ -290,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">生成SSH金鑰 (Github)</h1>
+          <h1 class="post-title" itemprop="name headline">雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)</h1>
         
 
         <div class="post-meta">
@@ -302,8 +305,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-18T16:57:06+08:00">
-                2020-06-18
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-20T16:57:06+08:00">
+                2020-06-20
               </time>
             
 
@@ -325,8 +328,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RSA/" itemprop="url" rel="index">
-                    <span itemprop="name">RSA</span>
+                  <a href="/categories/SSL/" itemprop="url" rel="index">
+                    <span itemprop="name">SSL</span>
                   </a>
                 </span>
 
@@ -369,32 +372,102 @@
       
         <blockquote>
 <ul>
-<li>主題:生成SSH金鑰 (Github)</li>
-<li>前言:接續前幾篇，本篇簡介對稱金鑰加密後將講解AES實際應用情形</li>
-<li>叮嚀: <code>$</code> 代表對CMD或terminal(終端機)下指令</li>
+<li><p>主題:雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)</p>
+</li>
+<li><p>前言:接續前幾篇，本篇簡介SSL的特性</p>
+</li>
+<li><p>叮嚀: <code>$</code> 代表對CMD或terminal(終端機)下指令</p>
+</li>
 </ul>
 </blockquote>
-<h6 id="tags-RSA-SSH"><a href="#tags-RSA-SSH" class="headerlink" title="tags: RSA,SSH"></a>tags: <code>RSA</code>,<code>SSH</code></h6><h1 id="生成SSH金鑰-應用於Github"><a href="#生成SSH金鑰-應用於Github" class="headerlink" title="生成SSH金鑰 (應用於Github)"></a>生成SSH金鑰 (應用於Github)</h1><p>(step by step)</p>
-<h2 id="Step1-先安裝git"><a href="#Step1-先安裝git" class="headerlink" title="Step1 先安裝git"></a>Step1 先安裝git</h2><ul>
-<li>網址 <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></li>
+<h6 id="tags-encrypt-RSA"><a href="#tags-encrypt-RSA" class="headerlink" title="tags: encrypt,RSA"></a>tags: <code>encrypt</code>,<code>RSA</code></h6><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ol>
+<li>簡介SSL/TLS</li>
+<li>實作經驗</li>
+</ol>
+<hr>
+<h1 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h1><ul>
+<li><p>SSL/TLS簡介：<br><a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Transport_Layer_Security</a><br>傳輸層安全性協定（Transport Layer Security/TLS）及其前身安全通訊協定（Secure Sockets Layer/SSL）是一種安全協定，目的是為網際網路通訊提供安全及資料完整性保障。</p>
+</li>
+<li><p>目前也是網站之間主要的交握加密方式</p>
+</li>
+<li><p>Google提供的TLS加密已切換至少2048位元</p>
+</li>
+<li><p>SSL/TLS協定的狀態</p>
+<blockquote>
+<ul>
+<li>SSL2.0已棄用</li>
+<li>SSL3.0已棄用</li>
+<li>TLS1.0-1999年制定</li>
+<li>TLS1.1-2006年制定</li>
+<li>TLS1.2-2008年制定</li>
+<li>TLS1.3-2018年制定</li>
 </ul>
-<p>–</p>
-<h2 id="Step2-綁定Github"><a href="#Step2-綁定Github" class="headerlink" title="Step2 綁定Github"></a>Step2 綁定Github</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"Github用戶名"</span></span><br><span class="line">$ git config --global user.email <span class="string">"註冊時GitHub的電子信箱"</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+</li>
+</ul>
+<p>補充:<br>TLS1.2 vs 1.3<br>現行較快速的1.3版本交握的示意圖:<br><img src="https://bk7g2q.dm.files.1drv.com/y4mCNmn-vKNeYctvD_wx8NGxWwBGVE0cGeWQvYYAm5-Chabq1kqhUKlGfLG1orueQVZ3ZW1xEVgdSC7KtJp2_INhgm8jLH87leE_-fEIsQPpb7sQdfaVWN5hi8gbrQXEkL5jHBlskbjEkcA8yr5bbAdE2MxKpbx4aXYiqwRy5rcpS8pfu67tb-Ycxy89-s05xcnWuf67S4lWXCuc1nsoNWNpQ?width=868&height=566&cropmode=none" alt="image"></p>
+<hr>
+<h1 id="交握過程"><a href="#交握過程" class="headerlink" title="交握過程"></a>交握過程</h1><p>通過交握，客戶端和伺服器協商各種參數用於建立安全連接：</p>
+<ul>
+<li><p>當客戶端連接到支援TLS協定的伺服器要求建立安全連接並列出了受支援的密碼套件（包括加密演算法、雜湊演算法等），交握開始。</p>
+</li>
+<li><p>伺服器從該列表中決定密碼套件，並通知客戶端。</p>
+</li>
+<li><p>伺服器發回其數位憑證，此憑證通常包含伺服器的名稱、受信任的憑證頒發機構（CA）和伺服器的公鑰。</p>
+</li>
+<li><p>客戶端確認其頒發的憑證的有效性。<br>為了生成對談金鑰用於安全連接，客戶端使用伺服器的公鑰加密隨機生成的金鑰，並將其傳送到伺服器，只有伺服器才能使用自己的私鑰解密。</p>
+</li>
+<li><p>利用亂數，雙方生成用於加密和解密的對稱金鑰。這就是TLS協定的交握，交握完畢後的連接是安全的，直到連接（被）關閉。如果上述任何一個步驟失敗，TLS交握過程就會失敗，並且斷開所有的連接。</p>
+</li>
+</ul>
+<font color=red >
+補充:簡單來說，就是一開始先用「非對稱金鑰加密」方式傳遞「對稱金鑰」，然後再改成較快速的對稱金鑰加密來溝通。
+</font>
 
 <hr>
-<h2 id="Step3-生成金鑰"><a href="#Step3-生成金鑰" class="headerlink" title="Step3 生成金鑰"></a>Step3 生成金鑰</h2><p>(輸入完指令，接下來都按Enter即可)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"註冊時GitHub的電子信箱"</span></span><br></pre></td></tr></table></figure>
-<p>輸入完後會生成一個id_rsa.pub的SSH密鑰文件</p>
-<hr>
-<h2 id="Step4-至Github點選SSH-Keys"><a href="#Step4-至Github點選SSH-Keys" class="headerlink" title="Step4 至Github點選SSH Keys"></a>Step4 至Github點選SSH Keys</h2><ul>
-<li>網址:<a href="https://github.com/settings/keys" target="_blank" rel="noopener">https://github.com/settings/keys</a><br>(點選”New SSH keys”)</li>
+<h1 id="應用於自架網站設定SSL加密"><a href="#應用於自架網站設定SSL加密" class="headerlink" title="應用於自架網站設定SSL加密"></a>應用於自架網站設定SSL加密</h1><ul>
+<li><p>推薦購買的SSL憑證網站(比較便宜):<br><a href="https://www.ssls.com/" target="_blank" rel="noopener">https://www.ssls.com/</a></p>
+</li>
+<li><p>購買過程，利用OpenSSL 產生 CSR</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -nodes -newkey rsa:<span class="number">2048</span> -keyout myserver.key -out server.cs</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>填寫CSR 下載獲得的SSL CA<br>更換並啟動<br>(設定強制443 port)</p>
+</li>
+</ul>
+<ul>
+<li>設定與安裝請參考以下兩位，寫得很完整了:</li>
+</ul>
+<blockquote>
+<p><a href="https://blog.hahasmile.com/%E5%9C%A8apache%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%AE%89%E8%A3%9Dssl%E6%86%91%E8%AD%89/" target="_blank" rel="noopener">https://blog.hahasmile.com/%E5%9C%A8apache%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%AE%89%E8%A3%9Dssl%E6%86%91%E8%AD%89/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://haway.30cm.gg/ssl-key-csr-crt-pem/" target="_blank" rel="noopener">https://haway.30cm.gg/ssl-key-csr-crt-pem/</a></p>
+</blockquote>
+<ul>
+<li>搞笑的地方<br>當你全部完成設定之後<br>SSL證書供應商將會給你CA、CRT檔<br>但是他並不是讓你下載<br>因為怕被攻擊<br>所以他是用G-mail 傳遞給你<br>畢竟Google 的G-mail 不會不安全~對吧XD</li>
 </ul>
 <hr>
-<h2 id="Step5-輸入資料"><a href="#Step5-輸入資料" class="headerlink" title="Step5 輸入資料"></a>Step5 輸入資料</h2><p>1.title 隨便打<br>2.key的部分，貼上剛剛生成的id_rsa.pub<br>(通常在 C:/Users/你的使用者名稱/.ssh 底下)<br>補充: 要把裡面的內容全部複製</p>
-<p>完成</p>
+<h1 id="小結語"><a href="#小結語" class="headerlink" title="小結語:"></a>小結語:</h1><p>架設網站必定面對SSL/TLS，非常建議學習</p>
 <hr>
-<h2 id="Step6-檢查是否成功"><a href="#Step6-檢查是否成功" class="headerlink" title="Step6 檢查是否成功"></a>Step6 檢查是否成功</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh git@github.com</span><br></pre></td></tr></table></figure>
-<p>看到successfully authenticated就代表成功了</p>
+<h3 id="後續"><a href="#後續" class="headerlink" title="後續:"></a>後續:</h3><p>接下來會討論PHP的幾項基礎設定並探討一些新型態的攻擊與漏洞</p>
+<hr>
+<h3 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h3><ul>
+<li><p>對稱加密vs非對稱加密<br><a href="https://academy.binance.com/zt/security/symmetric-vs-asymmetric-encryption" target="_blank" rel="noopener">https://academy.binance.com/zt/security/symmetric-vs-asymmetric-encryption</a></p>
+</li>
+<li><p>SSL/TLS的二三事:<br><a href="https://reurl.cc/MvWAKK" target="_blank" rel="noopener">https://reurl.cc/MvWAKK</a></p>
+</li>
+<li><p>SSL、TLS:<br><a href="https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https" target="_blank" rel="noopener">https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https</a></p>
+</li>
+</ul>
+<hr>
+<p><code>&lt;追隨前輩們的腳步，不停往前。&gt;</code></p>
+<blockquote>
+<ul>
+<li>若有任何問題↓</li>
+<li>請聯繫我:<code>liao86221@gmail.com</code></li>
+<li>或填表: <a href="https://forms.gle/4FB5Tmtd9A7XcXjF8" target="_blank" rel="noopener">https://forms.gle/4FB5Tmtd9A7XcXjF8</a></li>
+</ul>
+</blockquote>
 
       
     </div>
@@ -412,9 +485,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/RSA/" rel="tag"># RSA</a>
+            <a href="/tags/encrypt/" rel="tag"># encrypt</a>
           
-            <a href="/tags/SSH/" rel="tag"># SSH</a>
+            <a href="/tags/w3HexSchool/" rel="tag"># w3HexSchool</a>
+          
+            <a href="/tags/RSA/" rel="tag"># RSA</a>
           
         </div>
       
@@ -427,8 +502,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/06/14/allinone06/" rel="next" title="雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)">
-                <i class="fa fa-chevron-left"></i> 雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)
+              <a href="/2020/06/18/some01/" rel="next" title="生成SSH金鑰 (Github)">
+                <i class="fa fa-chevron-left"></i> 生成SSH金鑰 (Github)
               </a>
             
           </div>
@@ -436,10 +511,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/06/20/allinone07/" rel="prev" title="雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)">
-                雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -591,7 +662,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-RSA-SSH"><span class="nav-number">1.</span> <span class="nav-text">tags: RSA,SSH</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成SSH金鑰-應用於Github"><span class="nav-number"></span> <span class="nav-text">生成SSH金鑰 (應用於Github)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step1-先安裝git"><span class="nav-number"></span> <span class="nav-text">Step1 先安裝git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step2-綁定Github"><span class="nav-number"></span> <span class="nav-text">Step2 綁定Github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step3-生成金鑰"><span class="nav-number"></span> <span class="nav-text">Step3 生成金鑰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step4-至Github點選SSH-Keys"><span class="nav-number"></span> <span class="nav-text">Step4 至Github點選SSH Keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step5-輸入資料"><span class="nav-number"></span> <span class="nav-text">Step5 輸入資料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step6-檢查是否成功"><span class="nav-number"></span> <span class="nav-text">Step6 檢查是否成功</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-encrypt-RSA"><span class="nav-number">1.</span> <span class="nav-text">tags: encrypt,RSA</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSL-TLS"><span class="nav-number"></span> <span class="nav-text">SSL&#x2F;TLS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交握過程"><span class="nav-number"></span> <span class="nav-text">交握過程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#應用於自架網站設定SSL加密"><span class="nav-number"></span> <span class="nav-text">應用於自架網站設定SSL加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小結語"><span class="nav-number"></span> <span class="nav-text">小結語:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#後續"><span class="nav-number"></span> <span class="nav-text">後續:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考連結"><span class="nav-number"></span> <span class="nav-text">參考連結</span></a></div>
             
 
           </div>

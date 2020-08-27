@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="encrypt,w3HexSchool,RSA," />
+  <meta name="keywords" content="python,w3HexSchool," />
 
 
 
@@ -79,22 +79,19 @@
 
 
 
-<meta name="description" content="主題:雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL&#x2F;TLS)  前言:接續前幾篇，本篇簡介SSL的特性  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: encrypt,RSA本篇重點: 簡介SSL&#x2F;TLS 實作經驗   SSL&#x2F;TLS SSL&#x2F;TLS簡介：https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Transport_">
+<meta name="description" content="主題:雜亂大全08-Python系列01-Tensorflow-GPU環境建置  前言:與前段資安議題不同，將片段分享Python學習歷程  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: python,Tensorflow本篇重點: 建置tensorflow-gpu環境 小提醒   TensorFlow加速使用CPU跑TF速度太慢，所以一般都建議使用TF-GPU">
 <meta property="og:type" content="article">
-<meta property="og:title" content="雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL&#x2F;TLS)">
-<meta property="og:url" content="http://yoursite.com/2020/06/20/allinone07/index.html">
+<meta property="og:title" content="雜亂大全08-Python系列01-Tensorflow-GPU環境建置">
+<meta property="og:url" content="http://yoursite.com/2020/08/26/allinone08/index.html">
 <meta property="og:site_name" content="Lzz Blog">
-<meta property="og:description" content="主題:雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL&#x2F;TLS)  前言:接續前幾篇，本篇簡介SSL的特性  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: encrypt,RSA本篇重點: 簡介SSL&#x2F;TLS 實作經驗   SSL&#x2F;TLS SSL&#x2F;TLS簡介：https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Transport_">
+<meta property="og:description" content="主題:雜亂大全08-Python系列01-Tensorflow-GPU環境建置  前言:與前段資安議題不同，將片段分享Python學習歷程  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: python,Tensorflow本篇重點: 建置tensorflow-gpu環境 小提醒   TensorFlow加速使用CPU跑TF速度太慢，所以一般都建議使用TF-GPU">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://bk7g2q.dm.files.1drv.com/y4mCNmn-vKNeYctvD_wx8NGxWwBGVE0cGeWQvYYAm5-Chabq1kqhUKlGfLG1orueQVZ3ZW1xEVgdSC7KtJp2_INhgm8jLH87leE_-fEIsQPpb7sQdfaVWN5hi8gbrQXEkL5jHBlskbjEkcA8yr5bbAdE2MxKpbx4aXYiqwRy5rcpS8pfu67tb-Ycxy89-s05xcnWuf67S4lWXCuc1nsoNWNpQ?width=868&height=566&cropmode=none">
-<meta property="article:published_time" content="2020-06-20T08:57:06.000Z">
-<meta property="article:modified_time" content="2020-06-27T12:02:36.843Z">
+<meta property="article:published_time" content="2020-08-26T08:57:06.000Z">
+<meta property="article:modified_time" content="2020-08-27T15:55:32.633Z">
 <meta property="article:author" content="Zih Zrong">
-<meta property="article:tag" content="encrypt">
+<meta property="article:tag" content="python">
 <meta property="article:tag" content="w3HexSchool">
-<meta property="article:tag" content="RSA">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://bk7g2q.dm.files.1drv.com/y4mCNmn-vKNeYctvD_wx8NGxWwBGVE0cGeWQvYYAm5-Chabq1kqhUKlGfLG1orueQVZ3ZW1xEVgdSC7KtJp2_INhgm8jLH87leE_-fEIsQPpb7sQdfaVWN5hi8gbrQXEkL5jHBlskbjEkcA8yr5bbAdE2MxKpbx4aXYiqwRy5rcpS8pfu67tb-Ycxy89-s05xcnWuf67S4lWXCuc1nsoNWNpQ?width=868&height=566&cropmode=none">
 
 
 
@@ -124,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/06/20/allinone07/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/08/26/allinone08/"/>
 
 
 
 
 
-  <title>雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS) | Lzz Blog</title>
+  <title>雜亂大全08-Python系列01-Tensorflow-GPU環境建置 | Lzz Blog</title>
   
 
 
@@ -276,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/20/allinone07/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/26/allinone08/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zih Zrong">
@@ -293,7 +290,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)</h1>
+          <h1 class="post-title" itemprop="name headline">雜亂大全08-Python系列01-Tensorflow-GPU環境建置</h1>
         
 
         <div class="post-meta">
@@ -305,8 +302,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-20T16:57:06+08:00">
-                2020-06-20
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-08-26T16:57:06+08:00">
+                2020-08-26
               </time>
             
 
@@ -328,8 +325,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SSL/" itemprop="url" rel="index">
-                    <span itemprop="name">SSL</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -372,95 +369,89 @@
       
         <blockquote>
 <ul>
-<li><p>主題:雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)</p>
+<li><p>主題:雜亂大全08-Python系列01-Tensorflow-GPU環境建置</p>
 </li>
-<li><p>前言:接續前幾篇，本篇簡介SSL的特性</p>
+<li><p>前言:與前段資安議題不同，將片段分享Python學習歷程</p>
 </li>
 <li><p>叮嚀: <code>$</code> 代表對CMD或terminal(終端機)下指令</p>
 </li>
 </ul>
 </blockquote>
-<h6 id="tags-encrypt-RSA"><a href="#tags-encrypt-RSA" class="headerlink" title="tags: encrypt,RSA"></a>tags: <code>encrypt</code>,<code>RSA</code></h6><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ol>
-<li>簡介SSL/TLS</li>
-<li>實作經驗</li>
+<h6 id="tags-python-Tensorflow"><a href="#tags-python-Tensorflow" class="headerlink" title="tags: python,Tensorflow"></a>tags: <code>python</code>,<code>Tensorflow</code></h6><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ol>
+<li>建置tensorflow-gpu環境</li>
+<li>小提醒</li>
 </ol>
 <hr>
-<h1 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h1><ul>
-<li><p>SSL/TLS簡介：<br><a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Transport_Layer_Security</a><br>傳輸層安全性協定（Transport Layer Security/TLS）及其前身安全通訊協定（Secure Sockets Layer/SSL）是一種安全協定，目的是為網際網路通訊提供安全及資料完整性保障。</p>
-</li>
-<li><p>目前也是網站之間主要的交握加密方式</p>
-</li>
-<li><p>Google提供的TLS加密已切換至少2048位元</p>
-</li>
-<li><p>SSL/TLS協定的狀態</p>
-<blockquote>
+<h1 id="TensorFlow加速"><a href="#TensorFlow加速" class="headerlink" title="TensorFlow加速"></a>TensorFlow加速</h1><p>使用CPU跑TF速度太慢，所以一般都建議使用TF-GPU版</p>
 <ul>
-<li>SSL2.0已棄用</li>
-<li>SSL3.0已棄用</li>
-<li>TLS1.0-1999年制定</li>
-<li>TLS1.1-2006年制定</li>
-<li>TLS1.2-2008年制定</li>
-<li>TLS1.3-2018年制定</li>
+<li>要先確定自身的GPU 算力有3以上(最好3.5以上)</li>
+</ul>
+<ol>
+<li><a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-gpus</a></li>
+<li>點選 頁面下方的 [CUDA-Enabled GeForce and TITAN Products]</li>
+</ol>
+<h1 id="建議"><a href="#建議" class="headerlink" title="建議"></a>建議</h1><p>可以使用Python的env來建置不同版本的虛擬環境</p>
+<h1 id="應安裝的項目"><a href="#應安裝的項目" class="headerlink" title="應安裝的項目"></a>應安裝的項目</h1><p>除了python的IDE (pycharm或jupyter或spyder)<br>tensorflow-GPU版需要以下幾個項目的版本搭配</p>
+<ol>
+<li>cuda (必須安裝)<blockquote>
+<ul>
+<li>1.15前 GPU與一般版本是分開的</li>
+<li>2.0.0是1-2代之間的過渡版本</li>
+<li>2.1是2代的穩定版 </li>
 </ul>
 </blockquote>
 </li>
-</ul>
-<p>補充:<br>TLS1.2 vs 1.3<br>現行較快速的1.3版本交握的示意圖:<br><img src="https://bk7g2q.dm.files.1drv.com/y4mCNmn-vKNeYctvD_wx8NGxWwBGVE0cGeWQvYYAm5-Chabq1kqhUKlGfLG1orueQVZ3ZW1xEVgdSC7KtJp2_INhgm8jLH87leE_-fEIsQPpb7sQdfaVWN5hi8gbrQXEkL5jHBlskbjEkcA8yr5bbAdE2MxKpbx4aXYiqwRy5rcpS8pfu67tb-Ycxy89-s05xcnWuf67S4lWXCuc1nsoNWNpQ?width=868&height=566&cropmode=none" alt="image"></p>
-<hr>
-<h1 id="交握過程"><a href="#交握過程" class="headerlink" title="交握過程"></a>交握過程</h1><p>通過交握，客戶端和伺服器協商各種參數用於建立安全連接：</p>
+<li>cuDNN (必須安裝)</li>
+<li>MSVC (必須安裝)</li>
+</ol>
 <ul>
-<li><p>當客戶端連接到支援TLS協定的伺服器要求建立安全連接並列出了受支援的密碼套件（包括加密演算法、雜湊演算法等），交握開始。</p>
-</li>
-<li><p>伺服器從該列表中決定密碼套件，並通知客戶端。</p>
-</li>
-<li><p>伺服器發回其數位憑證，此憑證通常包含伺服器的名稱、受信任的憑證頒發機構（CA）和伺服器的公鑰。</p>
-</li>
-<li><p>客戶端確認其頒發的憑證的有效性。<br>為了生成對談金鑰用於安全連接，客戶端使用伺服器的公鑰加密隨機生成的金鑰，並將其傳送到伺服器，只有伺服器才能使用自己的私鑰解密。</p>
-</li>
-<li><p>利用亂數，雙方生成用於加密和解密的對稱金鑰。這就是TLS協定的交握，交握完畢後的連接是安全的，直到連接（被）關閉。如果上述任何一個步驟失敗，TLS交握過程就會失敗，並且斷開所有的連接。</p>
-</li>
-</ul>
-<font color=red >
-補充:簡單來說，就是一開始先用「非對稱金鑰加密」方式傳遞「對稱金鑰」，然後再改成較快速的對稱金鑰加密來溝通。
+<li>參見官方文件<br><a href="https://www.tensorflow.org/install/source_windows" target="_blank" rel="noopener">https://www.tensorflow.org/install/source_windows</a><font color=red >
+補充:各版本務必吻合(包含Python版本)，不然程式將無法執行
 </font>
 
+
+</li>
+</ul>
 <hr>
-<h1 id="應用於自架網站設定SSL加密"><a href="#應用於自架網站設定SSL加密" class="headerlink" title="應用於自架網站設定SSL加密"></a>應用於自架網站設定SSL加密</h1><ul>
-<li><p>推薦購買的SSL憑證網站(比較便宜):<br><a href="https://www.ssls.com/" target="_blank" rel="noopener">https://www.ssls.com/</a></p>
+<h1 id="步驟提醒"><a href="#步驟提醒" class="headerlink" title="步驟提醒"></a>步驟提醒</h1><ul>
+<li><p>1.查看表格後選擇要安裝的cuda版本</p>
 </li>
-<li><p>購買過程，利用OpenSSL 產生 CSR</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -nodes -newkey rsa:<span class="number">2048</span> -keyout myserver.key -out server.cs</span><br></pre></td></tr></table></figure>
+<li><p><a href="https://blog.csdn.net/yuejisuo1948/article/details/81043962" target="_blank" rel="noopener">https://blog.csdn.net/yuejisuo1948/article/details/81043962</a><br>(以TF的1.14版本為例，cuda選擇10)</p>
 </li>
-<li><p>填寫CSR 下載獲得的SSL CA<br>更換並啟動<br>(設定強制443 port)</p>
-</li>
-</ul>
-<ul>
-<li>設定與安裝請參考以下兩位，寫得很完整了:</li>
-</ul>
+<li><p>2.cuDNN選擇7.4</p>
 <blockquote>
-<p><a href="https://blog.hahasmile.com/%E5%9C%A8apache%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%AE%89%E8%A3%9Dssl%E6%86%91%E8%AD%89/" target="_blank" rel="noopener">https://blog.hahasmile.com/%E5%9C%A8apache%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%AE%89%E8%A3%9Dssl%E6%86%91%E8%AD%89/</a></p>
+<p>cuDNN下載後請先解壓縮，依照檔案位置存放進去<br>(C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0)</p>
 </blockquote>
+</li>
+<li><p>3.MSVC 選擇2017</p>
 <blockquote>
-<p><a href="https://haway.30cm.gg/ssl-key-csr-crt-pem/" target="_blank" rel="noopener">https://haway.30cm.gg/ssl-key-csr-crt-pem/</a></p>
+<p>2017-2019 可以於TF官方網頁下載 通用的MSVC (檔案很小)</p>
 </blockquote>
-<ul>
-<li>搞笑的地方<br>當你全部完成設定之後<br>SSL證書供應商將會給你CA、CRT檔<br>但是他並不是讓你下載<br>因為怕被攻擊<br>所以他是用G-mail 傳遞給你<br>畢竟Google 的G-mail 不會不安全~對吧XD</li>
+</li>
+<li><p>4.Python版本應在3.5-3.7之間</p>
+<blockquote>
+<p>比較推薦使用3.6版 (因dlib於3.6版安裝較容易，未來比較方便開發)<br>dlib介紹: <a href="https://chtseng.wordpress.com/2016/12/23/dlib-%E5%A5%BD%E7%94%A8%E7%9A%84%E7%9A%84machine-learning%E5%B7%A5%E5%85%B7-%E4%B8%80/" target="_blank" rel="noopener">點選</a></p>
+</blockquote>
+</li>
 </ul>
 <hr>
-<h1 id="小結語"><a href="#小結語" class="headerlink" title="小結語:"></a>小結語:</h1><p>架設網站必定面對SSL/TLS，非常建議學習</p>
+<h1 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">  a = tf.constant([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>, <span class="number">6.0</span>], shape=[<span class="number">2</span>, <span class="number">3</span>], name=<span class="string">'a'</span>)</span><br><span class="line">  b = tf.constant([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>, <span class="number">6.0</span>], shape=[<span class="number">3</span>, <span class="number">2</span>], name=<span class="string">'b'</span>)</span><br><span class="line">  c = tf.matmul(a, b)</span><br><span class="line"></span><br><span class="line">  sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))</span><br><span class="line"></span><br><span class="line">  print(sess.run(c))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>程式結果裡會提到GPU:0 -&gt; device…[[22. 28.]<br>[49. 64.]]…的項目，代表成功</li>
+</ul>
 <hr>
-<h3 id="後續"><a href="#後續" class="headerlink" title="後續:"></a>後續:</h3><p>接下來會討論PHP的幾項基礎設定並探討一些新型態的攻擊與漏洞</p>
+<h1 id="小結語"><a href="#小結語" class="headerlink" title="小結語:"></a>小結語:</h1><p>為了能加速tensoflow，需安裝GPU版本<br>其中最麻煩的莫過於安裝各種項目的版本<br>版本與版本之間又需要核對<br>如果版本錯誤，程式將無法運行</p>
+<hr>
+<h3 id="後續"><a href="#後續" class="headerlink" title="後續:"></a>後續:</h3><p>接下來會繼續討論Python的應用</p>
 <hr>
 <h3 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h3><ul>
-<li><p>對稱加密vs非對稱加密<br><a href="https://academy.binance.com/zt/security/symmetric-vs-asymmetric-encryption" target="_blank" rel="noopener">https://academy.binance.com/zt/security/symmetric-vs-asymmetric-encryption</a></p>
+<li><p>tensorflow-GPU 支援<br><a href="https://www.tensorflow.org/install/gpu?hl=zh-tw" target="_blank" rel="noopener">https://www.tensorflow.org/install/gpu?hl=zh-tw</a></p>
 </li>
-<li><p>SSL/TLS的二三事:<br><a href="https://reurl.cc/MvWAKK" target="_blank" rel="noopener">https://reurl.cc/MvWAKK</a></p>
-</li>
-<li><p>SSL、TLS:<br><a href="https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https" target="_blank" rel="noopener">https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https</a></p>
+<li><p>各項項目的版本搭配<br><a href="https://blog.csdn.net/yuejisuo1948/article/details/81043962" target="_blank" rel="noopener">https://blog.csdn.net/yuejisuo1948/article/details/81043962</a></p>
 </li>
 </ul>
 <hr>
-<p><code>&lt;追隨前輩們的腳步，不停往前。&gt;</code></p>
 <blockquote>
 <ul>
 <li>若有任何問題↓</li>
@@ -485,11 +476,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/encrypt/" rel="tag"># encrypt</a>
+            <a href="/tags/python/" rel="tag"># python</a>
           
             <a href="/tags/w3HexSchool/" rel="tag"># w3HexSchool</a>
-          
-            <a href="/tags/RSA/" rel="tag"># RSA</a>
           
         </div>
       
@@ -502,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/06/18/some01/" rel="next" title="生成SSH金鑰 (Github)">
-                <i class="fa fa-chevron-left"></i> 生成SSH金鑰 (Github)
+              <a href="/2020/06/20/allinone07/" rel="next" title="雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)">
+                <i class="fa fa-chevron-left"></i> 雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)
               </a>
             
           </div>
@@ -511,10 +500,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/08/26/allinone08/" rel="prev" title="雜亂大全08-Python系列01-Tensorflow-GPU環境建置">
-                雜亂大全08-Python系列01-Tensorflow-GPU環境建置 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -666,7 +651,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-encrypt-RSA"><span class="nav-number">1.</span> <span class="nav-text">tags: encrypt,RSA</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSL-TLS"><span class="nav-number"></span> <span class="nav-text">SSL&#x2F;TLS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交握過程"><span class="nav-number"></span> <span class="nav-text">交握過程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#應用於自架網站設定SSL加密"><span class="nav-number"></span> <span class="nav-text">應用於自架網站設定SSL加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小結語"><span class="nav-number"></span> <span class="nav-text">小結語:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#後續"><span class="nav-number"></span> <span class="nav-text">後續:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考連結"><span class="nav-number"></span> <span class="nav-text">參考連結</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-python-Tensorflow"><span class="nav-number">1.</span> <span class="nav-text">tags: python,Tensorflow</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TensorFlow加速"><span class="nav-number"></span> <span class="nav-text">TensorFlow加速</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建議"><span class="nav-number"></span> <span class="nav-text">建議</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#應安裝的項目"><span class="nav-number"></span> <span class="nav-text">應安裝的項目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步驟提醒"><span class="nav-number"></span> <span class="nav-text">步驟提醒</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#測試"><span class="nav-number"></span> <span class="nav-text">測試</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小結語"><span class="nav-number"></span> <span class="nav-text">小結語:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#後續"><span class="nav-number"></span> <span class="nav-text">後續:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考連結"><span class="nav-number"></span> <span class="nav-text">參考連結</span></a></div>
             
 
           </div>

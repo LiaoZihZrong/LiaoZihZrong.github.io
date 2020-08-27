@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="w3HexSchool,python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="主題:雜亂大全08-Python系列01-Tensorflow-GPU環境建置  前言:與前段資安議題不同，將片段分享Python學習歷程  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: python,Tensorflow本篇重點: 建置tensorflow-gpu環境 小提醒   TensorFlow加速使用CPU跑TF速度太慢，所以一般都建議使用TF-GPU">
+<meta property="og:type" content="article">
+<meta property="og:title" content="雜亂大全08-Python系列01-Tensorflow-GPU環境建置">
+<meta property="og:url" content="http://yoursite.com/2020/08/22/allinone08/index.html">
+<meta property="og:site_name" content="Lzz Blog">
+<meta property="og:description" content="主題:雜亂大全08-Python系列01-Tensorflow-GPU環境建置  前言:與前段資安議題不同，將片段分享Python學習歷程  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: python,Tensorflow本篇重點: 建置tensorflow-gpu環境 小提醒   TensorFlow加速使用CPU跑TF速度太慢，所以一般都建議使用TF-GPU">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2020-08-22T08:57:06.000Z">
+<meta property="article:modified_time" content="2020-08-27T16:12:10.929Z">
+<meta property="article:author" content="Zih Zrong">
+<meta property="article:tag" content="w3HexSchool">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/08/22/allinone08/"/>
+
+
+
+
+
+  <title>雜亂大全08-Python系列01-Tensorflow-GPU環境建置 | Lzz Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lzz Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">學習筆記</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/22/allinone08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zih Zrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lzz Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">雜亂大全08-Python系列01-Tensorflow-GPU環境建置</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-08-22T16:57:06+08:00">
+                2020-08-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>閱讀數
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<ul>
+<li><p>主題:雜亂大全08-Python系列01-Tensorflow-GPU環境建置</p>
+</li>
+<li><p>前言:與前段資安議題不同，將片段分享Python學習歷程</p>
+</li>
+<li><p>叮嚀: <code>$</code> 代表對CMD或terminal(終端機)下指令</p>
+</li>
+</ul>
+</blockquote>
+<h6 id="tags-python-Tensorflow"><a href="#tags-python-Tensorflow" class="headerlink" title="tags: python,Tensorflow"></a>tags: <code>python</code>,<code>Tensorflow</code></h6><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ol>
+<li>建置tensorflow-gpu環境</li>
+<li>小提醒</li>
+</ol>
+<hr>
+<h1 id="TensorFlow加速"><a href="#TensorFlow加速" class="headerlink" title="TensorFlow加速"></a>TensorFlow加速</h1><p>使用CPU跑TF速度太慢，所以一般都建議使用TF-GPU版</p>
+<ul>
+<li>要先確定自身的GPU 算力有3以上(最好3.5以上)</li>
+</ul>
+<ol>
+<li><a href="https://developer.nvidia.com/cuda-gpus" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-gpus</a></li>
+<li>點選 頁面下方的 [CUDA-Enabled GeForce and TITAN Products]</li>
+</ol>
+<h1 id="建議"><a href="#建議" class="headerlink" title="建議"></a>建議</h1><p>可以使用Python的env來建置不同版本的虛擬環境</p>
+<h1 id="應安裝的項目"><a href="#應安裝的項目" class="headerlink" title="應安裝的項目"></a>應安裝的項目</h1><p>除了python的IDE (pycharm或jupyter或spyder)<br>tensorflow-GPU版需要以下幾個項目的版本搭配</p>
+<ol>
+<li>cuda (必須安裝)<blockquote>
+<ul>
+<li>1.15前 GPU與一般版本是分開的</li>
+<li>2.0.0是1-2代之間的過渡版本</li>
+<li>2.1是2代的穩定版 </li>
+</ul>
+</blockquote>
+</li>
+<li>cuDNN (必須安裝)</li>
+<li>MSVC (必須安裝)</li>
+</ol>
+<ul>
+<li>參見官方文件<br><a href="https://www.tensorflow.org/install/source_windows" target="_blank" rel="noopener">https://www.tensorflow.org/install/source_windows</a><font color=red >
+補充:各版本務必吻合(包含Python版本)，不然程式將無法執行
+</font>
+
+
+</li>
+</ul>
+<hr>
+<h1 id="步驟提醒"><a href="#步驟提醒" class="headerlink" title="步驟提醒"></a>步驟提醒</h1><ul>
+<li><p>1.查看表格後選擇要安裝的cuda版本</p>
+</li>
+<li><p><a href="https://blog.csdn.net/yuejisuo1948/article/details/81043962" target="_blank" rel="noopener">https://blog.csdn.net/yuejisuo1948/article/details/81043962</a><br>(以TF的1.14版本為例，cuda選擇10)</p>
+</li>
+<li><p>2.cuDNN選擇7.4</p>
+<blockquote>
+<p>cuDNN下載後請先解壓縮，依照檔案位置存放進去<br>(C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v10.0)</p>
+</blockquote>
+</li>
+<li><p>3.MSVC 選擇2017</p>
+<blockquote>
+<p>2017-2019 可以於TF官方網頁下載 通用的MSVC (檔案很小)</p>
+</blockquote>
+</li>
+<li><p>4.Python版本應在3.5-3.7之間</p>
+<blockquote>
+<p>比較推薦使用3.6版 (因dlib於3.6版安裝較容易，未來比較方便開發)<br>dlib介紹: <a href="https://chtseng.wordpress.com/2016/12/23/dlib-%E5%A5%BD%E7%94%A8%E7%9A%84%E7%9A%84machine-learning%E5%B7%A5%E5%85%B7-%E4%B8%80/" target="_blank" rel="noopener">點選</a></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h1 id="測試"><a href="#測試" class="headerlink" title="測試"></a>測試</h1><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">  a = tf.constant([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>, <span class="number">6.0</span>], shape=[<span class="number">2</span>, <span class="number">3</span>], name=<span class="string">'a'</span>)</span><br><span class="line">  b = tf.constant([<span class="number">1.0</span>, <span class="number">2.0</span>, <span class="number">3.0</span>, <span class="number">4.0</span>, <span class="number">5.0</span>, <span class="number">6.0</span>], shape=[<span class="number">3</span>, <span class="number">2</span>], name=<span class="string">'b'</span>)</span><br><span class="line">  c = tf.matmul(a, b)</span><br><span class="line"></span><br><span class="line">  sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))</span><br><span class="line"></span><br><span class="line">  print(sess.run(c))</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>程式結果裡會提到GPU:0 -&gt; device…[[22. 28.]<br>[49. 64.]]…的項目，代表成功</li>
+</ul>
+<hr>
+<h1 id="小結語"><a href="#小結語" class="headerlink" title="小結語:"></a>小結語:</h1><p>為了能加速tensoflow，需安裝GPU版本<br>其中最麻煩的莫過於安裝各種項目的版本<br>版本與版本之間又需要核對<br>如果版本錯誤，程式將無法運行</p>
+<hr>
+<h3 id="後續"><a href="#後續" class="headerlink" title="後續:"></a>後續:</h3><p>接下來會繼續討論Python的應用</p>
+<hr>
+<h3 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h3><ul>
+<li><p>tensorflow-GPU 支援<br><a href="https://www.tensorflow.org/install/gpu?hl=zh-tw" target="_blank" rel="noopener">https://www.tensorflow.org/install/gpu?hl=zh-tw</a></p>
+</li>
+<li><p>各項項目的版本搭配<br><a href="https://blog.csdn.net/yuejisuo1948/article/details/81043962" target="_blank" rel="noopener">https://blog.csdn.net/yuejisuo1948/article/details/81043962</a></p>
+</li>
+</ul>
+<hr>
+<blockquote>
+<ul>
+<li>若有任何問題↓</li>
+<li>請聯繫我:<code>liao86221@gmail.com</code></li>
+<li>或填表: <a href="https://forms.gle/4FB5Tmtd9A7XcXjF8" target="_blank" rel="noopener">https://forms.gle/4FB5Tmtd9A7XcXjF8</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/w3HexSchool/" rel="tag"># w3HexSchool</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/20/allinone07/" rel="next" title="雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)">
+                <i class="fa fa-chevron-left"></i> 雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zih Zrong</p>
+              <p class="site-description motion-element" itemprop="description">記錄學習狀態</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaozihzrong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://forms.gle/4FB5Tmtd9A7XcXjF8" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/groups/307523216619055/" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-python-Tensorflow"><span class="nav-number">1.</span> <span class="nav-text">tags: python,Tensorflow</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TensorFlow加速"><span class="nav-number"></span> <span class="nav-text">TensorFlow加速</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#建議"><span class="nav-number"></span> <span class="nav-text">建議</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#應安裝的項目"><span class="nav-number"></span> <span class="nav-text">應安裝的項目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#步驟提醒"><span class="nav-number"></span> <span class="nav-text">步驟提醒</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#測試"><span class="nav-number"></span> <span class="nav-text">測試</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小結語"><span class="nav-number"></span> <span class="nav-text">小結語:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#後續"><span class="nav-number"></span> <span class="nav-text">後續:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考連結"><span class="nav-number"></span> <span class="nav-text">參考連結</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zih Zrong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      訪客數
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      總訪問次數
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

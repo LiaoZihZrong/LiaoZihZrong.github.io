@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="RSA,SSH," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="學歷:國立中山大學電機工程研究所 碩士(2020-)(深度視覺實驗室) 國立聯合大學資訊工程學系   學士(2015-2019)(多媒體與智慧計算實驗室) 競賽:2019 科技部民生公共物聯網資料應用競賽【入選】2019 國立聯合大學104級資工系畢業專題競賽【特優】2018 全國大專校院資訊應用服務創新競賽【第二名】2018 全國大專院校產學創新實作競賽【第三名】2018 教育部ITSA線上">
-<meta property="og:type" content="website">
-<meta property="og:title" content="關於我">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="主題:生成SSH金鑰 (Github) 前言:接續前幾篇，本篇簡介對稱金鑰加密後將講解AES實際應用情形 叮嚀: $ 代表對CMD或terminal(終端機)下指令   tags: RSA,SSH生成SSH金鑰 (應用於Github)(step by step) Step1 先安裝git 網址 https:&#x2F;&#x2F;git-scm.com&#x2F;  – Step2 綁定Github12$ git conf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="生成SSH金鑰 (Github)">
+<meta property="og:url" content="http://yoursite.com/2020/06/18/some01/index.html">
 <meta property="og:site_name" content="Lzz Blog">
-<meta property="og:description" content="學歷:國立中山大學電機工程研究所 碩士(2020-)(深度視覺實驗室) 國立聯合大學資訊工程學系   學士(2015-2019)(多媒體與智慧計算實驗室) 競賽:2019 科技部民生公共物聯網資料應用競賽【入選】2019 國立聯合大學104級資工系畢業專題競賽【特優】2018 全國大專校院資訊應用服務創新競賽【第二名】2018 全國大專院校產學創新實作競賽【第三名】2018 教育部ITSA線上">
+<meta property="og:description" content="主題:生成SSH金鑰 (Github) 前言:接續前幾篇，本篇簡介對稱金鑰加密後將講解AES實際應用情形 叮嚀: $ 代表對CMD或terminal(終端機)下指令   tags: RSA,SSH生成SSH金鑰 (應用於Github)(step by step) Step1 先安裝git 網址 https:&#x2F;&#x2F;git-scm.com&#x2F;  – Step2 綁定Github12$ git conf">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-05-08T12:31:53.000Z">
-<meta property="article:modified_time" content="2020-05-10T04:01:11.219Z">
+<meta property="article:published_time" content="2020-06-18T08:57:06.000Z">
+<meta property="article:modified_time" content="2020-06-18T13:45:49.116Z">
 <meta property="article:author" content="Zih Zrong">
+<meta property="article:tag" content="RSA">
+<meta property="article:tag" content="SSH">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +121,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/06/18/some01/"/>
 
 
 
 
 
-  <title>關於我 | Lzz Blog</title>
+  <title>生成SSH金鑰 (Github) | Lzz Blog</title>
   
 
 
@@ -259,39 +261,204 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/18/some01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zih Zrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lzz Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">關於我</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <hr>
-
-<h1 id="學歷"><a href="#學歷" class="headerlink" title="學歷:"></a>學歷:</h1><p>國立中山大學電機工程研究所 碩士(2020-)<br>(深度視覺實驗室)</p>
-<p>國立聯合大學資訊工程學系   學士(2015-2019)<br>(多媒體與智慧計算實驗室)</p>
-<h1 id="競賽"><a href="#競賽" class="headerlink" title="競賽:"></a>競賽:</h1><p>2019 科技部民生公共物聯網資料應用競賽【入選】<br>2019 國立聯合大學104級資工系畢業專題競賽【特優】<br>2018 全國大專校院資訊應用服務創新競賽【第二名】<br>2018 全國大專院校產學創新實作競賽【第三名】<br>2018 教育部ITSA線上程式競賽【績優】<br>2017 全國大專校院資訊應用服務創新競賽【第二名】</p>
-<h1 id="研討會"><a href="#研討會" class="headerlink" title="研討會:"></a>研討會:</h1><p>(1)第二十四屆行動計算研討會(2019)<br>(2)第三屆校際臺日雙邊學術研討會(2019)<br>(3)Future ICT 2019國際研討會-發表<br>A Front-Back End Corporation Approach for<br>Disaster Prevention and Response Based on Intelligent IoT</p>
-
+          <h1 class="post-title" itemprop="name headline">生成SSH金鑰 (Github)</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-18T16:57:06+08:00">
+                2020-06-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RSA/" itemprop="url" rel="index">
+                    <span itemprop="name">RSA</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>閱讀數
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <blockquote>
+<ul>
+<li>主題:生成SSH金鑰 (Github)</li>
+<li>前言:接續前幾篇，本篇簡介對稱金鑰加密後將講解AES實際應用情形</li>
+<li>叮嚀: <code>$</code> 代表對CMD或terminal(終端機)下指令</li>
+</ul>
+</blockquote>
+<h6 id="tags-RSA-SSH"><a href="#tags-RSA-SSH" class="headerlink" title="tags: RSA,SSH"></a>tags: <code>RSA</code>,<code>SSH</code></h6><h1 id="生成SSH金鑰-應用於Github"><a href="#生成SSH金鑰-應用於Github" class="headerlink" title="生成SSH金鑰 (應用於Github)"></a>生成SSH金鑰 (應用於Github)</h1><p>(step by step)</p>
+<h2 id="Step1-先安裝git"><a href="#Step1-先安裝git" class="headerlink" title="Step1 先安裝git"></a>Step1 先安裝git</h2><ul>
+<li>網址 <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></li>
+</ul>
+<p>–</p>
+<h2 id="Step2-綁定Github"><a href="#Step2-綁定Github" class="headerlink" title="Step2 綁定Github"></a>Step2 綁定Github</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"Github用戶名"</span></span><br><span class="line">$ git config --global user.email <span class="string">"註冊時GitHub的電子信箱"</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Step3-生成金鑰"><a href="#Step3-生成金鑰" class="headerlink" title="Step3 生成金鑰"></a>Step3 生成金鑰</h2><p>(輸入完指令，接下來都按Enter即可)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"註冊時GitHub的電子信箱"</span></span><br></pre></td></tr></table></figure>
+<p>輸入完後會生成一個id_rsa.pub的SSH密鑰文件</p>
+<hr>
+<h2 id="Step4-至Github點選SSH-Keys"><a href="#Step4-至Github點選SSH-Keys" class="headerlink" title="Step4 至Github點選SSH Keys"></a>Step4 至Github點選SSH Keys</h2><ul>
+<li>網址:<a href="https://github.com/settings/keys" target="_blank" rel="noopener">https://github.com/settings/keys</a><br>(點選”New SSH keys”)</li>
+</ul>
+<hr>
+<h2 id="Step5-輸入資料"><a href="#Step5-輸入資料" class="headerlink" title="Step5 輸入資料"></a>Step5 輸入資料</h2><p>1.title 隨便打<br>2.key的部分，貼上剛剛生成的id_rsa.pub<br>(通常在 C:/Users/你的使用者名稱/.ssh 底下)<br>補充: 要把裡面的內容全部複製</p>
+<p>完成</p>
+<hr>
+<h2 id="Step6-檢查是否成功"><a href="#Step6-檢查是否成功" class="headerlink" title="Step6 檢查是否成功"></a>Step6 檢查是否成功</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh git@github.com</span><br></pre></td></tr></table></figure>
+<p>看到successfully authenticated就代表成功了</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/RSA/" rel="tag"># RSA</a>
+          
+            <a href="/tags/SSH/" rel="tag"># SSH</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/14/allinone06/" rel="next" title="雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)">
+                <i class="fa fa-chevron-left"></i> 雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/20/allinone07/" rel="prev" title="雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)">
+                雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -424,7 +591,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#學歷"><span class="nav-number">1.</span> <span class="nav-text">學歷:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#競賽"><span class="nav-number">2.</span> <span class="nav-text">競賽:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#研討會"><span class="nav-number">3.</span> <span class="nav-text">研討會:</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-RSA-SSH"><span class="nav-number">1.</span> <span class="nav-text">tags: RSA,SSH</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成SSH金鑰-應用於Github"><span class="nav-number"></span> <span class="nav-text">生成SSH金鑰 (應用於Github)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step1-先安裝git"><span class="nav-number"></span> <span class="nav-text">Step1 先安裝git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step2-綁定Github"><span class="nav-number"></span> <span class="nav-text">Step2 綁定Github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step3-生成金鑰"><span class="nav-number"></span> <span class="nav-text">Step3 生成金鑰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step4-至Github點選SSH-Keys"><span class="nav-number"></span> <span class="nav-text">Step4 至Github點選SSH Keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step5-輸入資料"><span class="nav-number"></span> <span class="nav-text">Step5 輸入資料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step6-檢查是否成功"><span class="nav-number"></span> <span class="nav-text">Step6 檢查是否成功</span></a></div>
             
 
           </div>

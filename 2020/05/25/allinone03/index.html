@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="php,w3HexSchool,encrypt,Bcrypt,python,C#,aes,sha256,MD5," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="主題:雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt  前言:本篇開始將連續幾篇講述基礎的加密與資訊安全，並針對PHP、Python、C#來進行實作  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: php,encrypt,Bcrypt,AES本篇重點: 簡介常見的加密手法 自身的實作經驗   常見的hash 1.MD52.Sha系列3.Ha">
+<meta property="og:type" content="article">
+<meta property="og:title" content="雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt">
+<meta property="og:url" content="http://yoursite.com/2020/05/25/allinone03/index.html">
+<meta property="og:site_name" content="Lzz Blog">
+<meta property="og:description" content="主題:雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt  前言:本篇開始將連續幾篇講述基礎的加密與資訊安全，並針對PHP、Python、C#來進行實作  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: php,encrypt,Bcrypt,AES本篇重點: 簡介常見的加密手法 自身的實作經驗   常見的hash 1.MD52.Sha系列3.Ha">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://pmk9zq.dm.files.1drv.com/y4mbJ-fNdbSLvFvHdTguAd3x6MiPINUBtaFqOB7fe0IHYrMIm96dIo7SLcxS4DrPhr-2sFJYv6vDcymvGm51lXixsL2_WMtj2eEWoba5K-ZF8-7yJ1xD_A9mqYB8rHIWPnItF26ZMEmq3fDsOAZA45QPYKY2K-fhZhCyUV_m6cZx2frlSVtzz77OdeQ9wQWdBhKrpfh96j1ZzkwbPaEbvWNZw?width=1691&height=662&cropmode=none">
+<meta property="article:published_time" content="2020-05-25T08:57:06.000Z">
+<meta property="article:modified_time" content="2020-05-27T09:37:11.424Z">
+<meta property="article:author" content="Zih Zrong">
+<meta property="article:tag" content="php">
+<meta property="article:tag" content="w3HexSchool">
+<meta property="article:tag" content="encrypt">
+<meta property="article:tag" content="Bcrypt">
+<meta property="article:tag" content="python">
+<meta property="article:tag" content="C#">
+<meta property="article:tag" content="aes">
+<meta property="article:tag" content="sha256">
+<meta property="article:tag" content="MD5">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pmk9zq.dm.files.1drv.com/y4mbJ-fNdbSLvFvHdTguAd3x6MiPINUBtaFqOB7fe0IHYrMIm96dIo7SLcxS4DrPhr-2sFJYv6vDcymvGm51lXixsL2_WMtj2eEWoba5K-ZF8-7yJ1xD_A9mqYB8rHIWPnItF26ZMEmq3fDsOAZA45QPYKY2K-fhZhCyUV_m6cZx2frlSVtzz77OdeQ9wQWdBhKrpfh96j1ZzkwbPaEbvWNZw?width=1691&height=662&cropmode=none">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/25/allinone03/"/>
+
+
+
+
+
+  <title>雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt | Lzz Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lzz Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">學習筆記</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/25/allinone03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zih Zrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lzz Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-05-25T16:57:06+08:00">
+                2020-05-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/PHP/" itemprop="url" rel="index">
+                    <span itemprop="name">PHP</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>閱讀數
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<ul>
+<li><p>主題:雜亂大全03-資安與加密的那些事(1):MD5、SHA、Bcrypt</p>
+</li>
+<li><p>前言:本篇開始將連續幾篇講述基礎的加密與資訊安全，並針對PHP、Python、C#來進行實作</p>
+</li>
+<li><p>叮嚀: <code>$</code> 代表對CMD或terminal(終端機)下指令</p>
+</li>
+</ul>
+</blockquote>
+<h6 id="tags-php-encrypt-Bcrypt-AES"><a href="#tags-php-encrypt-Bcrypt-AES" class="headerlink" title="tags: php,encrypt,Bcrypt,AES"></a>tags: <code>php</code>,<code>encrypt</code>,<code>Bcrypt</code>,<code>AES</code></h6><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ol>
+<li>簡介常見的加密手法</li>
+<li>自身的實作經驗</li>
+</ol>
+<hr>
+<h1 id="常見的hash"><a href="#常見的hash" class="headerlink" title="常見的hash"></a>常見的hash</h1><blockquote>
+<p>1.MD5<br>2.Sha系列<br>3.Haval系列<br>4.Bcrypt<br>5.PBKDF2<br>6.Scrypt<br>當然還有很多，但是主要以最常使用的為主<br>在某些領域中，會將hash和加密分開討論<br>(本篇只先介紹MD5、SHA、Bcrypt)</p>
+</blockquote>
+<p>在PHP中可使用hash_algos()來查看hash演算法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">print_r(hash_algos());</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>Array<br>(<br>    [0] =&gt; md2<br>    [1] =&gt; md4<br>    [2] =&gt; md5<br>    [3] =&gt; sha1<br>    [4] =&gt; sha224<br>    [5] =&gt; sha256<br>    [6] =&gt; sha384<br>    [7] =&gt; sha512<br>    [8] =&gt; ripemd128<br>    [9] =&gt; ripemd160<br>    [10] =&gt; ripemd256<br>    [11] =&gt; ripemd320<br>    [12] =&gt; whirlpool<br>    [13] =&gt; tiger128,3<br>    [14] =&gt; tiger160,3<br>    [15] =&gt; tiger192,3<br>    [16] =&gt; tiger128,4<br>    [17] =&gt; tiger160,4<br>    [18] =&gt; tiger192,4<br>    [19] =&gt; snefru<br>    [20] =&gt; snefru256<br>    [21] =&gt; gost<br>    [22] =&gt; gost-crypto<br>    [23] =&gt; adler32<br>    [24] =&gt; crc32<br>    [25] =&gt; crc32b<br>    [26] =&gt; fnv132<br>    [27] =&gt; fnv1a32<br>    [28] =&gt; fnv164<br>    [29] =&gt; fnv1a64<br>    [30] =&gt; joaat<br>    [31] =&gt; haval128,3<br>    [32] =&gt; haval160,3<br>    [33] =&gt; haval192,3<br>    [34] =&gt; haval224,3<br>    [35] =&gt; haval256,3<br>    [36] =&gt; haval128,4<br>    [37] =&gt; haval160,4<br>    [38] =&gt; haval192,4<br>    [39] =&gt; haval224,4<br>    [40] =&gt; haval256,4<br>    [41] =&gt; haval128,5<br>    [42] =&gt; haval160,5<br>    [43] =&gt; haval192,5<br>    [44] =&gt; haval224,5<br>    [45] =&gt; haval256,5<br>)</p>
+<hr>
+</br>
+
+<h1 id="最不能使用的-MD5"><a href="#最不能使用的-MD5" class="headerlink" title="最不能使用的-MD5"></a>最不能使用的-MD5</h1><p>MD5屬於早期相當常使用的hash方式<br>用來成為文本摘要判斷文本是否被竄改<br>也用於hash密碼的方法，來儲存或是傳送資料</p>
+<p>那為何不能再使用呢?<br>因為可以暴力破解出答案</p>
+<p>1996年發現MD5存在弱點<br>且隨著硬體的進步很快能破解出MD5<br>故最好別再使用</p>
+<ul>
+<li>MD5簡介：<br><a href="https://zh.wikipedia.org/wiki/MD5" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/MD5</a></li>
+</ul>
+<p>在PHP中相當簡單使用，直接呼叫即可<br><code>md5 ( string $str [, bool $raw_output = FALSE ] ) : string</code></p>
+<hr>
+</br>
+
+<h1 id="最常用的SHA系列"><a href="#最常用的SHA系列" class="headerlink" title="最常用的SHA系列"></a>最常用的SHA系列</h1><p>SHA-0：1993年發布<br>SHA-1：1995年發布<br>SHA-2：2001年發布，<br>包括SHA-224、256、384、512、512/224、512/256。</p>
+<p>SHA-3：2015年正式發布<br>SHA-3目前並未大規模取代SHA-2<br>因為SHA-2目前沒有出現明顯的弱點。</p>
+<ul>
+<li>SHA簡介：<br><a href="https://en.wikipedia.org/wiki/Secure_Hash_Algorithms" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Secure_Hash_Algorithms</a></li>
+</ul>
+<p><font color=red >重要:最好使用SHA-256以上<br>目前建議使用SHA-2中的256、384、512</font></p>
+<p>使用上也相當的簡單，直接代入即可:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">echo hash(<span class="string">'sha256'</span>, <span class="string">'abc'</span>);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<p>以下為SHA與MD5之比對表:<br><img src="https://pmk9zq.dm.files.1drv.com/y4mbJ-fNdbSLvFvHdTguAd3x6MiPINUBtaFqOB7fe0IHYrMIm96dIo7SLcxS4DrPhr-2sFJYv6vDcymvGm51lXixsL2_WMtj2eEWoba5K-ZF8-7yJ1xD_A9mqYB8rHIWPnItF26ZMEmq3fDsOAZA45QPYKY2K-fhZhCyUV_m6cZx2frlSVtzz77OdeQ9wQWdBhKrpfh96j1ZzkwbPaEbvWNZw?width=1691&height=662&cropmode=none" alt="image"></p>
+<hr>
+</br>
+
+<h1 id="非常推薦的hash-Bcrypt"><a href="#非常推薦的hash-Bcrypt" class="headerlink" title="非常推薦的hash-Bcrypt"></a>非常推薦的hash-Bcrypt</h1><p>目前PHP7以上都使用此方法來進行hash密碼<br>使用方法也極為簡單<br>但是效果卻特別的好</p>
+<p>Bcrypt 是根據Blowfish加密演算法所設計<br>對文本進行加鹽加密<br>並且能夠防禦暴力破解與彩虹表攻擊</p>
+<ul>
+<li>Bcrypt簡介：<br><a href="https://zh.wikipedia.org/wiki/Bcrypt" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Bcrypt</a></li>
+</ul>
+<p>使用上也相當的簡單，直接呼叫即可:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">$password = <span class="string">'123456'</span>;</span><br><span class="line">var_dump(password_hash($password, PASSWORD_DEFAULT));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+
+<p>特別的是<br>每一次hash執行結果都不一樣<br>因此需要使用 password_verify 函式進行驗證</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">var_dump(password_verify($password, $hash));</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<br>
+
+<h1 id="小結語"><a href="#小結語" class="headerlink" title="小結語:"></a>小結語:</h1><p>使用hash的話，會比較推薦Bcrypt以及下篇要介紹的PBKDF2</p>
+<hr>
+<h3 id="後續"><a href="#後續" class="headerlink" title="後續:"></a>後續:</h3><blockquote>
+<p>在下一篇會以Python、PHP、C#實作AES</p>
+</blockquote>
+<hr>
+<h3 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h3><ul>
+<li><p>Blowfish-bcrypt–SSH<br><a href="https://zh.wikipedia.org/wiki/Blowfish" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/Blowfish</a></p>
+</li>
+<li><p>SSL/TLS的二三事:<br><a href="https://reurl.cc/MvWAKK" target="_blank" rel="noopener">https://reurl.cc/MvWAKK</a></p>
+</li>
+<li><p>SSL、TLS:<br><a href="https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https" target="_blank" rel="noopener">https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https</a></p>
+</li>
+<li><p>對稱密鑰加密—AES<br><a href="https://reurl.cc/0okjAA" target="_blank" rel="noopener">https://reurl.cc/0okjAA</a></p>
+</li>
+<li><p>公開金鑰加密(非對稱式密碼學)–RSA<br><a href="https://reurl.cc/9E0reO" target="_blank" rel="noopener">https://reurl.cc/9E0reO</a></p>
+</li>
+<li><p>SSL證書(https)中的非對稱加密與對稱加密<br><a href="https://kknews.cc/zh-tw/code/gzbkyg8.html" target="_blank" rel="noopener">https://kknews.cc/zh-tw/code/gzbkyg8.html</a></p>
+</li>
+</ul>
+<ul>
+<li>Does BCrypt uses AES 448bit encryption?<br><a href="https://stackoverflow.com/questions/30028499/does-bcrypt-uses-aes-448bit-encryption" target="_blank" rel="noopener">https://stackoverflow.com/questions/30028499/does-bcrypt-uses-aes-448bit-encryption</a></li>
+</ul>
+<hr>
+<p><code>&lt;追隨前輩們的腳步，不停往前。&gt;</code></p>
+<blockquote>
+<ul>
+<li>任何問題，請聯繫我:<code>liao86221@gmail.com</code></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/php/" rel="tag"># php</a>
+          
+            <a href="/tags/w3HexSchool/" rel="tag"># w3HexSchool</a>
+          
+            <a href="/tags/encrypt/" rel="tag"># encrypt</a>
+          
+            <a href="/tags/Bcrypt/" rel="tag"># Bcrypt</a>
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/C/" rel="tag"># C#</a>
+          
+            <a href="/tags/aes/" rel="tag"># aes</a>
+          
+            <a href="/tags/sha256/" rel="tag"># sha256</a>
+          
+            <a href="/tags/MD5/" rel="tag"># MD5</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/15/allinone02/" rel="next" title="雜亂大全02-Linux架設網站(以wordpress、Laravel為例)">
+                <i class="fa fa-chevron-left"></i> 雜亂大全02-Linux架設網站(以wordpress、Laravel為例)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/05/allinone04/" rel="prev" title="雜亂大全04-資安與加密的那些事(2):PBKDF2、Scrypt、Bcrypt(補充)">
+                雜亂大全04-資安與加密的那些事(2):PBKDF2、Scrypt、Bcrypt(補充) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zih Zrong</p>
+              <p class="site-description motion-element" itemprop="description">記錄學習狀態</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaozihzrong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://forms.gle/4FB5Tmtd9A7XcXjF8" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/groups/307523216619055/" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-php-encrypt-Bcrypt-AES"><span class="nav-number">1.</span> <span class="nav-text">tags: php,encrypt,Bcrypt,AES</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#常見的hash"><span class="nav-number"></span> <span class="nav-text">常見的hash</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最不能使用的-MD5"><span class="nav-number"></span> <span class="nav-text">最不能使用的-MD5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最常用的SHA系列"><span class="nav-number"></span> <span class="nav-text">最常用的SHA系列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非常推薦的hash-Bcrypt"><span class="nav-number"></span> <span class="nav-text">非常推薦的hash-Bcrypt</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小結語"><span class="nav-number"></span> <span class="nav-text">小結語:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#後續"><span class="nav-number"></span> <span class="nav-text">後續:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考連結"><span class="nav-number"></span> <span class="nav-text">參考連結</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zih Zrong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      訪客數
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      總訪問次數
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="w3HexSchool,python," />
+  <meta name="keywords" content="python,w3HexSchool," />
 
 
 
@@ -82,15 +82,15 @@
 <meta name="description" content="前言:本次為pytube的基本練習   tags: 六角學院主題:雜亂大全18-自製Youtube下載器本篇重點: 練習使用pytube   安裝模組1pip install pytube  使用1from pytube import YouTube  官方文件 python-pytube文件:https:&#x2F;&#x2F;python-pytube.readthedocs.io&#x2F;en&#x2F;latest&#x2F;  執">
 <meta property="og:type" content="article">
 <meta property="og:title" content="雜亂大全18-自製Youtube下載器">
-<meta property="og:url" content="http://yoursite.com/2020/12/04/allinone18/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/12/03/allinone18/index.html">
 <meta property="og:site_name" content="Lzz Blog">
 <meta property="og:description" content="前言:本次為pytube的基本練習   tags: 六角學院主題:雜亂大全18-自製Youtube下載器本篇重點: 練習使用pytube   安裝模組1pip install pytube  使用1from pytube import YouTube  官方文件 python-pytube文件:https:&#x2F;&#x2F;python-pytube.readthedocs.io&#x2F;en&#x2F;latest&#x2F;  執">
 <meta property="og:locale" content="zh_TW">
-<meta property="article:published_time" content="2020-12-04T08:57:06.000Z">
-<meta property="article:modified_time" content="2020-12-08T13:48:23.920Z">
+<meta property="article:published_time" content="2020-12-03T12:57:06.000Z">
+<meta property="article:modified_time" content="2020-12-08T14:39:37.842Z">
 <meta property="article:author" content="Zih Zrong">
-<meta property="article:tag" content="w3HexSchool">
 <meta property="article:tag" content="python">
+<meta property="article:tag" content="w3HexSchool">
 <meta name="twitter:card" content="summary">
 
 
@@ -121,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/12/04/allinone18/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/12/03/allinone18/"/>
 
 
 
@@ -273,7 +273,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/04/allinone18/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/03/allinone18/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zih Zrong">
@@ -302,8 +302,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-12-04T16:57:06+08:00">
-                2020-12-04
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-12-03T20:57:06+08:00">
+                2020-12-03
               </time>
             
 
@@ -386,7 +386,9 @@
 <h2 id="執行"><a href="#執行" class="headerlink" title="執行"></a>執行</h2><p>本次使用pytube來下載Youtube<br>進行簡易的練習(加上try…except來除錯)</p>
 <h3 id="部分程式碼"><a href="#部分程式碼" class="headerlink" title="部分程式碼:"></a>部分程式碼:</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">yt_path=<span class="string">"https://youtu.be/-2Pn4B8S1EM"</span></span><br><span class="line">#yt=YouTube("https://youtu.be/sOome7baXD0", on_progress_callback=onProgress)</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">	yt = YouTube(yt_path, on_progress_callback=onProgress)</span><br><span class="line">	print(f<span class="string">"正在下載影片: &#123;yt.title&#125;"</span>)</span><br><span class="line">	stream = yt.streams.filter(type=<span class="string">"video"</span>,res=<span class="string">"720p"</span>).first()</span><br><span class="line">	streamss = yt.streams.filter(type=<span class="string">"video"</span>)</span><br><span class="line">	print(streamss)</span><br><span class="line">	print(stream)</span><br><span class="line">	stream.download()</span><br><span class="line">	print(f<span class="string">"影片&#123;yt.title&#125;下載完成"</span>)</span><br><span class="line">except IndexError <span class="keyword">as</span> e:</span><br><span class="line">	print(<span class="string">"URL something error--404"</span>)</span><br><span class="line">	print(e)</span><br></pre></td></tr></table></figure>
 
-<h2 id="改進"><a href="#改進" class="headerlink" title="改進"></a>改進</h2><p>使用<code>onProgress(stream, chunk, remaining)</code><br>來進行數據調顯示<br>我設定成每10%更新一次</p>
+<h2 id="改進"><a href="#改進" class="headerlink" title="改進"></a>改進</h2><p>使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">onProgress(stream, chunk, remaining)</span><br></pre></td></tr></table></figure>
+<p>來進行數據調顯示<br>我設定成每10%更新一次</p>
 <h3 id="部分程式碼-1"><a href="#部分程式碼-1" class="headerlink" title="部分程式碼:"></a>部分程式碼:</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">total = stream.filesize</span><br><span class="line">percent = (total - remaining) / total * <span class="number">100</span></span><br><span class="line">show_num=[<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>,<span class="number">100</span>]</span><br><span class="line">global sh_i</span><br><span class="line"># print(sh_i)</span><br><span class="line"><span class="keyword">if</span> (percent &gt; show_num[sh_i]) and (sh_i &lt;= <span class="number">8</span>):</span><br><span class="line">	print(<span class="string">"下載中…&#123;:05.2f&#125;%"</span>.format(percent))</span><br><span class="line">	sh_i=sh_i+<span class="number">1</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">	pass</span><br><span class="line">	#print("percent: ",percent)</span><br></pre></td></tr></table></figure>
 
 <h2 id="改進-1"><a href="#改進-1" class="headerlink" title="改進:"></a>改進:</h2><ul>
@@ -423,9 +425,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/w3HexSchool/" rel="tag"># w3HexSchool</a>
-          
             <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/w3HexSchool/" rel="tag"># w3HexSchool</a>
           
         </div>
       

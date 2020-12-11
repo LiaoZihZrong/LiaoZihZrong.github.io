@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="前言:接續連兩篇的YOLO簡介   tags: 六角學院主題:雜亂大全26-YOLOv3程式碼解析本篇重點: 學習YOLOv3的程式碼解析   了解YOLOv3程式碼(1)-detect_image參考資料 yolov3 keras版本yolo.py函式解析 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43211132&#x2F;article&#x2F;details&#x2F;102988139  &lt;參考運">
+<meta name="description" content="前言:接續連兩篇的YOLO簡介   tags: 六角學院主題:雜亂大全26-YOLOv3程式碼解析本篇重點: 學習YOLOv3的程式碼解析   了解YOLOv3程式碼(1)-detect_image參考資料 yolov3 keras版本yolo.py函式解析https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43211132&#x2F;article&#x2F;details&#x2F;102988139  &lt;參考運作">
 <meta property="og:type" content="article">
 <meta property="og:title" content="雜亂大全26-YOLOv3程式碼解析">
 <meta property="og:url" content="http://yoursite.com/2020/12/10/allinone26/index.html">
 <meta property="og:site_name" content="Lzz Blog">
-<meta property="og:description" content="前言:接續連兩篇的YOLO簡介   tags: 六角學院主題:雜亂大全26-YOLOv3程式碼解析本篇重點: 學習YOLOv3的程式碼解析   了解YOLOv3程式碼(1)-detect_image參考資料 yolov3 keras版本yolo.py函式解析 https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43211132&#x2F;article&#x2F;details&#x2F;102988139  &lt;參考運">
+<meta property="og:description" content="前言:接續連兩篇的YOLO簡介   tags: 六角學院主題:雜亂大全26-YOLOv3程式碼解析本篇重點: 學習YOLOv3的程式碼解析   了解YOLOv3程式碼(1)-detect_image參考資料 yolov3 keras版本yolo.py函式解析https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_43211132&#x2F;article&#x2F;details&#x2F;102988139  &lt;參考運作">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2020-12-10T04:57:06.000Z">
-<meta property="article:modified_time" content="2020-12-11T03:49:22.614Z">
+<meta property="article:modified_time" content="2020-12-11T03:52:32.912Z">
 <meta property="article:author" content="Zih Zrong">
 <meta property="article:tag" content="w3HexSchool">
 <meta property="article:tag" content="python">
@@ -377,7 +377,7 @@
 </ul>
 <hr>
 <h3 id="了解YOLOv3程式碼-1-detect-image"><a href="#了解YOLOv3程式碼-1-detect-image" class="headerlink" title="了解YOLOv3程式碼(1)-detect_image"></a>了解YOLOv3程式碼(1)-detect_image</h3><h4 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h4><blockquote>
-<p>yolov3 keras版本yolo.py函式解析 <a href="https://blog.csdn.net/qq_43211132/article/details/102988139" target="_blank" rel="noopener">https://blog.csdn.net/qq_43211132/article/details/102988139</a></p>
+<p>yolov3 keras版本yolo.py函式解析<br><a href="https://blog.csdn.net/qq_43211132/article/details/102988139" target="_blank" rel="noopener">https://blog.csdn.net/qq_43211132/article/details/102988139</a></p>
 </blockquote>
 <h4 id="lt-參考運作流程-gt"><a href="#lt-參考運作流程-gt" class="headerlink" title="&lt;參考運作流程&gt;"></a>&lt;參考運作流程&gt;</h4><p>def detect_image(self, image):（重要）<br>開始計時-&gt;<br>①調用letterbox_image函數，即：先生成一個用“絕對灰”R128-G128-B128填充的416×416新圖片，然後用按比例縮放（採樣方式：BICUBIC）後的輸入圖片粘貼，粘貼不到的部分保留為灰色。<br>②model_image_size定義的寬和高必須是32的倍數；若沒有定義model_image_size，將輸入的尺寸調整為32的倍數，並調用letterbox_image函數進行縮放。<br>③將縮放後的圖片數值除以255，做歸一化。<br>④將（416,416,3）數組調整為（1,416,416,3），滿足網絡輸入的張量格式：image_data。</p>
 <p>-&gt;<br>①運行self.sess.run（）輸入參數：輸入圖片416×416，學習模式0測試/1訓練。 self.yolo_model.input: image_data，self.input_image_shape: [image.size[1], image.size[0]]，K.learning_phase(): 0。<br>②self.generate（），讀取：model路徑、anchor box、coco類別、加載模型yolo.h5.，對於80中coco目標，確定每一種目標框的繪製顏色，即：將（x/80,1.0 ,1.0）的顏色轉換為RGB格式，並隨機調整顏色一遍肉眼識別，其中：一個1.0表示飽和度，一個1.0表示亮度。</p>

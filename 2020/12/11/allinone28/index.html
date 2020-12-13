@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="w3HexSchool,encrypt,RSA," />
+  <meta name="keywords" content="w3HexSchool,python," />
 
 
 
@@ -79,22 +79,22 @@
 
 
 
-<meta name="description" content="主題:雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)  前言:接續前幾篇，本篇簡介非對稱金鑰加密後將講解RSA實際應用於Github情形  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: encrypt,RSA本篇重點: 簡介非對稱金鑰加密、RSA 實作經驗   非對稱金鑰加密 非對稱金鑰加密簡介：https:&#x2F;&#x2F;en.wikipedi">
+<meta name="description" content="前言:介紹Deteron2(下篇)   tags: 六角學院主題:雜亂大全27-Deteron2簡介(下)本篇重點: 接續前一篇，學習Deteron2   資料集 Dataset分成 DatasetCatalog和MetadataCatalogDatasetCatalog－每張圖片和對應的標籤MetadataCatalog－資料集的描述 12345使用方式from detectron2.dat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)">
-<meta property="og:url" content="http://yoursite.com/2020/06/14/allinone06/index.html">
+<meta property="og:title" content="雜亂大全27-Deteron2簡介(下)">
+<meta property="og:url" content="http://yoursite.com/2020/12/11/allinone28/index.html">
 <meta property="og:site_name" content="Lzz Blog">
-<meta property="og:description" content="主題:雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)  前言:接續前幾篇，本篇簡介非對稱金鑰加密後將講解RSA實際應用於Github情形  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: encrypt,RSA本篇重點: 簡介非對稱金鑰加密、RSA 實作經驗   非對稱金鑰加密 非對稱金鑰加密簡介：https:&#x2F;&#x2F;en.wikipedi">
+<meta property="og:description" content="前言:介紹Deteron2(下篇)   tags: 六角學院主題:雜亂大全27-Deteron2簡介(下)本篇重點: 接續前一篇，學習Deteron2   資料集 Dataset分成 DatasetCatalog和MetadataCatalogDatasetCatalog－每張圖片和對應的標籤MetadataCatalog－資料集的描述 12345使用方式from detectron2.dat">
 <meta property="og:locale" content="zh_TW">
-<meta property="og:image" content="https://omk9zq.dm.files.1drv.com/y4m7GXAlJQA2dPDG-dbpUBV-ZplSuH6HOO9zn5t8u3FaGmT8nLAyvjR9UPqSKYtSvALyaxSCuAgw_sJdA1XEakUy7CUsDbPWo7imsCBf64_91les-Z1u8eAZiYD8iL7EN-_0tUMd2zBMJG-wcQOLJcC_3OT2_ok5TcMQHD_w-EnQaOeZhHkM-IyIFYpKaJRdNlrrW6s7Zxl5ZKuL02N-Z8C2A?width=1025&height=661&cropmode=none">
-<meta property="article:published_time" content="2020-06-14T08:57:06.000Z">
-<meta property="article:modified_time" content="2020-06-18T13:18:19.103Z">
+<meta property="og:image" content="https://i.imgur.com/Xl3zORa.jpg">
+<meta property="og:image" content="https://i.imgur.com/ymjlBqm.jpg">
+<meta property="article:published_time" content="2020-12-11T04:57:06.000Z">
+<meta property="article:modified_time" content="2020-12-13T11:31:26.608Z">
 <meta property="article:author" content="Zih Zrong">
 <meta property="article:tag" content="w3HexSchool">
-<meta property="article:tag" content="encrypt">
-<meta property="article:tag" content="RSA">
+<meta property="article:tag" content="python">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://omk9zq.dm.files.1drv.com/y4m7GXAlJQA2dPDG-dbpUBV-ZplSuH6HOO9zn5t8u3FaGmT8nLAyvjR9UPqSKYtSvALyaxSCuAgw_sJdA1XEakUy7CUsDbPWo7imsCBf64_91les-Z1u8eAZiYD8iL7EN-_0tUMd2zBMJG-wcQOLJcC_3OT2_ok5TcMQHD_w-EnQaOeZhHkM-IyIFYpKaJRdNlrrW6s7Zxl5ZKuL02N-Z8C2A?width=1025&height=661&cropmode=none">
+<meta name="twitter:image" content="https://i.imgur.com/Xl3zORa.jpg">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2020/06/14/allinone06/"/>
+  <link rel="canonical" href="http://yoursite.com/2020/12/11/allinone28/"/>
 
 
 
 
 
-  <title>雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密) | Lzz Blog</title>
+  <title>雜亂大全27-Deteron2簡介(下) | Lzz Blog</title>
   
 
 
@@ -276,7 +276,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/06/14/allinone06/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/11/allinone28/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Zih Zrong">
@@ -293,7 +293,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)</h1>
+          <h1 class="post-title" itemprop="name headline">雜亂大全27-Deteron2簡介(下)</h1>
         
 
         <div class="post-meta">
@@ -305,8 +305,8 @@
               
                 <span class="post-meta-item-text">發表於</span>
               
-              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-06-14T16:57:06+08:00">
-                2020-06-14
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-12-11T12:57:06+08:00">
+                2020-12-11
               </time>
             
 
@@ -328,8 +328,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RSA/" itemprop="url" rel="index">
-                    <span itemprop="name">RSA</span>
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
                   </a>
                 </span>
 
@@ -372,88 +372,88 @@
       
         <blockquote>
 <ul>
-<li><p>主題:雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)</p>
-</li>
-<li><p>前言:接續前幾篇，本篇簡介非對稱金鑰加密後將講解RSA實際應用於Github情形</p>
-</li>
-<li><p>叮嚀: <code>$</code> 代表對CMD或terminal(終端機)下指令</p>
-</li>
+<li>前言:介紹Deteron2(下篇)</li>
 </ul>
 </blockquote>
-<h6 id="tags-encrypt-RSA"><a href="#tags-encrypt-RSA" class="headerlink" title="tags: encrypt,RSA"></a>tags: <code>encrypt</code>,<code>RSA</code></h6><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ol>
-<li>簡介非對稱金鑰加密、RSA</li>
-<li>實作經驗</li>
-</ol>
-<hr>
-<h1 id="非對稱金鑰加密"><a href="#非對稱金鑰加密" class="headerlink" title="非對稱金鑰加密"></a>非對稱金鑰加密</h1><ul>
-<li>非對稱金鑰加密簡介：<br><a href="https://en.wikipedia.org/wiki/Public-key_cryptography" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Public-key_cryptography</a> </li>
-</ul>
-<p>公開金鑰密碼學也稱非對稱式密碼學是密碼學的一種演算法，它需要兩個金鑰，一個是公開密鑰，另一個是私有密鑰；公鑰用作加密，私鑰則用作解密。</p>
-<p>白話來說:就是使用兩把鑰匙進行加密與解密，一支為公開金鑰，另一支為私人金鑰。</p>
-<p>而在非對稱金鑰加密中最常見的方法如下，分成訊息加密與數位簽章</p>
-<p>圖解:<br><img src="https://omk9zq.dm.files.1drv.com/y4m7GXAlJQA2dPDG-dbpUBV-ZplSuH6HOO9zn5t8u3FaGmT8nLAyvjR9UPqSKYtSvALyaxSCuAgw_sJdA1XEakUy7CUsDbPWo7imsCBf64_91les-Z1u8eAZiYD8iL7EN-_0tUMd2zBMJG-wcQOLJcC_3OT2_ok5TcMQHD_w-EnQaOeZhHkM-IyIFYpKaJRdNlrrW6s7Zxl5ZKuL02N-Z8C2A?width=1025&height=661&cropmode=none" alt="image"></p>
-<hr>
-<h1 id="RSA簡介"><a href="#RSA簡介" class="headerlink" title="RSA簡介"></a>RSA簡介</h1><p>RSA加密演算法是一種非對稱加密演算法，在公開金鑰加密和電子商業中被廣泛使用。<br>RSA是由羅納德·李維斯特（Ron Rivest）、阿迪·薩莫爾（Adi Shamir）和倫納德·阿德曼（Leonard Adleman）在1977年一起提出的。<br>當時他們三人都在麻省理工學院工作。RSA 就是他們三人姓氏開頭字母拼在一起組成的</p>
-<p>缺點:加密速度慢</p>
-<ul>
-<li><p>RSA簡介：<br><a href="https://en.wikipedia.org/wiki/RSA_(cryptosystem)" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/RSA_(cryptosystem)</a></p>
-</li>
-<li><p>NIST建議的RSA密鑰長度為至少2048位元</p>
-</li>
+<h6 id="tags-六角學院"><a href="#tags-六角學院" class="headerlink" title="tags: 六角學院"></a>tags: <code>六角學院</code></h6><h2 id="主題-雜亂大全27-Deteron2簡介-下"><a href="#主題-雜亂大全27-Deteron2簡介-下" class="headerlink" title="主題:雜亂大全27-Deteron2簡介(下)"></a>主題:雜亂大全27-Deteron2簡介(下)</h2><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ul>
+<li>接續前一篇，學習Deteron2</li>
 </ul>
 <hr>
-<h1 id="生成SSH金鑰-應用於Github"><a href="#生成SSH金鑰-應用於Github" class="headerlink" title="生成SSH金鑰 (應用於Github)"></a>生成SSH金鑰 (應用於Github)</h1><p>(step by step)</p>
-<h2 id="Step1-先安裝git"><a href="#Step1-先安裝git" class="headerlink" title="Step1 先安裝git"></a>Step1 先安裝git</h2><ul>
-<li>網址 <a href="https://git-scm.com/" target="_blank" rel="noopener">https://git-scm.com/</a></li>
-</ul>
-<p>–</p>
-<h2 id="Step2-綁定Github"><a href="#Step2-綁定Github" class="headerlink" title="Step2 綁定Github"></a>Step2 綁定Github</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user.name <span class="string">"Github用戶名"</span></span><br><span class="line">$ git config --global user.email <span class="string">"註冊時GitHub的電子信箱"</span></span><br></pre></td></tr></table></figure>
+<h2 id="資料集-Dataset"><a href="#資料集-Dataset" class="headerlink" title="資料集 Dataset"></a>資料集 Dataset</h2><p>分成 DatasetCatalog和MetadataCatalog<br>DatasetCatalog－每張圖片和對應的標籤<br>MetadataCatalog－資料集的描述</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">使用方式</span><br><span class="line">from detectron2.data import DatasetCatalog, MetadataCatalog</span><br><span class="line">DatasetCatalog.register(dataset_name, dataset_dicts)</span><br><span class="line">dicts &#x3D; DatasetCatalog.get(dataset_name)</span><br><span class="line">MetadataCatalog.get(&quot;my_dataset&quot;).thing_classes &#x3D; [&quot;person&quot;, &quot;dog&quot;]</span><br></pre></td></tr></table></figure>
 
-<hr>
-<h2 id="Step3-生成金鑰"><a href="#Step3-生成金鑰" class="headerlink" title="Step3 生成金鑰"></a>Step3 生成金鑰</h2><p>(輸入完指令，接下來都按Enter即可)</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh-keygen -t rsa -C <span class="string">"註冊時GitHub的電子信箱"</span></span><br></pre></td></tr></table></figure>
-<p>輸入完後會生成一個id_rsa.pub的SSH密鑰文件</p>
-<hr>
-<h2 id="Step4-至Github點選SSH-Keys"><a href="#Step4-至Github點選SSH-Keys" class="headerlink" title="Step4 至Github點選SSH Keys"></a>Step4 至Github點選SSH Keys</h2><ul>
-<li>網址:<a href="https://github.com/settings/keys" target="_blank" rel="noopener">https://github.com/settings/keys</a><br>(點選”New SSH keys”)</li>
-</ul>
-<hr>
-<h2 id="Step5-輸入資料"><a href="#Step5-輸入資料" class="headerlink" title="Step5 輸入資料"></a>Step5 輸入資料</h2><p>1.title 隨便打<br>2.key的部分，貼上剛剛生成的id_rsa.pub<br>(通常在 C:/Users/你的使用者名稱/.ssh 底下)<br>補充: 要把裡面的內容全部複製</p>
-<p>完成</p>
-<hr>
-<h2 id="Step6-檢查是否成功"><a href="#Step6-檢查是否成功" class="headerlink" title="Step6 檢查是否成功"></a>Step6 檢查是否成功</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ssh git@github.com</span><br></pre></td></tr></table></figure>
-<p>看到successfully authenticated就代表成功了</p>
-<hr>
-<h1 id="補充"><a href="#補充" class="headerlink" title="補充:"></a>補充:</h1><p>本次應用可以讓使用者於本地端進行commit遠端資料<br>也可以輕鬆了解RSA交付金鑰的幾個步驟</p>
-<p>切記:不要交錯金鑰!!私鑰一旦上傳就必須重新製作</p>
-<hr>
-<h1 id="小結語"><a href="#小結語" class="headerlink" title="小結語:"></a>小結語:</h1><p>RSA常見使用於SSL或是SSH上，非常推薦學習</p>
-<hr>
-<h3 id="後續"><a href="#後續" class="headerlink" title="後續:"></a>後續:</h3><p>結合對稱金鑰加密的速度與非對稱金鑰的安全性，而後延伸出SSL(TLS)，成為訊息溝通的最主流加密方式</p>
-<hr>
-<h3 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h3><ul>
-<li><p>生成 Github SSH RSA金鑰<br><a href="https://wst24365888.github.io/hexo-github" target="_blank" rel="noopener">https://wst24365888.github.io/hexo-github</a></p>
-</li>
-<li><p>對稱加密vs非對稱加密<br><a href="https://academy.binance.com/zt/security/symmetric-vs-asymmetric-encryption" target="_blank" rel="noopener">https://academy.binance.com/zt/security/symmetric-vs-asymmetric-encryption</a></p>
-</li>
-<li><p>基礎密碼學(對稱式與非對稱式加密技術)<br><a href="https://medium.com/@RiverChan/%E5%9F%BA%E7%A4%8E%E5%AF%86%E7%A2%BC%E5%AD%B8-%E5%B0%8D%E7%A8%B1%E5%BC%8F%E8%88%87%E9%9D%9E%E5%B0%8D%E7%A8%B1%E5%BC%8F%E5%8A%A0%E5%AF%86%E6%8A%80%E8%A1%93-de25fd5fa537" target="_blank" rel="noopener">https://medium.com/@RiverChan/%E5%9F%BA%E7%A4%8E%E5%AF%86%E7%A2%BC%E5%AD%B8-%E5%B0%8D%E7%A8%B1%E5%BC%8F%E8%88%87%E9%9D%9E%E5%B0%8D%E7%A8%B1%E5%BC%8F%E5%8A%A0%E5%AF%86%E6%8A%80%E8%A1%93-de25fd5fa537</a></p>
-</li>
-<li><p>SSL/TLS的二三事:<br><a href="https://reurl.cc/MvWAKK" target="_blank" rel="noopener">https://reurl.cc/MvWAKK</a></p>
-</li>
-<li><p>SSL、TLS:<br><a href="https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https" target="_blank" rel="noopener">https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https</a></p>
-</li>
-<li><p>公開金鑰加密(非對稱式密碼學)–RSA<br><a href="https://reurl.cc/9E0reO" target="_blank" rel="noopener">https://reurl.cc/9E0reO</a></p>
-</li>
-</ul>
-<hr>
-<p><code>&lt;追隨前輩們的腳步，不停往前。&gt;</code></p>
-<blockquote>
 <ul>
-<li>若有任何問題↓</li>
-<li>請聯繫我:<code>liao86221@gmail.com</code></li>
-<li>或填表: <a href="https://forms.gle/4FB5Tmtd9A7XcXjF8" target="_blank" rel="noopener">https://forms.gle/4FB5Tmtd9A7XcXjF8</a></li>
-</ul>
+<li><ul>
+<li>若要調用其他public dataset的資料<blockquote>
+<p>下載後放置在DETECTRON2_DATASETS</p>
 </blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ export DETECTRON2_DATASETS&#x3D;&#x2F;path&#x2F;to&#x2F;datasets</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>程式上加上</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from .data.datasets import builtin</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><ul>
+<li>目前支援的資料集<br>為COCO instance/keypoint detection, PanopticFPN,<br>LVIS instance segmentation, cityscapes, Pascal VOC，<br>對應的資料 : <a href="https://github.com/facebookresearch/detectron2/tree/master/datasets" target="_blank" rel="noopener">https://github.com/facebookresearch/detectron2/tree/master/datasets</a></li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">範例:</span><br><span class="line">from detectron2.data.datasets import register_coco_instances</span><br><span class="line">register_coco_instances(&quot;my_dataset&quot;, &#123;&#125;, &quot;json_annotation.json&quot;, &quot;path&#x2F;to&#x2F;image&#x2F;dir&quot;)</span><br><span class="line"># generate json_annotation.json only</span><br><span class="line">data_dicts &#x3D; load_coco_json(json_file, image_root, name)</span><br><span class="line"># after some processing ...</span><br><span class="line">DatasetCatalog.register(&#39;my-coco&#39;, new_data_dicts)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><ul>
+<li>自己的資料不屬於上述的話，要用字典處理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 用一個function把資料處理完</span><br><span class="line">def get_balloon_dicts(img_dir):</span><br><span class="line">    ...</span><br><span class="line">    return dataset_dicts</span><br><span class="line">for d in [&quot;train&quot;, &quot;val&quot;]:</span><br><span class="line">    DatasetCatalog.register(&quot;balloon_&quot; + d, lambda d&#x3D;d: get_balloon_dicts(&quot;balloon&#x2F;&quot; + d))</span><br><span class="line">    MetadataCatalog.get(&quot;balloon_&quot; + d).set(thing_classes&#x3D;[&quot;balloon&quot;])</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<p>:::success<br>整體來說像快速平台或說很大的庫<br>提供加速訓練與模型選用及圖片庫<br>官方說:We provide a large set of baseline results and trained models available for download in the Detectron2 Model Zoo.<br>:::</p>
+<ul>
+<li><p>Detectron2 Model Zoo  (一大堆可以調用)<br><a href="https://github.com/facebookresearch/detectron2/blob/master/MODEL_ZOO.md" target="_blank" rel="noopener">https://github.com/facebookresearch/detectron2/blob/master/MODEL_ZOO.md</a></p>
+</li>
+<li><p>測試:使用Detectron2分6步進行目標檢測<br><a href="https://www.mdeditor.tw/pl/pXlV/zh-tw" target="_blank" rel="noopener">https://www.mdeditor.tw/pl/pXlV/zh-tw</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="實作程式碼"><a href="#實作程式碼" class="headerlink" title="實作程式碼"></a>實作程式碼</h2><ul>
+<li><p>方便的地方</p>
+<blockquote>
+<p>利用detectron2的model zoo中<br>有取多的pretrain model可以去進行training</p>
+</blockquote>
+</li>
+<li><p>直接裝在電腦上</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">安裝步驟:</span><br><span class="line">conda create --name mypytorch python&#x3D;3.6</span><br><span class="line">activate mypytorch</span><br><span class="line">#我為了搭配tf 14版，所以選擇用以下方式安裝torch</span><br><span class="line">conda install numpy ninja pyyaml mkl mkl-include setuptools cmake cffi typing_extensions future six requests dataclasses</span><br><span class="line">conda install -c conda-forge libuv&#x3D;1.39</span><br><span class="line">git clone --recursive https:&#x2F;&#x2F;github.com&#x2F;pytorch&#x2F;pytorch</span><br><span class="line">cd pytorch</span><br><span class="line">python setup.py install</span><br><span class="line">(要記得安裝Microsoft Visual tools 2017)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>以上也可參考安裝 <a href="https://zhuanlan.zhihu.com/p/106798487" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/106798487</a></p>
+</li>
+</ul>
+<p>:::info<br>因cuda與我的TF衝突，改用Google Colab執行<br>:::</p>
+<ul>
+<li><p><strong>本次調用 mask_rcnn_R_50_FPN_3x</strong></p>
+</li>
+<li><ul>
+<li>程式碼位置(整個zip檔下載)<br><a href="https://1drv.ms/u/s!AqstO-BYCWeDx03kDSm2ImrK5V9b?e=Tq6TJ5" target="_blank" rel="noopener">https://1drv.ms/u/s!AqstO-BYCWeDx03kDSm2ImrK5V9b?e=Tq6TJ5</a></li>
+</ul>
+</li>
+<li><p>下載後，在Colab上傳檔案(語法)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from google.colab import files</span><br><span class="line">uploaded &#x3D; files.upload()</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>測試原圖:<br><img src="https://i.imgur.com/Xl3zORa.jpg" alt=""></p>
+</li>
+<li><p>結果:<br><img src="https://i.imgur.com/ymjlBqm.jpg" alt=""></p>
+</li>
+</ul>
+<hr>
+<h2 id="補充資料"><a href="#補充資料" class="headerlink" title="補充資料"></a>補充資料</h2><ul>
+<li><p>利用detectron2快速使用faster RCNN<br><a href="https://medium.com/mess-up/%E5%88%A9%E7%94%A8detectron2%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8faster-rcnn-a68e58c2ca21" target="_blank" rel="noopener">https://medium.com/mess-up/%E5%88%A9%E7%94%A8detectron2%E5%BF%AB%E9%80%9F%E4%BD%BF%E7%94%A8faster-rcnn-a68e58c2ca21</a></p>
+</li>
+<li><p>取Detectron2導覽: FAIR推出能快速建置Object<br><a href="https://shunhsiang.medium.com/detectron2%E5%B0%8E%E8%A6%BD-fair%E6%8E%A8%E5%87%BA%E8%83%BD%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%BD%AEobject-detection-segmentation%E7%9A%84%E8%A8%93%E7%B7%B4%E5%B9%B3%E5%8F%B0-%E4%B8%8A-4eedd6babe78" target="_blank" rel="noopener">https://shunhsiang.medium.com/detectron2%E5%B0%8E%E8%A6%BD-fair%E6%8E%A8%E5%87%BA%E8%83%BD%E5%BF%AB%E9%80%9F%E5%BB%BA%E7%BD%AEobject-detection-segmentation%E7%9A%84%E8%A8%93%E7%B7%B4%E5%B9%B3%E5%8F%B0-%E4%B8%8A-4eedd6babe78</a></p>
+</li>
+</ul>
+<p>:::info<br>備註:感謝上述引用資料的分享!<br>:::</p>
 
       
     </div>
@@ -473,9 +473,7 @@
           
             <a href="/tags/w3HexSchool/" rel="tag"># w3HexSchool</a>
           
-            <a href="/tags/encrypt/" rel="tag"># encrypt</a>
-          
-            <a href="/tags/RSA/" rel="tag"># RSA</a>
+            <a href="/tags/python/" rel="tag"># python</a>
           
         </div>
       
@@ -488,8 +486,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/06/12/some00/" rel="next" title="自架Server，避免Windows10更新後重啟(0x80020010)">
-                <i class="fa fa-chevron-left"></i> 自架Server，避免Windows10更新後重啟(0x80020010)
+              <a href="/2020/12/11/allinone27/" rel="next" title="雜亂大全27-Deteron2簡介(上)">
+                <i class="fa fa-chevron-left"></i> 雜亂大全27-Deteron2簡介(上)
               </a>
             
           </div>
@@ -497,10 +495,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/06/18/some01/" rel="prev" title="生成SSH金鑰 (Github)">
-                生成SSH金鑰 (Github) <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -652,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-encrypt-RSA"><span class="nav-number">1.</span> <span class="nav-text">tags: encrypt,RSA</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非對稱金鑰加密"><span class="nav-number"></span> <span class="nav-text">非對稱金鑰加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA簡介"><span class="nav-number"></span> <span class="nav-text">RSA簡介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#生成SSH金鑰-應用於Github"><span class="nav-number"></span> <span class="nav-text">生成SSH金鑰 (應用於Github)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Step1-先安裝git"><span class="nav-number"></span> <span class="nav-text">Step1 先安裝git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step2-綁定Github"><span class="nav-number"></span> <span class="nav-text">Step2 綁定Github</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step3-生成金鑰"><span class="nav-number"></span> <span class="nav-text">Step3 生成金鑰</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step4-至Github點選SSH-Keys"><span class="nav-number"></span> <span class="nav-text">Step4 至Github點選SSH Keys</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step5-輸入資料"><span class="nav-number"></span> <span class="nav-text">Step5 輸入資料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Step6-檢查是否成功"><span class="nav-number"></span> <span class="nav-text">Step6 檢查是否成功</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#補充"><span class="nav-number"></span> <span class="nav-text">補充:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小結語"><span class="nav-number"></span> <span class="nav-text">小結語:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#後續"><span class="nav-number"></span> <span class="nav-text">後續:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考連結"><span class="nav-number"></span> <span class="nav-text">參考連結</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-六角學院"><span class="nav-number">1.</span> <span class="nav-text">tags: 六角學院</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主題-雜亂大全27-Deteron2簡介-下"><span class="nav-number"></span> <span class="nav-text">主題:雜亂大全27-Deteron2簡介(下)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#資料集-Dataset"><span class="nav-number"></span> <span class="nav-text">資料集 Dataset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#實作程式碼"><span class="nav-number"></span> <span class="nav-text">實作程式碼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#補充資料"><span class="nav-number"></span> <span class="nav-text">補充資料</span></a></div>
             
 
           </div>

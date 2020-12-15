@@ -89,7 +89,7 @@
 <meta property="og:image" content="https://i.imgur.com/Je2tFeN.jpg">
 <meta property="og:image" content="https://i.imgur.com/FUfx1L7.jpg">
 <meta property="article:published_time" content="2020-12-18T03:12:04.000Z">
-<meta property="article:modified_time" content="2020-12-15T09:40:37.987Z">
+<meta property="article:modified_time" content="2020-12-15T13:38:04.027Z">
 <meta property="article:author" content="Zih Zrong">
 <meta property="article:tag" content="w3HexSchool">
 <meta property="article:tag" content="OpenVINO">
@@ -387,7 +387,8 @@
 <li><a href="https://docs.openvinotoolkit.org/latest/omz_demos_gaze_estimation_demo_README.html" target="_blank" rel="noopener">https://docs.openvinotoolkit.org/latest/omz_demos_gaze_estimation_demo_README.html</a></li>
 <li>找尋demos對應的xml+bin</li>
 <li>(需要自行上網下載)</li>
-<li>下載區-一定要先確認版本(以下是2019_R3): <a href="https://download.01.org/opencv/2019/open_model_zoo/R3/20190905_163000_models_bin/" target="_blank" rel="noopener">https://download.01.org/opencv/2019/open_model_zoo/R3/20190905_163000_models_bin/</a></li>
+<li>下載區-一定要先確認版本(以下是2019_R3): </li>
+<li><a href="https://download.01.org/opencv/2019/open_model_zoo/R3/20190905_163000_models_bin/" target="_blank" rel="noopener">https://download.01.org/opencv/2019/open_model_zoo/R3/20190905_163000_models_bin/</a></li>
 <li>舉例:眼部角度需要以下四種xml與bin檔</li>
 <li>需要的檔案名稱(共八個檔案)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gaze-estimation-adas-0002.xml       &#x2F;bin</span><br><span class="line">face-detection-retail-0004.xml      &#x2F;bin</span><br><span class="line">head-pose-estimation-adas-0001.xml  &#x2F;bin</span><br><span class="line">facial-landmarks-35-adas-0002.xml   &#x2F;bin</span><br></pre></td></tr></table></figure>
 <h3 id="需要搭配四個參數"><a href="#需要搭配四個參數" class="headerlink" title="需要搭配四個參數"></a>需要搭配四個參數</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#需要搭配四個參數，與四種xml+bin</span><br><span class="line">#下指令時電腦會自動去抓同名的bin</span><br><span class="line">-m gaze-estimation-adas-0002.xml </span><br><span class="line">-m_fd face-detection-retail-0004.xml </span><br><span class="line">-m_hp head-pose-estimation-adas-0001.xml </span><br><span class="line">-m_lm facial-landmarks-35-adas-0002.xml</span><br></pre></td></tr></table></figure></li>

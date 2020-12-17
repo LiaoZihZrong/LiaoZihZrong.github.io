@@ -90,7 +90,7 @@
 <meta property="og:image" content="https://dm2304files.storage.live.com/y4maruZ4czKjHxBLj-LzAOvi9bIhTKpP4tDvJ5xXq5q-kr3CSTzXMrW-Qj2no0e1KlQ64P0X7WfDRzIJFqH_Wl1m5nj6iDL08McmuyKswH8_UVcOSjzl9ABLnhlZ1Oq51pAxlQ1kZGN1eqYP3jwAEslb3Hp93b_UqAs41cr1SWWAidRiJp1neMoNeWgmotwtmTD?width=1280&height=852&cropmode=none">
 <meta property="og:image" content="https://dm2304files.storage.live.com/y4ml2Gv8AQAW3ESUSe8UnjUwh06DUtI4PUL180d-ZHa3yy__NTfKy32dXX2-ZeIptUwUp3dhXPb_frrAs-_9ESBgv_WgJzd0CgFBLgJH9xolqkURH2ka6dnDx8JnT7I7MDtR75x42UgQHov-GIYMi0tqdeWdR0jYAKllPWpObLqgB5TS_JsQyqfYG7IHrBNJnBw?width=1024&height=682&cropmode=none">
 <meta property="article:published_time" content="2020-12-10T02:15:20.000Z">
-<meta property="article:modified_time" content="2020-12-15T09:19:37.910Z">
+<meta property="article:modified_time" content="2020-12-17T03:54:10.596Z">
 <meta property="article:author" content="Zih Zrong">
 <meta property="article:tag" content="w3HexSchool">
 <meta property="article:tag" content="pi4">
@@ -382,12 +382,14 @@
 <hr>
 <h1 id="官方"><a href="#官方" class="headerlink" title="官方"></a>官方</h1><p>OpenVINO-工具<br><a href="https://docs.openvinotoolkit.org/latest/index.html" target="_blank" rel="noopener">https://docs.openvinotoolkit.org/latest/index.html</a></p>
 <h1 id="Github"><a href="#Github" class="headerlink" title="Github"></a>Github</h1><p><a href="https://github.com/openvinotoolkit/openvino" target="_blank" rel="noopener">https://github.com/openvinotoolkit/openvino</a></p>
-<p>:::success<br>使用不同版本語法<br>git clone -b ‘tag版本’ ‘網址’<br>或是下載後使用git checkout ‘版本’<br>:::</p>
+<hr>
+<p>使用不同版本語法<br>git clone -b ‘tag版本’ ‘網址’<br>或是下載後使用git checkout ‘版本’</p>
 <p><a href="https://stackoverflow.com/questions/791959/download-a-specific-tag-with-git" target="_blank" rel="noopener">參考-版本控制</a></p>
 <ul>
 <li>參考資料</li>
 <li><a href="https://medium.com/@grady1006/%E9%82%8A%E7%B7%A3ai%E7%B3%BB%E5%88%97-openvino-%E6%87%B6%E4%BA%BA%E5%8C%85-55f357ceae75" target="_blank" rel="noopener">https://medium.com/@grady1006/%E9%82%8A%E7%B7%A3ai%E7%B3%BB%E5%88%97-openvino-%E6%87%B6%E4%BA%BA%E5%8C%85-55f357ceae75</a></li>
 </ul>
+<hr>
 <h2 id="簡介"><a href="#簡介" class="headerlink" title="簡介"></a>簡介</h2><p>整合OpenCV、OpenCL、OpenVX+硬體上的加速優化，<br>支持CPU、GPU、NCS、VPU、FPGA上運行，<br>但尚未支援AMD CPU，<br>提供多個pre-train的視覺分類、偵測、分割模型。<br>支持主流的框架<br>如Caffe, TensorFlow, MXNet, Kaldi pytorch(ONNX)</p>
 <h2 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h2><p><img src="https://i.imgur.com/8r5tCs0.png" alt=""></p>
 <ul>
@@ -418,7 +420,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install cmake</span><br></pre></td></tr></table></figure></li>
 <li><p>設定環境參數</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">source &#x2F;opt&#x2F;intel&#x2F;openvino&#x2F;bin&#x2F;setupvars.sh</span><br><span class="line"># 永久設定環境參數</span><br><span class="line">echo &quot;source &#x2F;opt&#x2F;intel&#x2F;openvino&#x2F;bin&#x2F;setupvars.sh&quot; &gt;&gt; ~&#x2F;.bashrc</span><br></pre></td></tr></table></figure>
-<p>換顯示</p>
+<p>顯示:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[setupvars.sh] OpenVINO environment initialized</span><br></pre></td></tr></table></figure></li>
 <li><p>增添USB規則</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -a -G users &quot;$(whoami)&quot;</span><br><span class="line">sh &#x2F;opt&#x2F;intel&#x2F;openvino&#x2F;install_dependencies&#x2F;install_NCS_udev_rules.sh</span><br></pre></td></tr></table></figure></li>
@@ -455,10 +457,8 @@
 </li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Total time: 39620    microseconds</span><br><span class="line"></span><br><span class="line">Full device name: Intel Movidius Myriad X VPU</span><br><span class="line"></span><br><span class="line">Count:      1000 iterations</span><br><span class="line">Duration:   21974.01 ms</span><br><span class="line">Latency:    87.67 ms</span><br><span class="line">Throughput: 45.51 FPS</span><br><span class="line">Peak Virtual Memory (VmPeak) Size, kBytes: 108124</span><br><span class="line">Peak Resident Memory (VmHWM) Size, kBytes:  35804</span><br></pre></td></tr></table></figure>
-<ul>
-<li>詳細過程請看txt檔</li>
-<li><a href="https://1drv.ms/t/s!AqstO-BYCWeDx2vf1kw_8TE7GJOt?e=3k28sj" target="_blank" rel="noopener">https://1drv.ms/t/s!AqstO-BYCWeDx2vf1kw_8TE7GJOt?e=3k28sj</a></li>
-</ul>
+
+
 <h2 id="補充"><a href="#補充" class="headerlink" title="補充:"></a>補充:</h2><p>Pi目前支援的部分很少，幾乎沒有支援即時影像<br>參考官方回文:<br><a href="https://community.intel.com/t5/Intel-Distribution-of-OpenVINO/InferenceEngineException-on-raspberrypi-Product-of-output-shape/td-p/1184671#" target="_blank" rel="noopener">https://community.intel.com/t5/Intel-Distribution-of-OpenVINO/InferenceEngineException-on-raspberrypi-Product-of-output-shape/td-p/1184671#</a></p>
 <hr>
 <h2 id="補充資料"><a href="#補充資料" class="headerlink" title="補充資料"></a>補充資料</h2><ul>

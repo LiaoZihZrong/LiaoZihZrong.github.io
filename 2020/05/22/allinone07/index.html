@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="w3HexSchool,encrypt,RSA," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="主題:雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL&#x2F;TLS)  前言:接續前幾篇，本篇簡介SSL的特性  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: encrypt,RSA本篇重點: 簡介SSL&#x2F;TLS 實作經驗   SSL&#x2F;TLS SSL&#x2F;TLS簡介：https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Transport_">
+<meta property="og:type" content="article">
+<meta property="og:title" content="雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL&#x2F;TLS)">
+<meta property="og:url" content="http://yoursite.com/2020/05/22/allinone07/index.html">
+<meta property="og:site_name" content="Lzz Blog">
+<meta property="og:description" content="主題:雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL&#x2F;TLS)  前言:接續前幾篇，本篇簡介SSL的特性  叮嚀: $ 代表對CMD或terminal(終端機)下指令    tags: encrypt,RSA本篇重點: 簡介SSL&#x2F;TLS 實作經驗   SSL&#x2F;TLS SSL&#x2F;TLS簡介：https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Transport_">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://bk7g2q.dm.files.1drv.com/y4mCNmn-vKNeYctvD_wx8NGxWwBGVE0cGeWQvYYAm5-Chabq1kqhUKlGfLG1orueQVZ3ZW1xEVgdSC7KtJp2_INhgm8jLH87leE_-fEIsQPpb7sQdfaVWN5hi8gbrQXEkL5jHBlskbjEkcA8yr5bbAdE2MxKpbx4aXYiqwRy5rcpS8pfu67tb-Ycxy89-s05xcnWuf67S4lWXCuc1nsoNWNpQ?width=868&height=566&cropmode=none">
+<meta property="article:published_time" content="2020-05-22T08:57:06.000Z">
+<meta property="article:modified_time" content="2020-12-13T11:49:06.397Z">
+<meta property="article:author" content="Zih Zrong">
+<meta property="article:tag" content="w3HexSchool">
+<meta property="article:tag" content="encrypt">
+<meta property="article:tag" content="RSA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bk7g2q.dm.files.1drv.com/y4mCNmn-vKNeYctvD_wx8NGxWwBGVE0cGeWQvYYAm5-Chabq1kqhUKlGfLG1orueQVZ3ZW1xEVgdSC7KtJp2_INhgm8jLH87leE_-fEIsQPpb7sQdfaVWN5hi8gbrQXEkL5jHBlskbjEkcA8yr5bbAdE2MxKpbx4aXYiqwRy5rcpS8pfu67tb-Ycxy89-s05xcnWuf67S4lWXCuc1nsoNWNpQ?width=868&height=566&cropmode=none">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/22/allinone07/"/>
+
+
+
+
+
+  <title>雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS) | Lzz Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lzz Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">學習筆記</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/22/allinone07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zih Zrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lzz Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2020-05-22T16:57:06+08:00">
+                2020-05-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SSL/" itemprop="url" rel="index">
+                    <span itemprop="name">SSL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>閱讀數
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<ul>
+<li><p>主題:雜亂大全07-資安與加密的那些事(5):結合對稱加密與非對稱加密(SSL/TLS)</p>
+</li>
+<li><p>前言:接續前幾篇，本篇簡介SSL的特性</p>
+</li>
+<li><p>叮嚀: <code>$</code> 代表對CMD或terminal(終端機)下指令</p>
+</li>
+</ul>
+</blockquote>
+<h6 id="tags-encrypt-RSA"><a href="#tags-encrypt-RSA" class="headerlink" title="tags: encrypt,RSA"></a>tags: <code>encrypt</code>,<code>RSA</code></h6><h2 id="本篇重點"><a href="#本篇重點" class="headerlink" title="本篇重點:"></a>本篇重點:</h2><ol>
+<li>簡介SSL/TLS</li>
+<li>實作經驗</li>
+</ol>
+<hr>
+<h1 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h1><ul>
+<li><p>SSL/TLS簡介：<br><a href="https://en.wikipedia.org/wiki/Transport_Layer_Security" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Transport_Layer_Security</a><br>傳輸層安全性協定（Transport Layer Security/TLS）及其前身安全通訊協定（Secure Sockets Layer/SSL）是一種安全協定，目的是為網際網路通訊提供安全及資料完整性保障。</p>
+</li>
+<li><p>目前也是網站之間主要的交握加密方式</p>
+</li>
+<li><p>Google提供的TLS加密已切換至少2048位元</p>
+</li>
+<li><p>SSL/TLS協定的狀態</p>
+<blockquote>
+<ul>
+<li>SSL2.0已棄用</li>
+<li>SSL3.0已棄用</li>
+<li>TLS1.0-1999年制定</li>
+<li>TLS1.1-2006年制定</li>
+<li>TLS1.2-2008年制定</li>
+<li>TLS1.3-2018年制定</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<p>補充:<br>TLS1.2 vs 1.3<br>現行較快速的1.3版本交握的示意圖:<br><img src="https://bk7g2q.dm.files.1drv.com/y4mCNmn-vKNeYctvD_wx8NGxWwBGVE0cGeWQvYYAm5-Chabq1kqhUKlGfLG1orueQVZ3ZW1xEVgdSC7KtJp2_INhgm8jLH87leE_-fEIsQPpb7sQdfaVWN5hi8gbrQXEkL5jHBlskbjEkcA8yr5bbAdE2MxKpbx4aXYiqwRy5rcpS8pfu67tb-Ycxy89-s05xcnWuf67S4lWXCuc1nsoNWNpQ?width=868&height=566&cropmode=none" alt="image"></p>
+<hr>
+<h1 id="交握過程"><a href="#交握過程" class="headerlink" title="交握過程"></a>交握過程</h1><p>通過交握，客戶端和伺服器協商各種參數用於建立安全連接：</p>
+<ul>
+<li><p>當客戶端連接到支援TLS協定的伺服器要求建立安全連接並列出了受支援的密碼套件（包括加密演算法、雜湊演算法等），交握開始。</p>
+</li>
+<li><p>伺服器從該列表中決定密碼套件，並通知客戶端。</p>
+</li>
+<li><p>伺服器發回其數位憑證，此憑證通常包含伺服器的名稱、受信任的憑證頒發機構（CA）和伺服器的公鑰。</p>
+</li>
+<li><p>客戶端確認其頒發的憑證的有效性。<br>為了生成對談金鑰用於安全連接，客戶端使用伺服器的公鑰加密隨機生成的金鑰，並將其傳送到伺服器，只有伺服器才能使用自己的私鑰解密。</p>
+</li>
+<li><p>利用亂數，雙方生成用於加密和解密的對稱金鑰。這就是TLS協定的交握，交握完畢後的連接是安全的，直到連接（被）關閉。如果上述任何一個步驟失敗，TLS交握過程就會失敗，並且斷開所有的連接。</p>
+</li>
+</ul>
+<font color=red >
+補充:簡單來說，就是一開始先用「非對稱金鑰加密」方式傳遞「對稱金鑰」，然後再改成較快速的對稱金鑰加密來溝通。
+</font>
+
+<hr>
+<h1 id="應用於自架網站設定SSL加密"><a href="#應用於自架網站設定SSL加密" class="headerlink" title="應用於自架網站設定SSL加密"></a>應用於自架網站設定SSL加密</h1><ul>
+<li><p>推薦購買的SSL憑證網站(比較便宜):<br><a href="https://www.ssls.com/" target="_blank" rel="noopener">https://www.ssls.com/</a></p>
+</li>
+<li><p>購買過程，利用OpenSSL 產生 CSR</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl req -nodes -newkey rsa:<span class="number">2048</span> -keyout myserver.key -out server.cs</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>填寫CSR 下載獲得的SSL CA<br>更換並啟動<br>(設定強制443 port)</p>
+</li>
+</ul>
+<ul>
+<li>設定與安裝請參考以下兩位，寫得很完整了:</li>
+</ul>
+<blockquote>
+<p><a href="https://blog.hahasmile.com/%E5%9C%A8apache%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%AE%89%E8%A3%9Dssl%E6%86%91%E8%AD%89/" target="_blank" rel="noopener">https://blog.hahasmile.com/%E5%9C%A8apache%E4%B8%8A%E8%A8%AD%E5%AE%9A%E5%AE%89%E8%A3%9Dssl%E6%86%91%E8%AD%89/</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://haway.30cm.gg/ssl-key-csr-crt-pem/" target="_blank" rel="noopener">https://haway.30cm.gg/ssl-key-csr-crt-pem/</a></p>
+</blockquote>
+<ul>
+<li>搞笑的地方<br>當你全部完成設定之後<br>SSL證書供應商將會給你CA、CRT檔<br>但是他並不是讓你下載<br>因為怕被攻擊<br>所以他是用G-mail 傳遞給你<br>畢竟Google 的G-mail 不會不安全~對吧XD</li>
+</ul>
+<hr>
+<h1 id="小結語"><a href="#小結語" class="headerlink" title="小結語:"></a>小結語:</h1><p>架設網站必定面對SSL/TLS，非常建議學習</p>
+<hr>
+<h3 id="後續"><a href="#後續" class="headerlink" title="後續:"></a>後續:</h3><p>接下來會討論PHP的幾項基礎設定並探討一些新型態的攻擊與漏洞</p>
+<hr>
+<h3 id="參考連結"><a href="#參考連結" class="headerlink" title="參考連結"></a>參考連結</h3><ul>
+<li><p>對稱加密vs非對稱加密<br><a href="https://academy.binance.com/zt/security/symmetric-vs-asymmetric-encryption" target="_blank" rel="noopener">https://academy.binance.com/zt/security/symmetric-vs-asymmetric-encryption</a></p>
+</li>
+<li><p>SSL/TLS的二三事:<br><a href="https://reurl.cc/MvWAKK" target="_blank" rel="noopener">https://reurl.cc/MvWAKK</a></p>
+</li>
+<li><p>SSL、TLS:<br><a href="https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https" target="_blank" rel="noopener">https://www.websecurity.digicert.com/zh/hk/security-topics/what-is-ssl-tls-https</a></p>
+</li>
+</ul>
+<hr>
+<p><code>&lt;追隨前輩們的腳步，不停往前。&gt;</code></p>
+<blockquote>
+<ul>
+<li>若有任何問題↓</li>
+<li>請聯繫我:<code>liao86221@gmail.com</code></li>
+<li>或填表: <a href="https://forms.gle/4FB5Tmtd9A7XcXjF8" target="_blank" rel="noopener">https://forms.gle/4FB5Tmtd9A7XcXjF8</a></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/w3HexSchool/" rel="tag"># w3HexSchool</a>
+          
+            <a href="/tags/encrypt/" rel="tag"># encrypt</a>
+          
+            <a href="/tags/RSA/" rel="tag"># RSA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/15/allinone06/" rel="next" title="雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)">
+                <i class="fa fa-chevron-left"></i> 雜亂大全06-資安與加密的那些事(4):RSA實作與應用(非對稱密鑰加密)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/05/29/allinone08/" rel="prev" title="雜亂大全08-Python系列01-Tensorflow-GPU環境建置">
+                雜亂大全08-Python系列01-Tensorflow-GPU環境建置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zih Zrong</p>
+              <p class="site-description motion-element" itemprop="description">記錄學習狀態</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaozihzrong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://forms.gle/4FB5Tmtd9A7XcXjF8" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/groups/307523216619055/" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#tags-encrypt-RSA"><span class="nav-number">1.</span> <span class="nav-text">tags: encrypt,RSA</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本篇重點"><span class="nav-number"></span> <span class="nav-text">本篇重點:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SSL-TLS"><span class="nav-number"></span> <span class="nav-text">SSL&#x2F;TLS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#交握過程"><span class="nav-number"></span> <span class="nav-text">交握過程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#應用於自架網站設定SSL加密"><span class="nav-number"></span> <span class="nav-text">應用於自架網站設定SSL加密</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小結語"><span class="nav-number"></span> <span class="nav-text">小結語:</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#後續"><span class="nav-number"></span> <span class="nav-text">後續:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#參考連結"><span class="nav-number"></span> <span class="nav-text">參考連結</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zih Zrong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      訪客數
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      總訪問次數
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

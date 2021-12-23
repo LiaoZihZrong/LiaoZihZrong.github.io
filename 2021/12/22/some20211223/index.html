@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-tw">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="windows," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在Windows安裝Detectron2 請注意版本1234Python 3.6 or higherPyTorch 1.4 to 1.6CUDA 9.2 or higherVisual Studio 2013-2019  1. Create a conda environment12conda create -n mytorch python&#x3D;3.6conda activate myto">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在Windows安裝Detectron2">
+<meta property="og:url" content="http://yoursite.com/2021/12/22/some20211223/index.html">
+<meta property="og:site_name" content="Lzz Blog">
+<meta property="og:description" content="在Windows安裝Detectron2 請注意版本1234Python 3.6 or higherPyTorch 1.4 to 1.6CUDA 9.2 or higherVisual Studio 2013-2019  1. Create a conda environment12conda create -n mytorch python&#x3D;3.6conda activate myto">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-12-22T08:14:31.000Z">
+<meta property="article:modified_time" content="2021-12-23T06:25:41.186Z">
+<meta property="article:author" content="Zih Zrong">
+<meta property="article:tag" content="windows">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/12/22/some20211223/"/>
+
+
+
+
+
+  <title>在Windows安裝Detectron2 | Lzz Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', '[object Object]', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-tw">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Lzz Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">學習筆記</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            首頁
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            關於
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            標籤
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分類
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            歸檔
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/12/22/some20211223/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Zih Zrong">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lzz Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在Windows安裝Detectron2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">發表於</span>
+              
+              <time title="創建於" itemprop="dateCreated datePublished" datetime="2021-12-22T16:14:31+08:00">
+                2021-12-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分類於</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/windows/" itemprop="url" rel="index">
+                    <span itemprop="name">windows</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>閱讀數
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="在Windows安裝Detectron2"><a href="#在Windows安裝Detectron2" class="headerlink" title="在Windows安裝Detectron2"></a>在Windows安裝Detectron2</h1><hr>
+<h2 id="請注意版本"><a href="#請注意版本" class="headerlink" title="請注意版本"></a>請注意版本</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Python 3.6 or higher</span><br><span class="line">PyTorch 1.4 to 1.6</span><br><span class="line">CUDA 9.2 or higher</span><br><span class="line">Visual Studio 2013-2019</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-Create-a-conda-environment"><a href="#1-Create-a-conda-environment" class="headerlink" title="1. Create a conda environment"></a>1. Create a conda environment</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conda create -n mytorch python&#x3D;3.6</span><br><span class="line">conda activate mytorch</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-安裝-Cuda"><a href="#2-安裝-Cuda" class="headerlink" title="2. 安裝 Cuda"></a>2. 安裝 Cuda</h2><p>請至 Nvidia公司下載cuda<br>參照表格:<br><a href="https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html" target="_blank" rel="noopener">https://docs.nvidia.com/cuda/cuda-toolkit-release-notes/index.html</a><br>(這裡以cuda 10.1 為例)<br>下載:<a href="https://developer.nvidia.com/cuda-10.1-download-archive-base" target="_blank" rel="noopener">https://developer.nvidia.com/cuda-10.1-download-archive-base</a></p>
+<h2 id="安裝-pytorch"><a href="#安裝-pytorch" class="headerlink" title="安裝 pytorch"></a>安裝 pytorch</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install pytorch&#x3D;&#x3D;1.6.0 torchvision&#x3D;&#x3D;0.7.0 cudatoolkit&#x3D;10.1 -c pytorch</span><br></pre></td></tr></table></figure>
+
+<p>版本一定要對好!!!</p>
+<h2 id="安裝Cython-and-Pycocotools"><a href="#安裝Cython-and-Pycocotools" class="headerlink" title="安裝Cython and Pycocotools"></a>安裝Cython and Pycocotools</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pip install cython</span><br><span class="line">pip install &quot;git+https:&#x2F;&#x2F;github.com&#x2F;philferriere&#x2F;cocoapi.git#egg&#x3D;pycocotools&amp;subdirectory&#x3D;PythonAPI&quot;</span><br></pre></td></tr></table></figure>
+
+<h2 id="安裝-vs-BuildTools"><a href="#安裝-vs-BuildTools" class="headerlink" title="安裝 vs_BuildTools"></a>安裝 vs_BuildTools</h2><p>依照你的cuda版本請對好<br>有的只支援到2017版<br>有的支援到2019版<br>請搜尋 版本對照表</p>
+<p>vs_BuildTools安裝說明:<br><a href="https://hjwang520.pixnet.net/blog/post/404280185-%E5%AE%89%E8%A3%9Dmicrosoft-visual-c%2B%2B-14.0" target="_blank" rel="noopener">https://hjwang520.pixnet.net/blog/post/404280185-%E5%AE%89%E8%A3%9Dmicrosoft-visual-c%2B%2B-14.0</a></p>
+<h2 id="修改檔案"><a href="#修改檔案" class="headerlink" title="修改檔案"></a>修改檔案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">修改的第一個檔案:</span><br><span class="line"> </span><br><span class="line">  &#123;your evn path&#125;\Lib\site-packages\torch\include\torch\csrc\jit\argument_spec.h</span><br><span class="line"> </span><br><span class="line">  example:</span><br><span class="line"> </span><br><span class="line">  &#123;C:\Miniconda3\envs\py36&#125;\Lib\site-packages\torch\include\torch\csrc\jit\argument_spec.h(190)</span><br><span class="line"> </span><br><span class="line">    static constexpr size_t DEPTH_LIMIT &#x3D; 128;</span><br><span class="line"> </span><br><span class="line">      改成--&gt;</span><br><span class="line"> </span><br><span class="line">    static const size_t DEPTH_LIMIT &#x3D; 128;</span><br><span class="line"> </span><br><span class="line">修改的第二個檔案:</span><br><span class="line"> </span><br><span class="line">  &#123;your evn path&#125;\Lib\site-packages\torch\include\pybind11\cast.h</span><br><span class="line"> </span><br><span class="line">  example:</span><br><span class="line"> </span><br><span class="line">  &#123;C:\Miniconda3\envs\py36&#125;\Lib\site-packages\torch\include\pybind11\cast.h(1449)</span><br><span class="line"> </span><br><span class="line">    explicit operator type&amp;() &#123; return *(this-&gt;value); &#125;</span><br><span class="line"> </span><br><span class="line">      改成--&gt;</span><br><span class="line"> </span><br><span class="line">    explicit operator type&amp;() &#123; return *((type*)this-&gt;value); &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改檔案-1"><a href="#修改檔案-1" class="headerlink" title="修改檔案"></a>修改檔案</h2><p>打開你虛擬環境資料夾內<br><code>/Lib/site-packages/torch/utils/cpp_extension.py</code><br>的底下的<code>cpp_extension.py</code>的233行左右的程式碼</p>
+<p>範例:<br>例如我的就在<code>C:\Users\用戶名\Anaconda3\envs\mytorch\Lib\site-packages\torch\utils</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">match &#x3D; re.search(r&#39;(\d+)\.(\d+)\.(\d+)&#39;, compiler_info.decode().strip())</span><br><span class="line"></span><br><span class="line">修改為</span><br><span class="line"></span><br><span class="line">match &#x3D; re.search(r&#39;(\d+)\.(\d+)\.(\d+)&#39;, compiler_info.decode(&#39; cp950&#39;).strip())</span><br></pre></td></tr></table></figure>
+
+<h2 id="下載-detectron2-windows版"><a href="#下載-detectron2-windows版" class="headerlink" title="下載 detectron2 windows版"></a>下載 detectron2 windows版</h2><p><a href="https://github.com/LiaoZihZrong/detectron2-windows" target="_blank" rel="noopener">https://github.com/LiaoZihZrong/detectron2-windows</a></p>
+<p>下載後請將資料夾內的<code>setup.py</code><br>約104行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">extra_compile_args[&quot;nvcc&quot;] &#x3D; [</span><br><span class="line">    &quot;-O3&quot;,</span><br><span class="line">    &quot;-DCUDA_HAS_FP16&#x3D;1&quot;,</span><br><span class="line">    &quot;-D__CUDA_NO_HALF_OPERATORS__&quot;,</span><br><span class="line">    &quot;-D__CUDA_NO_HALF_CONVERSIONS__&quot;,</span><br><span class="line">    &quot;-D__CUDA_NO_HALF2_OPERATORS__&quot;,</span><br><span class="line">]</span><br><span class="line">改成</span><br><span class="line">extra_compile_args[&quot;nvcc&quot;] &#x3D; [</span><br><span class="line">    &quot;-O3&quot;,</span><br><span class="line">    &quot;-DCUDA_HAS_FP16&#x3D;1&quot;,</span><br><span class="line">    &quot;-D__CUDA_NO_HALF_OPERATORS__&quot;,</span><br><span class="line">    &quot;-D__CUDA_NO_HALF_CONVERSIONS__&quot;,</span><br><span class="line">    &quot;-D__CUDA_NO_HALF2_OPERATORS__&quot;,</span><br><span class="line">    &quot;-DWITH_CUDA&quot;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>==請注意這裡==<br>請用上面安裝完的<code>vs_BuildTools</code><br>會有<code>Native Tools Command Prompt</code><br>開啟 終端機</p>
+<p>開啟剛剛建照的虛擬環境<br><code>conda activate mytorch</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(並利用 cd指令 進入資料夾內)</span><br><span class="line">cd detectron2</span><br><span class="line">pip install -e .</span><br></pre></td></tr></table></figure>
+
+<h2 id="理論上會出現錯誤資訊"><a href="#理論上會出現錯誤資訊" class="headerlink" title="理論上會出現錯誤資訊"></a>理論上會出現錯誤資訊</h2><p>此時很重要，請找到錯誤資訊<br>裡面會提到一個檔案有問題</p>
+<p><code>某路徑下的layers/csrc/nms_rotated/nms_rotated_cuda.cu(58)</code></p>
+<p>請你到該資料底下開啟 <code>nms_rotated_cuda.cu</code><br>並更改開頭<br>改成如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved</span><br><span class="line">#include &lt;ATen&#x2F;ATen.h&gt;</span><br><span class="line">#include &lt;ATen&#x2F;cuda&#x2F;CUDAContext.h&gt;</span><br><span class="line">#include &lt;c10&#x2F;cuda&#x2F;CUDAGuard.h&gt;</span><br><span class="line">#include &lt;ATen&#x2F;cuda&#x2F;CUDAApplyUtils.cuh&gt;</span><br><span class="line">&#x2F;&#x2F;NOTE: replace relative import</span><br><span class="line">&#x2F;*#ifdef WITH_CUDA</span><br><span class="line">#include &quot;..&#x2F;box_iou_rotated&#x2F;box_iou_rotated_utils.h&quot;</span><br><span class="line">#endif</span><br><span class="line">&#x2F;&#x2F; TODO avoid this when pytorch supports &quot;same directory&quot; hipification</span><br><span class="line">#ifdef WITH_HIP</span><br><span class="line">#include &quot;box_iou_rotated&#x2F;box_iou_rotated_utils.h&quot;</span><br><span class="line">#endif*&#x2F;</span><br><span class="line">#include &quot;box_iou_rotated&#x2F;box_iou_rotated_utils.h&quot;</span><br></pre></td></tr></table></figure>
+
+<p>然後重新下指令<code>pip install -e .</code><br>此時安裝到一半<br>你可以重新整理 剛剛<br><code>某路徑下的layers/csrc/nms_rotated/nms_rotated_cuda.cu</code><br>你會發現該檔案的開頭又變回原本的<br>這是你就要迅速將該程式碼<br>又改成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; Copyright (c) Facebook, Inc. and its affiliates. All Rights Reserved</span><br><span class="line">#include &lt;ATen&#x2F;ATen.h&gt;</span><br><span class="line">#include &lt;ATen&#x2F;cuda&#x2F;CUDAContext.h&gt;</span><br><span class="line">#include &lt;c10&#x2F;cuda&#x2F;CUDAGuard.h&gt;</span><br><span class="line">#include &lt;ATen&#x2F;cuda&#x2F;CUDAApplyUtils.cuh&gt;</span><br><span class="line">&#x2F;&#x2F;NOTE: replace relative import</span><br><span class="line">&#x2F;*#ifdef WITH_CUDA</span><br><span class="line">#include &quot;..&#x2F;box_iou_rotated&#x2F;box_iou_rotated_utils.h&quot;</span><br><span class="line">#endif</span><br><span class="line">&#x2F;&#x2F; TODO avoid this when pytorch supports &quot;same directory&quot; hipification</span><br><span class="line">#ifdef WITH_HIP</span><br><span class="line">#include &quot;box_iou_rotated&#x2F;box_iou_rotated_utils.h&quot;</span><br><span class="line">#endif*&#x2F;</span><br><span class="line">#include &quot;box_iou_rotated&#x2F;box_iou_rotated_utils.h&quot;</span><br></pre></td></tr></table></figure>
+<p>然後存檔</p>
+<p>記住:<br>因為你下指令時，電腦會重新編譯一次<br>所以你改的東西才會不見<br>在程式編譯完後，終端機會顯示正在安裝中<br>會有一段等待期，你要在等待期把上述的程式碼改正!</p>
+<p>預祝順利安裝完成!</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/windows/" rel="tag"># windows</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/28/talk06/" rel="next" title="intel OpenVINO 新版LTS 4.1釋出">
+                <i class="fa fa-chevron-left"></i> intel OpenVINO 新版LTS 4.1釋出
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目錄
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            本站概覽
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Zih Zrong</p>
+              <p class="site-description motion-element" itemprop="description">記錄學習狀態</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+                <a href="/archives">
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">文章</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">分類</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-name">標籤</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/liaozihzrong" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://forms.gle/4FB5Tmtd9A7XcXjF8" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.facebook.com/groups/307523216619055/" target="_blank" title="FB Page">
+                      
+                        <i class="fa fa-fw fa-facebook"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#在Windows安裝Detectron2"><span class="nav-number">1.</span> <span class="nav-text">在Windows安裝Detectron2</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#請注意版本"><span class="nav-number">1.1.</span> <span class="nav-text">請注意版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Create-a-conda-environment"><span class="nav-number">1.2.</span> <span class="nav-text">1. Create a conda environment</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-安裝-Cuda"><span class="nav-number">1.3.</span> <span class="nav-text">2. 安裝 Cuda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-pytorch"><span class="nav-number">1.4.</span> <span class="nav-text">安裝 pytorch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝Cython-and-Pycocotools"><span class="nav-number">1.5.</span> <span class="nav-text">安裝Cython and Pycocotools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安裝-vs-BuildTools"><span class="nav-number">1.6.</span> <span class="nav-text">安裝 vs_BuildTools</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改檔案"><span class="nav-number">1.7.</span> <span class="nav-text">修改檔案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改檔案-1"><span class="nav-number">1.8.</span> <span class="nav-text">修改檔案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下載-detectron2-windows版"><span class="nav-number">1.9.</span> <span class="nav-text">下載 detectron2 windows版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理論上會出現錯誤資訊"><span class="nav-number">1.10.</span> <span class="nav-text">理論上會出現錯誤資訊</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Zih Zrong</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 強力驅動</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主題 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      訪客數
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人
+    </span>
+  
+
+  
+    <span class="site-pv">
+      總訪問次數
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

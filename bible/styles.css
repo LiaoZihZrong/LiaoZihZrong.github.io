@@ -86,8 +86,30 @@ body {
 
 .selector-card {
   position: sticky;
-  top: 0.75rem;
+  top: 0;
   z-index: 10;
+}
+
+@media (min-width: 576px) {
+  .selector-card .card-body {
+    padding: 0.65rem 1rem !important;
+  }
+
+  .selector-card .row {
+    --bs-gutter-y: 0.45rem;
+  }
+
+  .selector-card .form-label {
+    margin-bottom: 0.2rem;
+    font-size: 0.665rem;
+  }
+
+  .selector-card .form-select {
+    min-height: auto;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+    font-size: 0.875rem;
+  }
 }
 
 .form-label {

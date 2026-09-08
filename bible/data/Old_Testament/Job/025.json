@@ -1,0 +1,35 @@
+{
+  "translation": "Chinese_Union_Version_Traditional",
+  "testament": "Old_Testament",
+  "testament_zh": "舊約",
+  "book": "Job",
+  "book_zh": "約伯記",
+  "chapter": 25,
+  "verse_count": 6,
+  "verses": [
+    {
+      "verse": 1,
+      "text": "書亞人比勒達回答說："
+    },
+    {
+      "verse": 2,
+      "text": "神有治理之權，有威嚴可畏；他在高處施行和平。"
+    },
+    {
+      "verse": 3,
+      "text": "他的諸軍豈能數算？他的光亮一發，誰不蒙照呢？"
+    },
+    {
+      "verse": 4,
+      "text": "這樣在神面前，人怎能稱義？婦人所生的怎能潔淨？"
+    },
+    {
+      "verse": 5,
+      "text": "在神眼前，月亮也無光亮，星宿也不清潔。"
+    },
+    {
+      "verse": 6,
+      "text": "何況如蟲的人，如蛆的世人呢！"
+    }
+  ]
+}

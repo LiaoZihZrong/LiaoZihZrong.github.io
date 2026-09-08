@@ -1,0 +1,242 @@
+:root {
+  --ink: #26322c;
+  --muted-ink: #657069;
+  --paper: #fffdf7;
+  --page: #f3f0e8;
+  --primary: #315c4b;
+  --primary-dark: #213f34;
+  --accent: #b78b45;
+  --line: rgba(49, 92, 75, 0.16);
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, rgba(183, 139, 69, 0.12), transparent 30rem),
+    var(--page);
+  font-family: "DFKai-SB", "BiauKai", "標楷體", "KaiTi", serif;
+}
+
+.site-header {
+  color: #fffdf7;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  border-bottom: 4px solid var(--accent);
+}
+
+.site-header h1 {
+  letter-spacing: 0.06em;
+}
+
+.eyebrow {
+  color: #e4c992;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.reading-container {
+  width: min(100%, 960px);
+}
+
+.selector-card,
+.scripture-card {
+  background-color: var(--paper);
+  border-radius: 1rem;
+}
+
+.selector-card {
+  position: sticky;
+  top: 0.75rem;
+  z-index: 10;
+}
+
+.form-label {
+  color: var(--muted-ink);
+  font-size: 0.95rem;
+}
+
+.form-select {
+  color: var(--ink);
+  border-color: var(--line);
+  background-color: #fff;
+  font-family: inherit;
+}
+
+.form-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 0.25rem rgba(183, 139, 69, 0.2);
+}
+
+.status-panel {
+  color: var(--primary);
+}
+
+.chapter-header {
+  border-bottom: 1px solid var(--line);
+}
+
+#testament-badge {
+  color: #fff;
+  background-color: var(--primary);
+  font-size: 0.9rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+}
+
+#chapter-title {
+  color: var(--primary-dark);
+  letter-spacing: 0.08em;
+}
+
+.verse-row {
+  display: grid;
+  grid-template-columns: 2.6rem minmax(0, 1fr);
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0.8rem 0;
+  font-size: clamp(1.18rem, 1rem + 0.5vw, 1.45rem);
+  line-height: 1.95;
+  border-bottom: 1px dashed var(--line);
+}
+
+.verse-row:last-child {
+  border-bottom: 0;
+}
+
+.verse-number {
+  color: var(--accent);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.78em;
+  font-weight: 700;
+  line-height: 2.9;
+  text-align: right;
+  user-select: none;
+}
+
+.chapter-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.btn {
+  min-width: 8.5rem;
+  border-radius: 999px;
+  font-family: inherit;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--primary);
+  --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: var(--primary-dark);
+  --bs-btn-hover-border-color: var(--primary-dark);
+  --bs-btn-active-bg: var(--primary-dark);
+  --bs-btn-active-border-color: var(--primary-dark);
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--primary);
+  --bs-btn-border-color: var(--primary);
+  --bs-btn-hover-bg: var(--primary);
+  --bs-btn-hover-border-color: var(--primary);
+  --bs-btn-active-bg: var(--primary-dark);
+  --bs-btn-active-border-color: var(--primary-dark);
+}
+
+.site-footer {
+  color: rgba(255, 255, 255, 0.78);
+  background-color: var(--primary-dark);
+}
+
+.site-footer a {
+  color: #e4c992;
+}
+
+.guide-card {
+  background-color: var(--paper);
+  border-radius: 1rem;
+}
+
+.guide-card h2 {
+  color: var(--primary-dark);
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.guide-card h3 {
+  color: var(--primary);
+}
+
+.guide-card code:not(pre code) {
+  color: #8a4f20;
+}
+
+.code-block {
+  overflow-x: auto;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  color: #eef5f1;
+  background-color: #1c3028;
+  border-radius: 0.75rem;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  white-space: pre;
+}
+
+.field-table th {
+  color: var(--primary-dark);
+  white-space: nowrap;
+}
+
+@media (max-width: 575.98px) {
+  .site-header h1 {
+    font-size: 1.8rem;
+    line-height: 1.4;
+  }
+
+  .site-header .lead {
+    font-size: 1rem;
+  }
+
+  .selector-card {
+    position: static;
+  }
+
+  .verse-row {
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: 0.5rem;
+    line-height: 1.85;
+  }
+
+  .chapter-navigation .btn {
+    min-width: 0;
+    flex: 1;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  .site-header,
+  .selector-card,
+  .chapter-navigation,
+  .site-footer {
+    display: none !important;
+  }
+
+  .scripture-card {
+    box-shadow: none !important;
+  }
+}

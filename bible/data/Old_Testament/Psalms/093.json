@@ -1,0 +1,31 @@
+{
+  "translation": "Chinese_Union_Version_Traditional",
+  "testament": "Old_Testament",
+  "testament_zh": "舊約",
+  "book": "Psalms",
+  "book_zh": "詩篇",
+  "chapter": 93,
+  "verse_count": 5,
+  "verses": [
+    {
+      "verse": 1,
+      "text": "耶和華作王！他以威嚴為衣穿上；耶和華以能力為衣，以能力束腰，世界就堅定，不得動搖。"
+    },
+    {
+      "verse": 2,
+      "text": "你的寶座從太初立定；你從亙古就有。"
+    },
+    {
+      "verse": 3,
+      "text": "耶和華啊，大水揚起，大水發聲，波浪澎湃。"
+    },
+    {
+      "verse": 4,
+      "text": "耶和華在高處大有能力，勝過諸水的響聲，洋海的大浪。"
+    },
+    {
+      "verse": 5,
+      "text": "耶和華啊，你的法度最的確；你的殿永稱為聖，是合宜的。"
+    }
+  ]
+}

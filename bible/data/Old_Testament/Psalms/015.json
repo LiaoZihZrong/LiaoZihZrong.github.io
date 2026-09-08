@@ -1,0 +1,31 @@
+{
+  "translation": "Chinese_Union_Version_Traditional",
+  "testament": "Old_Testament",
+  "testament_zh": "舊約",
+  "book": "Psalms",
+  "book_zh": "詩篇",
+  "chapter": 15,
+  "verse_count": 5,
+  "verses": [
+    {
+      "verse": 1,
+      "text": "（大衛的詩。）耶和華啊，誰能寄居你的帳幕？誰能住在你的聖山？"
+    },
+    {
+      "verse": 2,
+      "text": "就是行為正直、做事公義、心裡說實話的人。"
+    },
+    {
+      "verse": 3,
+      "text": "他不以舌頭讒謗人，不惡待朋友，也不隨夥毀謗鄰里。"
+    },
+    {
+      "verse": 4,
+      "text": "他眼中藐視匪類，卻尊重那敬畏耶和華的人。他發了誓，雖然自己吃虧也不更改。"
+    },
+    {
+      "verse": 5,
+      "text": "他不放債取利，不受賄賂以害無辜。行這些事的人必永不動搖。"
+    }
+  ]
+}

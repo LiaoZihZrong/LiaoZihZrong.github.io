@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="免費線上閱讀繁體中文和合本聖經，依新舊約、書卷與章節快速查閱完整經文，並提供 JSON 經文資料使用說明。">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#213f34">
+    <link rel="canonical" href="https://liaozihzrong.github.io/bible/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:site_name" content="聖經經文閱讀-和合本聖經">
+    <meta property="og:title" content="聖經經文閱讀-和合本聖經">
+    <meta property="og:description" content="免費線上閱讀繁體中文和合本聖經，快速選擇新舊約、書卷與章節。">
+    <meta property="og:url" content="https://liaozihzrong.github.io/bible/">
+    <meta name="twitter:card" content="summary">
+    <title>聖經經文閱讀-和合本聖經</title>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "聖經經文閱讀-和合本聖經",
+        "alternateName": "和合本聖經閱讀",
+        "url": "https://liaozihzrong.github.io/bible/",
+        "inLanguage": "zh-Hant",
+        "description": "免費線上閱讀繁體中文和合本聖經，依新舊約、書卷與章節查閱完整經文。"
+      }
+    </script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container py-4 py-md-5 text-center">
+        <p class="eyebrow mb-2">Chinese Union Version</p>
+        <h1 class="display-5 mb-2">聖經經文閱讀-和合本聖經</h1>
+        <p class="lead mb-0 opacity-75">願你的話是我腳前的燈，是我路上的光。</p>
+        <a class="btn btn-outline-light rounded-pill mt-3 px-4" href="guide.html">如何取得經文</a>
+      </div>
+    </header>
+
+    <main class="container reading-container py-4 py-lg-5">
+      <section class="selector-card card border-0 shadow-sm mb-4" aria-labelledby="selector-title">
+        <div class="card-body p-3 p-md-4">
+          <h2 id="selector-title" class="visually-hidden">選擇經文</h2>
+          <div class="row g-3">
+            <div class="col-12 col-md-4">
+              <label for="testament-select" class="form-label">新舊約</label>
+              <select id="testament-select" class="form-select form-select-lg" disabled>
+                <option value="Old_Testament">舊約</option>
+                <option value="New_Testament">新約</option>
+              </select>
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="book-select" class="form-label">書卷</label>
+              <select id="book-select" class="form-select form-select-lg" disabled></select>
+            </div>
+            <div class="col-12 col-md-4">
+              <label for="chapter-select" class="form-label">章</label>
+              <select id="chapter-select" class="form-select form-select-lg" disabled></select>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id="status" class="status-panel text-center py-5" role="status" aria-live="polite">
+        <div class="spinner-border" aria-hidden="true"></div>
+        <p class="mt-3 mb-0">正在載入經文目錄⋯⋯</p>
+      </div>
+
+      <article id="reading" class="scripture-card card border-0 shadow-sm d-none" aria-labelledby="chapter-title">
+        <div class="card-body p-3 p-sm-4 p-lg-5">
+          <header class="chapter-header text-center mb-4 pb-3">
+            <span id="testament-badge" class="badge rounded-pill mb-3"></span>
+            <h2 id="chapter-title" class="display-6 mb-2"></h2>
+            <p id="chapter-meta" class="text-secondary mb-0"></p>
+          </header>
+          <div id="verses" class="verses"></div>
+        </div>
+      </article>
+
+      <nav id="chapter-navigation" class="chapter-navigation d-none mt-4" aria-label="章節導覽">
+        <button id="previous-button" type="button" class="btn btn-outline-primary btn-lg">
+          <span aria-hidden="true">←</span> 上一章
+        </button>
+        <button id="next-button" type="button" class="btn btn-primary btn-lg">
+          下一章 <span aria-hidden="true">→</span>
+        </button>
+      </nav>
+
+      <noscript>
+        <div class="alert alert-warning mt-4">此閱讀器需要啟用 JavaScript 才能載入經文。</div>
+      </noscript>
+    </main>
+
+    <footer class="site-footer mt-auto">
+      <div class="container py-4 text-center">
+        <p class="mb-1">繁體中文和合本聖經閱讀</p>
+        <p class="small mb-0">
+          經文資料來源：
+          <a href="https://springbible.fhl.net/Bible2/cgic201/read100.html" target="_blank" rel="noopener noreferrer">信望愛聖經閱讀系統</a>
+          <span aria-hidden="true">・</span>
+          <a href="guide.html">經文資料使用說明</a>
+        </p>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+    <script src="app.js"></script>
+  </body>
+</html>

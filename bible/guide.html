@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="和合本聖經 JSON 經文資料取得方式、API 路徑、欄位說明，以及 JavaScript 和 Python 使用範例。">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#213f34">
+    <link rel="canonical" href="https://liaozihzrong.github.io/bible/guide.html">
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:site_name" content="聖經經文閱讀-和合本聖經">
+    <meta property="og:title" content="如何取得和合本聖經 JSON 經文資料">
+    <meta property="og:description" content="完整的經文資料路徑、JSON 欄位對照與程式讀取範例。">
+    <meta property="og:url" content="https://liaozihzrong.github.io/bible/guide.html">
+    <meta name="twitter:card" content="summary">
+    <title>如何取得經文｜聖經經文閱讀-和合本聖經</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container reading-container py-4 py-md-5 text-center">
+        <p class="eyebrow mb-2">Bible JSON Guide</p>
+        <h1 class="display-5 mb-2">如何取得經文</h1>
+        <p class="lead mb-3 opacity-75">和合本聖經 JSON 資料格式與使用範例</p>
+        <a class="btn btn-outline-light rounded-pill px-4" href="./">返回聖經閱讀</a>
+      </div>
+    </header>
+
+    <main class="container reading-container py-4 py-lg-5">
+      <article class="guide-card card border-0 shadow-sm">
+        <div class="card-body p-3 p-sm-4 p-lg-5">
+          <section class="mb-5" aria-labelledby="quick-start-title">
+            <h2 id="quick-start-title" class="h3 mb-3">快速開始</h2>
+            <p>經文按照「新舊約／英文書卷名稱／三位數章號」存放。這是靜態 JSON 資料，不需要 API 金鑰。</p>
+            <p class="mb-2">創世記第一章：</p>
+            <pre class="code-block"><code>https://liaozihzrong.github.io/bible/data/Old_Testament/Genesis/001.json</code></pre>
+            <p class="mb-2">約翰福音第三章：</p>
+            <pre class="code-block"><code>https://liaozihzrong.github.io/bible/data/New_Testament/John/003.json</code></pre>
+            <div class="alert alert-info mb-0" role="note">
+              章號固定補滿三位數，例如第 1 章是 <code>001.json</code>，第 22 章是 <code>022.json</code>。
+            </div>
+          </section>
+
+          <section class="mb-5" aria-labelledby="mapping-title">
+            <h2 id="mapping-title" class="h3 mb-3">中文名稱與路徑對照</h2>
+            <p>所有 66 卷書名、章數與路徑都收錄在：</p>
+            <pre class="code-block"><code>https://liaozihzrong.github.io/bible/data/convert_list.json</code></pre>
+            <p>例如讀取 <code>zh_to_path["約翰福音"]</code>，會得到 <code>New_Testament/John</code>。完整書卷資料則位於 <code>books</code> 陣列。</p>
+            <pre class="code-block"><code>{
+  "name_en": "John",
+  "name_zh": "約翰福音",
+  "testament": "New_Testament",
+  "testament_zh": "新約",
+  "chapters": 21,
+  "api_path": "New_Testament/John"
+}</code></pre>
+          </section>
+
+          <section class="mb-5" aria-labelledby="fields-title">
+            <h2 id="fields-title" class="h3 mb-3">章節 JSON 欄位說明</h2>
+            <div class="table-responsive">
+              <table class="table field-table align-middle">
+                <thead>
+                  <tr><th scope="col">欄位</th><th scope="col">型別</th><th scope="col">說明</th></tr>
+                </thead>
+                <tbody>
+                  <tr><th scope="row"><code>translation</code></th><td>字串</td><td>聖經譯本識別名稱</td></tr>
+                  <tr><th scope="row"><code>testament</code></th><td>字串</td><td>英文新舊約名稱</td></tr>
+                  <tr><th scope="row"><code>testament_zh</code></th><td>字串</td><td>中文新舊約名稱</td></tr>
+                  <tr><th scope="row"><code>book</code></th><td>字串</td><td>英文書卷名稱</td></tr>
+                  <tr><th scope="row"><code>book_zh</code></th><td>字串</td><td>中文書卷名稱</td></tr>
+                  <tr><th scope="row"><code>chapter</code></th><td>整數</td><td>章數</td></tr>
+                  <tr><th scope="row"><code>verse_count</code></th><td>整數</td><td>本章總節數</td></tr>
+                  <tr><th scope="row"><code>verses</code></th><td>陣列</td><td>每節經文，由 <code>verse</code> 節數與 <code>text</code> 經文組成</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <h3 class="h5 mt-4">回傳內容範例</h3>
+            <pre class="code-block"><code>{
+  "translation": "Chinese_Union_Version_Traditional",
+  "testament": "Old_Testament",
+  "testament_zh": "舊約",
+  "book": "Genesis",
+  "book_zh": "創世記",
+  "chapter": 1,
+  "verse_count": 31,
+  "verses": [
+    { "verse": 1, "text": "起初，神創造天地。" }
+  ]
+}</code></pre>
+          </section>
+
+          <section class="mb-5" aria-labelledby="javascript-title">
+            <h2 id="javascript-title" class="h3 mb-3">JavaScript 讀取範例</h2>
+            <pre class="code-block"><code>const url = "/bible/data/New_Testament/John/003.json";
+const response = await fetch(url);
+
+if (!response.ok) {
+  throw new Error(`HTTP ${response.status}`);
+}
+
+const chapter = await response.json();
+console.log(chapter.book_zh);       // 約翰福音
+console.log(chapter.verses[15]);   // 第 16 節</code></pre>
+
+            <h3 class="h5 mt-4">用中文書名組合路徑</h3>
+            <pre class="code-block"><code>const manifest = await fetch("/bible/data/convert_list.json")
+  .then((response) =&gt; response.json());
+
+const bookPath = manifest.zh_to_path["創世記"];
+const chapter = 1;
+const filename = `${String(chapter).padStart(3, "0")}.json`;
+const url = `/bible/data/${bookPath}/${filename}`;</code></pre>
+          </section>
+
+          <section class="mb-5" aria-labelledby="python-title">
+            <h2 id="python-title" class="h3 mb-3">Python 讀取範例</h2>
+            <pre class="code-block"><code>import requests
+
+url = (
+    "https://liaozihzrong.github.io/bible/data/"
+    "Old_Testament/Genesis/001.json"
+)
+response = requests.get(url, timeout=30)
+response.raise_for_status()
+chapter = response.json()
+
+for verse in chapter["verses"]:
+    print(f'{verse["verse"]} {verse["text"]}')</code></pre>
+          </section>
+
+          <section aria-labelledby="notes-title">
+            <h2 id="notes-title" class="h3 mb-3">使用注意事項</h2>
+            <ul class="mb-0">
+              <li class="mb-2">所有 JSON 檔案均採 UTF-8 編碼。</li>
+              <li class="mb-2">資料是靜態檔案，適合直接讀取或快取，不支援伺服器端搜尋參數。</li>
+              <li class="mb-2">大量使用時，建議下載到自己的服務並建立快取，避免重複請求。</li>
+              <li>經文資料來源為 <a href="https://springbible.fhl.net/Bible2/cgic201/read100.html" target="_blank" rel="noopener noreferrer">信望愛聖經閱讀系統</a>。</li>
+            </ul>
+          </section>
+        </div>
+      </article>
+    </main>
+
+    <footer class="site-footer mt-auto">
+      <div class="container py-4 text-center">
+        <a href="./">返回聖經經文閱讀-和合本聖經</a>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

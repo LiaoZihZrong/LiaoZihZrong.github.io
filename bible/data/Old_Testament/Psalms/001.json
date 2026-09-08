@@ -1,0 +1,35 @@
+{
+  "translation": "Chinese_Union_Version_Traditional",
+  "testament": "Old_Testament",
+  "testament_zh": "舊約",
+  "book": "Psalms",
+  "book_zh": "詩篇",
+  "chapter": 1,
+  "verse_count": 6,
+  "verses": [
+    {
+      "verse": 1,
+      "text": "不從惡人的計謀，不站罪人的道路，不坐褻慢人的座位，"
+    },
+    {
+      "verse": 2,
+      "text": "惟喜愛耶和華的律法，晝夜思想，這人便為有福！"
+    },
+    {
+      "verse": 3,
+      "text": "他要像一棵樹栽在溪水旁，按時候結果子，葉子也不枯乾。凡他所做的盡都順利。"
+    },
+    {
+      "verse": 4,
+      "text": "惡人並不是這樣，乃像糠粃被風吹散。"
+    },
+    {
+      "verse": 5,
+      "text": "因此，當審判的時候惡人必站立不住；罪人在義人的會中也是如此。"
+    },
+    {
+      "verse": 6,
+      "text": "因為耶和華知道義人的道路；惡人的道路卻必滅亡。"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "translation": "Chinese_Union_Version_Traditional",
+  "testament": "Old_Testament",
+  "testament_zh": "舊約",
+  "book": "Psalms",
+  "book_zh": "詩篇",
+  "chapter": 134,
+  "verse_count": 3,
+  "verses": [
+    {
+      "verse": 1,
+      "text": "（上行之詩。）耶和華的僕人夜間站在耶和華殿中的，你們當稱頌耶和華！"
+    },
+    {
+      "verse": 2,
+      "text": "你們當向聖所舉手，稱頌耶和華！"
+    },
+    {
+      "verse": 3,
+      "text": "願造天地的耶和華，從錫安賜福給你們！"
+    }
+  ]
+}

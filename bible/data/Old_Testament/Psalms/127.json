@@ -1,0 +1,31 @@
+{
+  "translation": "Chinese_Union_Version_Traditional",
+  "testament": "Old_Testament",
+  "testament_zh": "舊約",
+  "book": "Psalms",
+  "book_zh": "詩篇",
+  "chapter": 127,
+  "verse_count": 5,
+  "verses": [
+    {
+      "verse": 1,
+      "text": "（所羅門上行之詩。）若不是耶和華建造房屋，建造的人就枉然勞力；若不是耶和華看守城池，看守的人就枉然警醒。"
+    },
+    {
+      "verse": 2,
+      "text": "你們清晨早起，夜晚安歇，吃勞碌得來的飯，本是枉然；惟有耶和華所親愛的，必叫他安然睡覺。"
+    },
+    {
+      "verse": 3,
+      "text": "兒女是耶和華所賜的產業；所懷的胎是他所給的賞賜。"
+    },
+    {
+      "verse": 4,
+      "text": "少年時所生的兒女好像勇士手中的箭。"
+    },
+    {
+      "verse": 5,
+      "text": "箭袋充滿的人便為有福；他們在城門口和仇敵說話的時候，必不至於羞愧。"
+    }
+  ]
+}

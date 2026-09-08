@@ -78,15 +78,6 @@ body {
   width: min(100%, 960px);
 }
 
-.site-introduction {
-  padding: 1rem 1.25rem;
-  color: var(--muted-ink);
-  background-color: rgba(24, 35, 31, 0.72);
-  border-left: 3px solid var(--accent);
-  border-radius: 0.65rem;
-  line-height: 1.8;
-}
-
 .selector-card,
 .scripture-card {
   background-color: var(--paper);

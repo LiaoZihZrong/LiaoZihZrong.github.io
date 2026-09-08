@@ -29,7 +29,12 @@
         <p class="eyebrow mb-2">Bible JSON Guide</p>
         <h1 class="display-5 mb-2">如何取得經文</h1>
         <p class="lead mb-3 opacity-75">和合本聖經 JSON 資料格式與使用範例</p>
-        <a class="btn btn-outline-light rounded-pill px-4" href="./">返回聖經閱讀</a>
+        <div class="header-actions">
+          <a class="btn btn-outline-light rounded-pill px-4" href="./">返回聖經閱讀</a>
+          <button id="font-size-button" class="btn btn-outline-light rounded-pill px-4" type="button">
+            放大文字 A+
+          </button>
+        </div>
       </div>
     </header>
 
@@ -160,5 +165,6 @@ for verse in chapter["verses"]:
       integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
       crossorigin="anonymous"
     ></script>
+    <script src="font-size.js"></script>
   </body>
 </html>

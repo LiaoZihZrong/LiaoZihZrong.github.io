@@ -49,6 +49,16 @@ body {
   letter-spacing: 0.06em;
 }
 
+.brand-prefix {
+  display: inline-block;
+  margin-right: 0.25em;
+  color: var(--muted-ink);
+  font-size: 0.38em;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  vertical-align: super;
+}
+
 .translation-name {
   color: var(--primary);
   letter-spacing: 0.1em;

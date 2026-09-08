@@ -64,6 +64,11 @@ body {
   gap: 0.65rem;
 }
 
+.header-actions .btn {
+  padding: 0.4rem 0.85rem !important;
+  font-size: 0.78rem;
+}
+
 .reading-container {
   width: min(100%, 960px);
 }
@@ -286,5 +291,11 @@ body {
 
   .scripture-card {
     box-shadow: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

@@ -122,7 +122,7 @@ function updateAddress(book, chapter) {
   url.searchParams.set("book", book.name_en);
   url.searchParams.set("chapter", String(chapter));
   history.replaceState(null, "", url);
-  document.title = `${book.name_zh} 第 ${chapter} 章｜聖經經文閱讀-和合本聖經`;
+  document.title = `${book.name_zh} 第 ${chapter} 章｜ZZ聖經經文閱讀-和合本聖經`;
 }
 
 async function loadChapter({ scroll = false } = {}) {

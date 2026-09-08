@@ -24,6 +24,10 @@ html[data-font-scale="xlarge"] {
   font-size: 156%;
 }
 
+html[data-font-scale="small"] {
+  font-size: 102%;
+}
+
 body {
   min-height: 100vh;
   display: flex;
@@ -232,6 +236,10 @@ body {
 
   html[data-font-scale="xlarge"] {
     font-size: 169%;
+  }
+
+  html[data-font-scale="small"] {
+    font-size: 110.5%;
   }
 
   .site-header h1 {

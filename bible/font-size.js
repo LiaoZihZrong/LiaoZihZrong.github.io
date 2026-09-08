@@ -2,14 +2,17 @@
 
 (() => {
   const storageKey = "bible-font-scale";
-  const scales = ["default", "large", "xlarge"];
-  const labels = {
-    default: "放大文字 A+",
-    large: "再放大 A++",
-    xlarge: "恢復預設文字",
+  const scales = ["small", "default", "large", "xlarge"];
+  const scaleNames = {
+    small: "小字",
+    default: "預設",
+    large: "大字",
+    xlarge: "特大字",
   };
-  const button = document.querySelector("#font-size-button");
-  if (!button) return;
+  const decreaseButton = document.querySelector("#font-size-decrease");
+  const increaseButton = document.querySelector("#font-size-button");
+  const status = document.querySelector("#font-size-status");
+  if (!decreaseButton || !increaseButton) return;
 
   function storedScale() {
     try {
@@ -26,15 +29,22 @@
     } else {
       document.documentElement.dataset.fontScale = scale;
     }
-    button.textContent = labels[scale];
-    button.setAttribute("aria-label", `${labels[scale]}，目前為${scale === "default" ? "預設" : scale === "large" ? "大字" : "特大字"}模式`);
+    const index = scales.indexOf(scale);
+    decreaseButton.disabled = index === 0;
+    increaseButton.disabled = index === scales.length - 1;
+    decreaseButton.setAttribute("aria-label", `縮小文字，目前為${scaleNames[scale]}模式`);
+    increaseButton.setAttribute("aria-label", `放大文字，目前為${scaleNames[scale]}模式`);
+    if (status) status.textContent = `文字大小：${scaleNames[scale]}`;
   }
 
   let currentScale = storedScale();
   applyScale(currentScale);
 
-  button.addEventListener("click", () => {
-    const nextIndex = (scales.indexOf(currentScale) + 1) % scales.length;
+  function changeScale(direction) {
+    const nextIndex = Math.min(
+      Math.max(scales.indexOf(currentScale) + direction, 0),
+      scales.length - 1,
+    );
     currentScale = scales[nextIndex];
     applyScale(currentScale);
     try {
@@ -42,5 +52,8 @@
     } catch {
       // The visual control still works when browser storage is unavailable.
     }
-  });
+  }
+
+  decreaseButton.addEventListener("click", () => changeScale(-1));
+  increaseButton.addEventListener("click", () => changeScale(1));
 })();

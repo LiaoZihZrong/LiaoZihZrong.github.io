@@ -3,18 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="和合本聖經 JSON 經文資料取得方式、API 路徑、欄位說明，以及 JavaScript 和 Python 使用範例。">
+    <meta name="description" content="和合本聖經 JSON 經文 API 使用說明，可供 AI 讀取校正經文，包含資料路徑、欄位對照及 JavaScript、Python 範例。">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#213f34">
     <link rel="canonical" href="https://liaozihzrong.github.io/bible/guide.html">
     <meta property="og:type" content="article">
     <meta property="og:locale" content="zh_TW">
     <meta property="og:site_name" content="聖經經文閱讀-和合本聖經">
-    <meta property="og:title" content="如何取得和合本聖經 JSON 經文資料">
-    <meta property="og:description" content="完整的經文資料路徑、JSON 欄位對照與程式讀取範例。">
+    <meta property="og:title" content="經文 API 使用說明（可直接給 AI 讀取校正經文）">
+    <meta property="og:description" content="和合本聖經 JSON API 路徑、欄位對照、AI 與程式讀取範例。">
     <meta property="og:url" content="https://liaozihzrong.github.io/bible/guide.html">
     <meta name="twitter:card" content="summary">
-    <title>如何取得經文｜聖經經文閱讀-和合本聖經</title>
+    <title>經文 API 使用說明（可直接給 AI 讀取校正經文）｜和合本聖經</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -26,14 +26,18 @@
   <body>
     <header class="site-header">
       <div class="container reading-container py-4 py-md-5 text-center">
-        <p class="eyebrow mb-2">Bible JSON Guide</p>
-        <h1 class="display-5 mb-2">如何取得經文</h1>
-        <p class="lead mb-3 opacity-75">和合本聖經 JSON 資料格式與使用範例</p>
+        <p class="eyebrow mb-2">Bible JSON API Guide</p>
+        <h1 class="display-5 mb-2">經文 API 使用說明</h1>
+        <p class="lead mb-3 opacity-75">可直接給 AI 讀取校正經文</p>
         <div class="header-actions">
           <a class="btn btn-outline-light rounded-pill px-4" href="./">返回聖經閱讀</a>
+          <button id="font-size-decrease" class="btn btn-outline-light rounded-pill px-4" type="button">
+            縮小文字 A−
+          </button>
           <button id="font-size-button" class="btn btn-outline-light rounded-pill px-4" type="button">
             放大文字 A+
           </button>
+          <span id="font-size-status" class="visually-hidden" aria-live="polite"></span>
         </div>
       </div>
     </header>
@@ -66,6 +70,18 @@
   "chapters": 21,
   "api_path": "New_Testament/John"
 }</code></pre>
+          </section>
+
+          <section class="mb-5" aria-labelledby="ai-title">
+            <h2 id="ai-title" class="h3 mb-3">提供給 AI 讀取</h2>
+            <p>將章節 JSON 公開網址提供給具備網址讀取能力的 AI，即可要求它依原文引用或校正經文，減少書卷、章節與文字對應錯誤。</p>
+            <p class="mb-2">提示詞範例：</p>
+            <pre class="code-block"><code>請讀取以下和合本聖經 JSON：
+https://liaozihzrong.github.io/bible/data/New_Testament/John/003.json
+
+請以 book_zh、chapter、verses 內的 verse 與 text 為準，
+核對我要引用的經文章節，不要自行改寫經文。</code></pre>
+            <div class="alert alert-warning mb-0" role="note">AI 必須具備讀取公開網址的功能；若使用的 AI 無法連網，可先下載 JSON，再將檔案上傳給它。</div>
           </section>
 
           <section class="mb-5" aria-labelledby="fields-title">

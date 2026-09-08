@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="免費線上閱讀繁體中文和合本聖經，依新舊約、書卷與章節快速查閱完整經文，並提供 JSON 經文資料使用說明。">
+    <meta name="description" content="免費線上閱讀繁體中文和合本聖經，依新舊約、書卷與章節快速查閱完整經文，並提供可供 AI 讀取的 JSON 經文 API 使用說明。">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#213f34">
     <link rel="canonical" href="https://liaozihzrong.github.io/bible/">
@@ -41,10 +41,14 @@
         <h1 class="display-5 mb-2">聖經經文閱讀-和合本聖經</h1>
         <p class="lead mb-0 opacity-75">願你的話是我腳前的燈，是我路上的光。</p>
         <div class="header-actions mt-3">
-          <a class="btn btn-outline-light rounded-pill px-4" href="guide.html">如何取得經文</a>
+          <a class="btn btn-outline-light rounded-pill px-4" href="guide.html">經文 API 使用說明（可直接給 AI 讀取校正經文）</a>
+          <button id="font-size-decrease" class="btn btn-outline-light rounded-pill px-4" type="button">
+            縮小文字 A−
+          </button>
           <button id="font-size-button" class="btn btn-outline-light rounded-pill px-4" type="button">
             放大文字 A+
           </button>
+          <span id="font-size-status" class="visually-hidden" aria-live="polite"></span>
         </div>
       </div>
     </header>

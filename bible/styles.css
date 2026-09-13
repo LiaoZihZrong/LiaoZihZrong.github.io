@@ -24,6 +24,18 @@ html[data-font-scale="xlarge"] {
   font-size: 156%;
 }
 
+html[data-font-scale="xxlarge"] {
+  font-size: 174%;
+}
+
+html[data-font-scale="xxxlarge"] {
+  font-size: 192%;
+}
+
+html[data-font-scale="huge"] {
+  font-size: 210%;
+}
+
 html[data-font-scale="small"] {
   font-size: 102%;
 }
@@ -86,6 +98,28 @@ body {
 
 .reading-container {
   width: min(100%, 960px);
+}
+
+html:is(
+    [data-font-scale="xlarge"],
+    [data-font-scale="xxlarge"],
+    [data-font-scale="xxxlarge"],
+    [data-font-scale="huge"]
+  )
+  .reading-container {
+  width: min(100%, 1200px);
+  max-width: 1200px;
+}
+
+html:is(
+    [data-font-scale="xlarge"],
+    [data-font-scale="xxlarge"],
+    [data-font-scale="xxxlarge"],
+    [data-font-scale="huge"]
+  )
+  .verse-row {
+  padding-block: 0.6rem;
+  line-height: 1.7;
 }
 
 .selector-card,
@@ -278,6 +312,18 @@ body {
 
   html[data-font-scale="xlarge"] {
     font-size: 169%;
+  }
+
+  html[data-font-scale="xxlarge"] {
+    font-size: 188.5%;
+  }
+
+  html[data-font-scale="xxxlarge"] {
+    font-size: 208%;
+  }
+
+  html[data-font-scale="huge"] {
+    font-size: 227.5%;
   }
 
   html[data-font-scale="small"] {

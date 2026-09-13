@@ -17,6 +17,32 @@ const elements = {
 
 let books = [];
 let activeRequest = null;
+const readingPositionCookie = "bible-reading-position";
+const cookieMaxAge = 60 * 60 * 24 * 365;
+
+function savedReadingPosition() {
+  try {
+    const prefix = `${readingPositionCookie}=`;
+    const cookie = document.cookie
+      .split("; ")
+      .find((item) => item.startsWith(prefix));
+    if (!cookie) return null;
+
+    const position = JSON.parse(decodeURIComponent(cookie.slice(prefix.length)));
+    if (typeof position.book !== "string") return null;
+    return position;
+  } catch {
+    return null;
+  }
+}
+
+function saveReadingPosition(book, chapter) {
+  const value = encodeURIComponent(JSON.stringify({
+    book: book.name_en,
+    chapter,
+  }));
+  document.cookie = `${readingPositionCookie}=${value}; max-age=${cookieMaxAge}; path=/; SameSite=Lax`;
+}
 
 function booksInTestament(testament) {
   return books.filter((book) => book.testament === testament);
@@ -142,6 +168,7 @@ async function loadChapter({ scroll = false } = {}) {
     const data = await response.json();
     renderChapter(data);
     updateAddress(book, chapter);
+    saveReadingPosition(book, chapter);
     if (scroll) elements.reading.scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (error) {
     if (error.name !== "AbortError") showError(error);
@@ -193,11 +220,17 @@ async function initialize() {
     books = manifest.books;
 
     const query = new URLSearchParams(window.location.search);
-    const requestedBook = books.find((book) => book.name_en === query.get("book"));
-    const initialBook = requestedBook || books[0];
+    const requestedBookName = query.get("book");
+    const requestedBook = books.find((book) => book.name_en === requestedBookName);
+    const savedPosition = requestedBookName ? null : savedReadingPosition();
+    const savedBook = books.find((book) => book.name_en === savedPosition?.book);
+    const initialBook = requestedBook || savedBook || books[0];
+    const initialChapter = requestedBook
+      ? query.get("chapter")
+      : savedPosition?.chapter;
     elements.testament.value = initialBook.testament;
     populateBooks(initialBook.name_en);
-    populateChapters(query.get("chapter"));
+    populateChapters(initialChapter);
     enableSelectors();
     await loadChapter();
   } catch (error) {

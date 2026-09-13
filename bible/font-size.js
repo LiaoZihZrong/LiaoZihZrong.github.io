@@ -2,12 +2,23 @@
 
 (() => {
   const storageKey = "bible-font-scale";
-  const scales = ["small", "default", "large", "xlarge"];
+  const scales = [
+    "small",
+    "default",
+    "large",
+    "xlarge",
+    "xxlarge",
+    "xxxlarge",
+    "huge",
+  ];
   const scaleNames = {
     small: "小字",
     default: "預設",
     large: "大字",
     xlarge: "特大字",
+    xxlarge: "超大字",
+    xxxlarge: "極大字",
+    huge: "最大字",
   };
   const decreaseButton = document.querySelector("#font-size-decrease");
   const increaseButton = document.querySelector("#font-size-button");
